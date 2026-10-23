@@ -66,7 +66,7 @@ img {
 }
 
 /* ==========================================================================
-   3. COMPONENTES Y NAVEGACIÓN PRINCIPAL
+   3. COMPONENTES Y NAVEGACIÓN PRINCIPAL (LOGO CORREGIDO)
    ========================================================================== */
 .container {
     width: 100%;
@@ -92,6 +92,21 @@ img {
     display: flex;
     align-items: center;
     gap: 10px;
+    flex-shrink: 0;
+}
+
+.brand-isotype {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.header-logo-img {
+    height: 38px;
+    width: auto;
+    max-height: 40px;
+    display: block !important;
+    object-fit: contain;
 }
 
 .logo-text h1 {
@@ -1534,7 +1549,7 @@ img {
 }
 
 /* ==========================================================================
-   13. EFECTO HOVER EN TÍTULOS ("MELO")
+   13. EFECTO HOVER EN TÍTULOS
    ========================================================================== */
 h1, h2, h3, h4, h5, h6 {
     transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
@@ -1566,7 +1581,7 @@ h1:hover, h2:hover, h3:hover, h4:hover, h5:hover, h6:hover {
 /* Botón Flotante de Idioma (Posicionado abajo a la derecha) */
 .floating-lang-toggle {
     position: fixed;
-    bottom: 85px; /* Ngato ti WhatsApp button */
+    bottom: 85px;
     right: 20px;
     z-index: 999;
 }
@@ -1614,22 +1629,25 @@ h1:hover, h2:hover, h3:hover, h4:hover, h5:hover, h6:hover {
     .main-header {
         position: relative !important;
         padding: 0.8rem 4% !important;
+        height: 70px !important;
     }
 
     .header-actions {
         display: flex !important;
         align-items: center !important;
-        gap: 0.8rem !important;
+        gap: 0.6rem !important;
     }
 
-    /* Botón INICIAR SESIÓN estilo encapsulado en header móvil */
+    /* Botón INICIAR SESIÓN compacto en móviles */
     .header-actions .login-btn {
         display: inline-flex !important;
+        align-items: center !important;
+        gap: 5px !important;
         background: transparent !important;
         border: 1px solid var(--color-primary, #4a6c8d) !important;
-        padding: 0.4rem 0.8rem !important;
+        padding: 0.35rem 0.75rem !important;
         border-radius: 20px !important;
-        font-size: 0.7rem !important;
+        font-size: 0.68rem !important;
         color: var(--color-text-main, #2c3e50) !important;
         white-space: nowrap !important;
     }
@@ -1639,10 +1657,11 @@ h1:hover, h2:hover, h3:hover, h4:hover, h5:hover, h6:hover {
         display: none !important;
     }
 
-    /* Botón hamburguesa desplegable */
+    /* Botón hamburguesa alineado a la derecha */
     .menu-toggle {
         display: inline-block !important;
-        font-size: 1.4rem !important;
+        font-size: 1.3rem !important;
+        padding: 0.2rem 0.4rem !important;
     }
 
     .nav-menu {
