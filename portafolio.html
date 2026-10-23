@@ -260,11 +260,11 @@
         }
 
         .ba-after-img {
-            background-image: url('imagenes/¡Oferta\ limitada\ de\ hamburguesa!.png');
+            background-image: url('imagenes/despues.jpg');
         }
 
         .ba-before-img {
-            background-image: url('imagenes/Delicioso\ Burger_\ 50%\ de\ Descuento.png');
+            background-image: url('imagenes/antes.jpg');
             width: 50%;
             border-right: 3px solid #00bcd4;
             z-index: 2;
@@ -300,12 +300,270 @@
         }
 
         .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
             perspective: 1000px;
         }
 
         .portfolio-item {
+            background: #ffffff;
+            border-radius: 16px;
+            border: 2px solid #dbe2e8;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            flex-direction: column;
             transform-style: preserve-3d;
-            transition: transform 0.2s ease-out, box-shadow 0.35s ease;
+            transition: transform 0.2s ease-out, box-shadow 0.35s ease, border-color 0.35s ease;
+        }
+
+        .portfolio-item:hover {
+            border-color: var(--color-primary, #00bcd4);
+            box-shadow: 0 12px 30px rgba(0, 188, 212, 0.25);
+        }
+
+        .portfolio-img-wrapper {
+            position: relative;
+            width: 100%;
+            height: 240px;
+            background: #0f172a;
+            overflow: hidden;
+        }
+
+        .portfolio-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.4s ease;
+        }
+
+        .portfolio-item:hover .portfolio-img-wrapper img {
+            transform: scale(1.05);
+        }
+
+        .portfolio-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(15, 23, 42, 0.88);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 1.5rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            backdrop-filter: blur(4px);
+        }
+
+        .portfolio-item:hover .portfolio-overlay {
+            opacity: 1;
+        }
+
+        .category-tag {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: #00bcd4;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.4rem;
+        }
+
+        .portfolio-overlay h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 0.4rem;
+        }
+
+        .portfolio-overlay p {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.85rem;
+            color: #cbd5e1;
+            margin-bottom: 1rem;
+            line-height: 1.4;
+        }
+
+        .portfolio-link {
+            align-self: flex-start;
+            background: #00bcd4;
+            color: #0f172a;
+            border: none;
+            padding: 0.45rem 0.9rem;
+            border-radius: 8px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.25s ease, transform 0.25s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .portfolio-link:hover {
+            background: #ffffff;
+            transform: translateY(-2px);
+        }
+
+        /* Estilos del Modal */
+        .portfolio-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.75);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+            backdrop-filter: blur(5px);
+            padding: 1rem;
+        }
+
+        .portfolio-modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .portfolio-modal-card {
+            background: #ffffff;
+            border-radius: 16px;
+            max-width: 750px;
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+            transform: translateY(20px);
+            transition: transform 0.3s ease;
+        }
+
+        .portfolio-modal-overlay.active .portfolio-modal-card {
+            transform: translateY(0);
+        }
+
+        .close-modal-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(0,0,0,0.6);
+            color: #ffffff;
+            border: none;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s ease;
+        }
+
+        .close-modal-btn:hover {
+            background: #00bcd4;
+        }
+
+        .modal-body {
+            display: flex;
+            flex-direction: column;
+        }
+
+        @media (min-width: 768px) {
+            .modal-body {
+                flex-direction: row;
+            }
+        }
+
+        .modal-img-container {
+            width: 100%;
+            background: #0f172a;
+            min-height: 280px;
+        }
+
+        @media (min-width: 768px) {
+            .modal-img-container {
+                width: 50%;
+            }
+        }
+
+        .modal-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .modal-details {
+            width: 100%;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        @media (min-width: 768px) {
+            .modal-details {
+                width: 50%;
+            }
+        }
+
+        .modal-category {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: #00bcd4;
+            text-transform: uppercase;
+            margin-bottom: 0.4rem;
+        }
+
+        .modal-details h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 0.8rem;
+        }
+
+        .modal-divider {
+            width: 40px;
+            height: 3px;
+            background: #00bcd4;
+            margin-bottom: 1rem;
+        }
+
+        .modal-details p {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.9rem;
+            color: #475569;
+            line-height: 1.6;
+            margin-bottom: 1.2rem;
+        }
+
+        .modal-meta {
+            font-size: 0.82rem;
+            color: #64748b;
+            background: #f1f5f9;
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            border-left: 3px solid #00bcd4;
+        }
+
+        .modal-meta strong {
+            color: #1e293b;
+            display: block;
+            margin-bottom: 0.2rem;
         }
     </style>
 </head>
@@ -1027,3 +1285,4 @@
     </script>
 </body>
 </html>
+
