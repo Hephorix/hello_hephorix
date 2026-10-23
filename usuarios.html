@@ -3,27 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panel de Usuario | HEPHORIX Agencia de Diseño Gráfico</title>
+    <title>Panel de Cliente | Hephorix Agencia de Diseño Gráfico</title>
     
-    <!-- FAVICON -->
+    <!-- Favicon de la Agencia -->
     <link rel="icon" href="imagenes/fondo1.png" type="image/png">
 
-    <!-- Hojas de Estilos Globales y Fuentes -->
+    <!-- Hojas de Estilos Globales -->
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <!-- Guardián de Navegación en usuarios.html -->
-    <script>
-        (function() {
-            const sessionData = sessionStorage.getItem('hephorix_active_user');
-            if (!sessionData) {
-                window.location.href = 'login.html';
-            }
-        })();
-    </script>
-
-    <!-- ESTILOS INTERNOS PARA AJUSTE MÓVIL Y BOTÓN FLOTANTE -->
+    <!-- ESTILOS INTERNOS PARA UNIFICAR DISEÑO, MENÚ Y VIDEO -->
     <style>
         .floating-lang-toggle {
             position: fixed;
@@ -71,50 +61,111 @@
             color: #0f172a;
         }
 
-        #dynamicText {
-            transition: opacity 0.3s ease;
+        /* ESTILOS ESPECÍFICOS DEL PANEL DE CLIENTE */
+        .client-hero-section {
+            padding: 3rem 1rem;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #ffffff;
+            text-align: center;
+            border-bottom: 4px solid #00bcd4;
         }
 
-        /* Corrección responsiva para la barra de navegación autenticada en móviles */
+        .client-welcome-box {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(0, 188, 212, 0.3);
+            padding: 2rem;
+            border-radius: 16px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .client-welcome-box h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.8rem;
+            color: #00bcd4;
+            margin-bottom: 0.8rem;
+            font-weight: 700;
+        }
+
+        .client-welcome-box p {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 1rem;
+            color: #cbd5e1;
+        }
+
+        /* CONTENEDOR DE VIDEO UNIFICADO AL ESTILO DE LA AGENCIA */
+        .featured-video-card {
+            background: #ffffff;
+            border-radius: 16px;
+            border: 2px solid #dbe2e8;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+            max-width: 850px;
+            margin: 3rem auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .featured-video-wrapper {
+            position: relative;
+            width: 100%;
+            height: 420px;
+            background: #000000;
+        }
+
+        .featured-video-wrapper video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .featured-video-info {
+            padding: 1.5rem;
+            text-align: center;
+            background: #ffffff;
+        }
+
+        .featured-video-info h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.2rem;
+            color: #1e293b;
+            font-weight: 700;
+        }
+
+        /* AJUSTE CLAVE PARA QUE EL MENÚ MÓVIL FUNCIONE PERFECTAMENTE */
         @media (max-width: 768px) {
-            .main-header {
-                padding: 0.5rem 3%;
+            .nav-menu {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background: #0f172a;
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-start;
+                padding-top: 2rem;
+                transition: left 0.3s ease;
+                z-index: 1000;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.3);
             }
-            .header-actions {
-                gap: 8px;
+            .nav-menu.active {
+                left: 0 !important;
             }
-            .user-authenticated-badge {
-                padding: 4px 8px;
-                max-width: 170px;
-            }
-            .user-info-text strong {
-                font-size: 0.75rem;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                white-space: nowrap;
-                max-width: 90px;
-                display: inline-block;
-            }
-            .user-welcome-label {
-                font-size: 0.6rem;
-            }
-            .user-avatar-circle {
-                width: 28px;
-                height: 28px;
-                font-size: 0.8rem;
-            }
-            .logout-btn {
-                font-size: 0.85rem;
-                padding: 2px 4px;
+            .featured-video-wrapper {
+                height: 250px;
             }
         }
     </style>
 </head>
 <body>
 
-    <!-- Encabezado / Barra de Navegación con Estado Autenticado -->
+    <!-- Encabezado / Barra de Navegación Principal -->
     <header class="main-header">
-        <a href="usuarios.html" class="logo-container">
+        <a href="index.html" class="logo-container">
             <div class="brand-isotype">
                 <img src="imagenes/logo.jpg.png" alt="Logo Hephorix" class="header-logo-img">
             </div>
@@ -125,7 +176,7 @@
         </a>
         
         <nav class="nav-menu" id="navMenu">
-            <a href="usuarios.html" class="nav-link active" data-key="nav_inicio">INICIO</a>
+            <a href="index.html" class="nav-link" data-key="nav_inicio">INICIO</a>
             <a href="quienes somos.html" class="nav-link" data-key="nav_quienes">QUIENES SOMOS</a>
             <a href="servicios.html" class="nav-link" data-key="nav_servicios">SERVICIOS</a>
             <a href="portafolio.html" class="nav-link" data-key="nav_portafolio">PORTAFOLIO</a>
@@ -133,27 +184,17 @@
         </nav>
 
         <div class="header-actions">
-            <!-- Bloque de Perfil Autenticado -->
-            <div class="user-authenticated-badge" id="userAuthBadge">
-                <div class="user-avatar-circle" id="userAvatarCircle">
-                    <i class="fa-solid fa-user"></i>
-                </div>
-                <div class="user-info-text">
-                    <span class="user-welcome-label" data-key="session_active">Sesión Activa</span>
-                    <strong id="displayUserEmail">usuario@hephorix.com</strong>
-                </div>
-                <button type="button" id="logoutBtn" class="logout-btn" title="Cerrar Sesión">
-                    <i class="fa-solid fa-right-from-bracket"></i>
-                </button>
+            <div class="action-link login-btn" style="background: rgba(0, 188, 212, 0.15); border: 1px solid #00bcd4; color: #00bcd4; padding: 0.4rem 0.8rem; border-radius: 8px; font-size: 0.8rem;">
+                <i class="fa-solid fa-user-check"></i> <span id="userStatusLabel">cliente@heph...</span>
             </div>
-
+            
             <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
                 <i class="fa-solid fa-bars" id="menuIcon"></i>
             </button>
         </div>
     </header>
 
-    <!-- Botón Flotante de Traductor (Abajo a la derecha) -->
+    <!-- Botón Flotante de Traductor -->
     <div class="floating-lang-toggle">
         <button class="lang-btn-float" id="btnLangFloat" aria-label="Cambiar idioma">
             <i class="fa-solid fa-globe"></i>
@@ -169,64 +210,44 @@
         <a href="https://www.instagram.com/_hephorix/" target="_blank" class="floating-net-btn ig" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
     </aside>
 
-    <!-- Banner Privado de Bienvenida -->
-    <section class="user-welcome-banner">
-        <div class="container">
-            <div class="welcome-card-content">
-                <i class="fa-solid fa-circle-check welcome-icon"></i>
-                <div>
-                    <h2><span data-key="welcome_prefix">¡Bienvenido a tu Panel de Cliente,</span> <span id="welcomeUserName">Usuario</span>!</h2>
-                    <p data-key="welcome_sub">Has ingresado exitosamente a la plataforma privada de HEPHORIX.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contenido Principal (Estructura de Inicio) -->
+    <!-- Contenido Principal del Panel de Usuario -->
     <main>
-        <section class="hero-section">
-            <div class="hero-container container">
-                <div class="hero-content">
-                    <h2 data-key="hero_title">DISEÑAMOS IDEAS</h2>
-                    <h3 class="shimmer-title" style="font-size: 1.8rem; font-weight: 700; color: #2c3e50; margin-bottom: 1rem; line-height: 1.3;">
-                        <span data-key="hero_sub1">Ideas que se transforman en</span> <br>
-                        <span class="typing-container" id="dynamicText" style="margin-top: 4px;">luz</span>
-                    </h3>
-                    <p data-key="hero_desc">Accede a tus recursos corporativos, portafolio exclusivo y material descargable de la agencia.</p>
-                    <div class="hero-buttons">
-                        <a href="imagenes/Manual coorporativo ACTUALIZADO HEPHORIX.pdf" target="_blank" class="btn btn-primary" data-key="btn_manual">MI MANUAL</a>
-                        <a href="imagenes/PORTAFOLIO HEPHORIX.pdf" target="_blank" class="btn btn-secondary" data-key="btn_portfolio">DESCARGAR PORTAFOLIO</a>
-                    </div>
+        <section class="client-hero-section">
+            <div class="container">
+                <div class="client-welcome-box">
+                    <h2><i class="fa-solid fa-circle-check"></i> ¡Bienvenido a tu Panel de Cliente, Cliente Preferencial!</h2>
+                    <p>Has ingresado exitosamente a la plataforma privada de HEPHORIX.</p>
                 </div>
             </div>
         </section>
 
-        <!-- Sección Informativa -->
-        <section class="about-section container">
-            <div class="about-info">
-                <div>
-                    <h2 data-key="private_title">Tu Espacio Creativo Privado</h2>
-                    <p data-key="private_desc">Como usuario autenticado de Hephorix, cuentas con atención prioritaria para la ejecución de tus proyectos visuales, diseño UI/UX y consultoría estratégica de marca.</p>
-                </div>
-                <div class="about-cta">
-                    <a href="contacto.html" class="btn btn-primary" data-key="btn_new_proj">SOLICITAR NUEVO PROYECTO</a>
-                </div>
-            </div>
+        <div class="container" style="padding: 3rem 1rem;">
             
-            <div class="index-video-card-container">
-                <article class="index-video-card">
-                    <div class="video-wrapper">
-                        <video controls poster="imagenes/descarga.jpg">
-                            <source src="imagenes/video 1.mp4" type="video/mp4">
-                            Tu navegador no soporta el reproductor de vídeo.
-                        </video>
-                    </div>
-                    <div class="video-title-only">
-                        <h3><span data-key="video_title">" Conoce Un Poco Más De Hephorix "</span></h3>
-                    </div>
-                </article>
+            <!-- Bloque de Recursos Exclusivos -->
+            <div style="background: #ffffff; border: 2px solid #dbe2e8; border-radius: 16px; padding: 2.5rem; text-align: center; max-width: 800px; margin: 0 auto 2.5rem auto; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+                <h3 style="font-family: 'Montserrat', sans-serif; font-size: 1.5rem; color: #1e293b; margin-bottom: 0.5rem;" data-key="panel_card_title">DISEÑAMOS IDEAS</h3>
+                <h4 style="font-family: 'Montserrat', sans-serif; font-size: 1.2rem; color: #00bcd4; margin-bottom: 1rem;" data-key="panel_card_sub">Ideas que se transforman en <span id="dynamicText">VENTAS</span></h4>
+                <p style="color: #64748b; font-size: 0.92rem; margin-bottom: 1.5rem;" data-key="panel_card_desc">Accede a tus recursos corporativos, portafolio exclusivo y material descargable de la agencia.</p>
+                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                    <a href="#" style="background: #0f172a; color: #ffffff; padding: 0.75rem 1.5rem; border-radius: 8px; font-family: 'Montserrat', sans-serif; font-weight: 700; text-decoration: none; font-size: 0.85rem;" data-key="btn_manual">MI MANUAL</a>
+                    <a href="portafolio.html" style="background: #ffffff; border: 2px solid #0f172a; color: #0f172a; padding: 0.75rem 1.5rem; border-radius: 8px; font-family: 'Montserrat', sans-serif; font-weight: 700; text-decoration: none; font-size: 0.85rem;" data-key="btn_portafolio">DESCARGAR PORTAFOLIO</a>
+                </div>
             </div>
-        </section>
+
+            <!-- SECCIÓN DE VIDEO AL ESTILO DE LA AGENCIA -->
+            <article class="featured-video-card">
+                <div class="featured-video-wrapper">
+                    <video controls poster="imagenes/mate 1.jpg">
+                        <source src="imagenes/matematicas.mp4" type="video/mp4">
+                        Tu navegador no soporta la reproducción de video.
+                    </video>
+                </div>
+                <div class="featured-video-info">
+                    <h3>" Conoce Un Poco Más De Hephorix "</h3>
+                </div>
+            </article>
+
+        </div>
     </main>
 
     <!-- Pie de Página (Footer) -->
@@ -239,7 +260,6 @@
                     <p data-key="footer_sub">CONTÁCTANOS Y HAGAMOS REALIDAD TU IDEA</p>
                 </div>
             </div>
-
             <div class="footer-item contact-phone">
                 <i class="fa-solid fa-phone"></i>
                 <a href="tel:+573182849146">+57 3182849146</a>
@@ -251,8 +271,7 @@
         </div>
     </footer>
 
-    <!-- Scripts de Lógica Global -->
-    <script src="script.js"></script>
+    <!-- LÓGICA JAVASCRIPT: MENÚ MÓVIL, TRADUCCIÓN Y DINÁMICA -->
     <script>
         let currentLang = 'es';
 
@@ -264,18 +283,10 @@
                 nav_servicios: "SERVICIOS",
                 nav_portafolio: "PORTAFOLIO",
                 nav_contactanos: "CONTACTANOS",
-                session_active: "Sesión Activa",
-                welcome_prefix: "¡Bienvenido a tu Panel de Cliente,",
-                welcome_sub: "Has ingresado exitosamente a la plataforma privada de HEPHORIX.",
-                hero_title: "DISEÑAMOS IDEAS",
-                hero_sub1: "Ideas que se transforman en",
-                hero_desc: "Accede a tus recursos corporativos, portafolio exclusivo y material descargable de la agencia.",
+                panel_card_title: "DISEÑAMOS IDEAS",
+                panel_card_desc: "Accede a tus recursos corporativos, portafolio exclusivo y material descargable de la agencia.",
                 btn_manual: "MI MANUAL",
-                btn_portfolio: "DESCARGAR PORTAFOLIO",
-                private_title: "Tu Espacio Creativo Privado",
-                private_desc: "Como usuario autenticado de Hephorix, cuentas con atención prioritaria para la ejecución de tus proyectos visuales, diseño UI/UX y consultoría estratégica de marca.",
-                btn_new_proj: "SOLICITAR NUEVO PROYECTO",
-                video_title: '" Conoce Un Poco Más De Hephorix "',
+                btn_portafolio: "DESCARGAR PORTAFOLIO",
                 footer_title: "¿TIENES UN PROYECTO EN MENTE?",
                 footer_sub: "CONTÁCTANOS Y HAGAMOS REALIDAD TU IDEA"
             },
@@ -286,26 +297,13 @@
                 nav_servicios: "SERVICES",
                 nav_portafolio: "PORTFOLIO",
                 nav_contactanos: "CONTACT US",
-                session_active: "Active Session",
-                welcome_prefix: "Welcome to your Client Dashboard,",
-                welcome_sub: "You have successfully accessed the private HEPHORIX platform.",
-                hero_title: "WE DESIGN IDEAS",
-                hero_sub1: "Ideas that transform into",
-                hero_desc: "Access your corporate resources, exclusive portfolio, and downloadable agency materials.",
+                panel_card_title: "WE DESIGN IDEAS",
+                panel_card_desc: "Access your corporate resources, exclusive portfolio, and downloadable agency material.",
                 btn_manual: "MY MANUAL",
-                btn_portfolio: "DOWNLOAD PORTFOLIO",
-                private_title: "Your Private Creative Space",
-                private_desc: "As an authenticated Hephorix user, you get priority support for visual projects, UI/UX design, and brand consulting.",
-                btn_new_proj: "REQUEST NEW PROJECT",
-                video_title: '" Get to know a bit more about Hephorix "',
+                btn_portafolio: "DOWNLOAD PORTFOLIO",
                 footer_title: "HAVE A PROJECT IN MIND?",
                 footer_sub: "CONTACT US AND LET'S MAKE YOUR IDEA A REALITY"
             }
-        };
-
-        const wordsMap = {
-            es: ['luz', 'marcas', 'resultados', 'ventas'],
-            en: ['light', 'brands', 'results', 'sales']
         };
 
         function switchLanguage() {
@@ -332,22 +330,19 @@
                 btnLangFloat.addEventListener('click', switchLanguage);
             }
 
-            // Lógica para el texto dinámico
-            const dynamicText = document.getElementById('dynamicText');
-            if (dynamicText) {
-                let index = 0;
+            // Efecto dinámico de palabras rotativas (VENTAS -> LUZ -> MARCAS -> RESULTADOS)
+            const words = ["VENTAS", "LUZ", "MARCAS", "RESULTADOS"];
+            let wordIndex = 0;
+            const dynamicTextSpan = document.getElementById('dynamicText');
+            
+            if (dynamicTextSpan) {
                 setInterval(() => {
-                    dynamicText.style.opacity = '0';
-                    setTimeout(() => {
-                        const currentWords = wordsMap[currentLang] || wordsMap['es'];
-                        index = (index + 1) % currentWords.length;
-                        dynamicText.textContent = currentWords[index];
-                        dynamicText.style.opacity = '1';
-                    }, 300);
+                    wordIndex = (wordIndex + 1) % words.length;
+                    dynamicTextSpan.textContent = words[wordIndex];
                 }, 2500);
             }
 
-            // Control del Menú Hamburguesa Móvil
+            // Control del Menú Hamburguesa Móvil (Garantizado y funcional)
             const menuToggle = document.getElementById('menuToggle');
             const navMenu = document.getElementById('navMenu');
             const menuIcon = document.getElementById('menuIcon');
