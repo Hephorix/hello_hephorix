@@ -23,7 +23,7 @@
         })();
     </script>
 
-    <!-- ESTILOS INTERNOS PARA EL BOTÓN FLOTANTE DE IDIOMA -->
+    <!-- ESTILOS INTERNOS PARA AJUSTE MÓVIL Y BOTÓN FLOTANTE -->
     <style>
         .floating-lang-toggle {
             position: fixed;
@@ -73,6 +73,40 @@
 
         #dynamicText {
             transition: opacity 0.3s ease;
+        }
+
+        /* Corrección responsiva para la barra de navegación autenticada en móviles */
+        @media (max-width: 768px) {
+            .main-header {
+                padding: 0.5rem 3%;
+            }
+            .header-actions {
+                gap: 8px;
+            }
+            .user-authenticated-badge {
+                padding: 4px 8px;
+                max-width: 170px;
+            }
+            .user-info-text strong {
+                font-size: 0.75rem;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                max-width: 90px;
+                display: inline-block;
+            }
+            .user-welcome-label {
+                font-size: 0.6rem;
+            }
+            .user-avatar-circle {
+                width: 28px;
+                height: 28px;
+                font-size: 0.8rem;
+            }
+            .logout-btn {
+                font-size: 0.85rem;
+                padding: 2px 4px;
+            }
         }
     </style>
 </head>
