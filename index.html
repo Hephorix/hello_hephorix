@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hephorix | Agencia de Diseño Gráfico</title>
+    
+    <!-- FAVICON -->
+    <link rel="icon" href="imagenes/fondo1.png" type="image/png">
+
+    <!-- Hojas de Estilos Globales y Fuentes -->
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- ESTILOS INTERNOS PARA HERO, GLASSMORPHISM, ACORDEÓN Y CONMUTADOR DE IDIOMA -->
+    <style>
+        .hero-section {
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.78), rgba(59, 87, 115, 0.82)), 
+                        url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat !important;
+            padding: 5rem 0;
+            position: relative;
+        }
+
+        .hero-content {
+            background: rgba(255, 255, 255, 0.88) !important;
+            backdrop-filter: blur(12px) !important;
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.6) !important;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25), 0 0 25px rgba(74, 108, 141, 0.3) !important;
+            border-radius: 20px !important;
+            padding: 3rem 2.5rem !important;
+            max-width: 580px;
+        }
+
+        .typing-container {
+            display: inline-block;
+            color: #00bcd4;
+            font-weight: 700;
+            border-bottom: 3px solid #00bcd4;
+            transition: opacity 0.3s ease;
+        }
+
+        /* BOTÓN / SELECTOR DE IDIOMA EN EL HEADER */
+        .lang-switch-container {
+            display: inline-flex;
+            align-items: center;
+            background: rgba(15, 23, 42, 0.06);
+            border: 1px solid #00bcd4;
+            border-radius: 20px;
+            padding: 2px;
+            margin-right: 0.5rem;
+        }
+
+        .lang-btn {
+            background: transparent;
+            border: none;
+            color: #64748b;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 0.25rem 0.6rem;
+            border-radius: 16px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+        .lang-btn.active {
+            background: #00bcd4;
+            color: #ffffff;
+            box-shadow: 0 2px 8px rgba(0, 188, 212, 0.3);
+        }
+
+        /* SECCIÓN ALINEADA PERFECTAMENTE EN ALTURA CON LA TARJETA DEL VÍDEO */
+        .about-section {
+            display: flex;
+            align-items: stretch;
+            justify-content: space-between;
+            gap: 3.5rem;
+            margin: 3.5rem auto 2rem auto;
+            flex-wrap: wrap;
+        }
+
+        .about-info {
+            flex: 1;
+            min-width: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 0.2rem 0;
+        }
+
+        .about-info h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2rem;
+            color: #2c3e50;
+            font-weight: 700;
+            margin: 0 0 0.8rem 0;
+            line-height: 1.25;
+        }
+
+        .about-info p {
+            color: #64748b;
+            font-size: 1rem;
+            line-height: 1.6;
+            margin: 0 0 1.5rem 0;
+        }
+
+        .about-cta {
+            margin-top: auto;
+        }
+
+        /* ESTILO TIPO TARJETA PARA EL VÍDEO */
+        .index-video-card-container {
+            flex: 1;
+            min-width: 320px;
+            max-width: 520px;
+        }
+
+        .index-video-card {
+            background: #ffffff;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 2px solid #3b5773;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+            transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .index-video-card:hover {
+            transform: translateY(-6px);
+            border-color: #00bcd4;
+            box-shadow: 0 12px 30px rgba(0, 188, 212, 0.25);
+        }
+
+        .index-video-card .video-wrapper {
+            position: relative;
+            width: 100%;
+            height: 280px;
+            background: #0f172a;
+            overflow: hidden;
+        }
+
+        .index-video-card video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .index-video-card .video-title-only {
+            padding: 1.25rem 1.5rem;
+            background: #ffffff;
+        }
+
+        .index-video-card .video-title-only h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.2rem;
+            color: #2c3e50;
+            font-weight: 700;
+            margin: 0;
+            line-height: 1.3;
+        }
+
+        /* ACORDEÓN Y TÍTULO CENTRADO */
+        .faq-section {
+            margin: 3.5rem auto 4rem auto;
+        }
+
+        .faq-title {
+            text-align: center;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2rem;
+            color: #2c3e50;
+            font-weight: 700;
+            margin-top: 1rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .faq-accordion {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            max-width: 850px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: #ffffff;
+            border: 2px solid #3b5773;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+        }
+
+        .faq-item:hover {
+            border-color: #00bcd4;
+            box-shadow: 0 6px 20px rgba(74, 108, 141, 0.2);
+        }
+
+        .faq-question {
+            width: 100%;
+            padding: 1.2rem 1.5rem;
+            background: linear-gradient(180deg, #f8fafc 0%, #edf2f7 100%);
+            border: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            color: #2c3e50;
+            font-size: 1rem;
+            cursor: pointer;
+            text-align: left;
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            padding: 0 1.5rem;
+            color: #475569;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            background: #ffffff;
+            transition: max-height 0.35s ease-out, padding 0.35s ease-out;
+            border-top: 0px solid transparent;
+        }
+
+        .faq-icon {
+            transition: transform 0.35s ease;
+            font-size: 1.1rem;
+        }
+
+        .modal-overlay {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Encabezado / Barra de Navegación Principal -->
+    <header class="main-header">
+        <a href="inicio.html" class="logo-container">
+            <div class="brand-isotype">
+                <img src="imagenes/logo.jpg.png" alt="Logo Hephorix" style="max-height: 40px;">
+            </div>
+            <div class="logo-text">
+                <h1>HEPHORIX</h1>
+                <span data-key="sub_logo">agencia de diseño gráfico</span>
+            </div>
+        </a>
+        
+        <nav class="nav-menu" id="navMenu">
+            <a href="inicio.html" class="nav-link active" data-key="nav_inicio">INICIO</a>
+            <a href="quienes somos.html" class="nav-link" data-key="nav_quienes">QUIENES SOMOS</a>
+            <a href="servicios.html" class="nav-link" data-key="nav_servicios">SERVICIOS</a>
+            <a href="portafolio.html" class="nav-link" data-key="nav_portafolio">PORTAFOLIO</a>
+            <a href="contacto.html" class="nav-link" data-key="nav_contactanos">CONTACTANOS</a>
+        </nav>
+
+        <div class="header-actions">
+            <!-- BOTÓN CONMUTADOR DE IDIOMA (ESPAÑOL / INGLÉS) -->
+            <div class="lang-switch-container">
+                <button class="lang-btn active" id="btnEs">ES</button>
+                <button class="lang-btn" id="btnEn">EN</button>
+            </div>
+
+            <a href="login.html" class="action-link login-btn">
+                <i class="fa-regular fa-user"></i> <span data-key="btn_login">INICIAR SESIÓN</span>
+            </a>
+            
+            <a href="https://wa.me/573182849146" target="_blank" class="action-link contact-wp">
+                <i class="fa-brands fa-whatsapp"></i> <span data-key="btn_contact">CONTÁCTANOS</span>
+            </a>
+            <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Barra Lateral Flotante de Redes Sociales -->
+    <aside class="floating-aside-networks">
+        <a href="https://wa.me/573182849146?text=Hola,%20quisiera%20más%20información" class="floating-net-btn wp" target="_blank" rel="noopener noreferrer" aria-label="Contactar por WhatsApp">
+            <i class="fa-brands fa-whatsapp"></i>
+        </a>
+        <a href="https://www.instagram.com/_hephorix/" target="_blank" class="floating-net-btn ig" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+    </aside>
+
+    <!-- Contenido Principal Hero -->
+    <main>
+        <section class="hero-section">
+            <div class="hero-container container">
+                <div class="hero-content">
+                    <h2 data-key="hero_title">DISEÑAMOS IDEAS</h2>
+                    <h3 class="shimmer-title" style="font-size: 1.8rem; font-weight: 700; color: #2c3e50; margin-bottom: 1rem; line-height: 1.3;">
+                        <span data-key="hero_subtitle">Ideas que se transforman en</span> <br>
+                        <span class="typing-container" id="dynamicText" style="margin-top: 4px;">LUZ</span>
+                    </h3>
+                    <p data-key="hero_desc">Somos una agencia de diseño gráfico especializada en crear identidades visuales que conectan, impactan y venden.</p>
+                    <div class="hero-buttons">
+                        <a href="imagenes/Manual coorporativo ACTUALIZADO HEPHORIX.pdf" class="btn btn-primary" data-key="btn_manual">VER MANUAL</a>
+                        <a href="imagenes/PORTAFOLIO HEPHORIX.pdf" class="btn btn-secondary" data-key="btn_portfolio">VER PORTAFOLIO</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN DE PRESENTACIÓN ALINEADA EN EXTREMOS CON EL VÍDEO -->
+        <section class="about-section container">
+            <div class="about-info">
+                <div>
+                    <h2 data-key="dna_title">Nuestro ADN: Innovación y Resultados</h2>
+                    <p data-key="dna_desc">En Hephorix, no solo diseñamos; entendemos que una presencia digital exitosa va mucho más allá de una simple página web o un logotipo atractivo. Por eso, combinamos una visión estratégica profunda, diseño UI/UX de vanguardia y un desarrollo front-end robusto para construir experiencias memorables. Acompañamos a tu marca desde la conceptualización hasta su lanzamiento en línea, convirtiendo complejos desafíos comerciales en plataformas digitales intuitivas, veloces y altamente rentables que conectan de forma genuina con tu audiencia.</p>
+                </div>
+                <div class="about-cta">
+                    <a href="contacto.html" class="btn btn-primary" data-key="btn_consulting">AGENDA TU CONSULTORÍA</a>
+                </div>
+            </div>
+            
+            <div class="index-video-card-container">
+                <article class="index-video-card">
+                    <div class="video-wrapper">
+                        <video controls poster="imagenes/descarga.jpg">
+                            <source src="imagenes/video 1.mp4" type="video/mp4">
+                            Tu navegador no soporta el reproductor de vídeo.
+                        </video>
+                    </div>
+                    <div class="video-title-only">
+                        <h3 data-key="video_title">" Conoce Un Poco Más De Hephorix "</h3>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- SECCIÓN PREGUNTAS FRECUENTES -->
+        <section class="faq-section container">
+            <h2 class="faq-title" data-key="faq_title">Preguntas Frecuentes</h2>
+            <div class="faq-accordion">
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span data-key="faq_q1">¿Qué servicios ofrece la agencia Hephorix?</span>
+                        <i class="fa-solid fa-plus faq-icon"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p data-key="faq_a1">Ofrecemos branding, diseño de identidad corporativa, maquetación web UI/UX, gestión de redes sociales y desarrollo audiovisual para empresas.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span data-key="faq_q2">¿Cuánto tiempo toma desarrollar un proyecto web?</span>
+                        <i class="fa-solid fa-plus faq-icon"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p data-key="faq_a2">El tiempo promedio oscila entre 2 y 4 semanas, dependiendo de la complejidad de la plataforma y el requerimiento de personalizaciones.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span data-key="faq_q3">¿Cómo es el proceso de contratación?</span>
+                        <i class="fa-solid fa-plus faq-icon"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p data-key="faq_a3">Iniciamos con un diagnóstico inicial, formulamos una propuesta personalizada, diseñamos la propuesta visual y ejecutamos la solución adaptada a tu marca.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- MODAL DE AUTENTICACIÓN -->
+    <div class="modal-overlay" id="loginModal">
+        <div class="modal-content">
+            <button class="modal-close-icon" id="closeModalCross">&times;</button>
+            <div class="modal-header">
+                <i class="fa-solid fa-user-lock"></i>
+                <h3 data-key="login_title">Iniciar Sesión</h3>
+            </div>
+            
+            <form id="loginForm">
+                <div class="input-group">
+                    <label for="userEmail" data-key="login_email">Correo Electrónico:</label>
+                    <input type="email" id="userEmail" required placeholder="ejemplo@hephorix.com">
+                </div>
+                <div class="input-group">
+                    <label for="userPassword" data-key="login_pass">Contraseña:</label>
+                    <input type="password" id="userPassword" required placeholder="••••••••">
+                </div>
+                
+                <div class="error-message" id="errorMessage" style="display: none;">
+                    <p><i class="fa-solid fa-circle-exclamation"></i> <span data-key="login_err">Usuario no registrado</span></p>
+                    <div class="error-actions">
+                        <button type="button" id="btnRetry" class="btn-modal-action" data-key="btn_retry">Intentar de nuevo</button>
+                        <a href="contacto.html" class="btn-modal-action highlight" data-key="btn_forgot">¿Olvidó su contraseña?</a>
+                        <button type="button" id="btnCancel" class="btn-modal-action danger" data-key="btn_back">Regresar</button>
+                    </div>
+                </div>
+
+                <div class="modal-actions" id="defaultModalActions">
+                    <button type="submit" class="btn btn-primary btn-block" data-key="btn_submit">Ingresar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Pie de Página -->
+    <footer class="main-footer">
+        <div class="footer-container container">
+            <div class="footer-item project-call">
+                <i class="fa-regular fa-paper-plane"></i>
+                <div class="text-group">
+                    <h3 data-key="footer_title">¿TIENES UN PROYECTO EN MENTE?</h3>
+                    <p data-key="footer_sub">CONTÁCTANOS Y HAGAMOS REALIDAD TU IDEA</p>
+                </div>
+            </div>
+
+            <div class="footer-item social-networks">
+                <span data-key="footer_follow">Síguenos:</span>
+                <div class="social-icons">
+                    <a href="https://facebook.com" target="_blank" class="social-icon fb" aria-label="Facebook">
+                        <i class="fa-brands fa-facebook-f"></i>
+                    </a>
+                    <a href="https://instagram.com" target="_blank" class="social-icon ig" aria-label="Instagram">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="footer-item contact-phone">
+                <i class="fa-solid fa-phone"></i>
+                <a href="tel:+573182849146">+57 3182849146</a>
+            </div>
+            <div class="footer-item contact-location">
+                <i class="fa-solid fa-location-dot"></i>
+                <span>Cali, Colombia</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- SCRIPT DE TRADUCCIÓN NATIVA Y CONTROL DE ACORDEÓN / MODAL -->
+    <script>
+        let currentLang = 'es';
+
+        const wordsMap = {
+            es: ['LUZ', 'MARCAS', 'RESULTADOS', 'VENTAS'],
+            en: ['LIGHT', 'BRANDS', 'RESULTS', 'SALES']
+        };
+
+        const translations = {
+            es: {
+                sub_logo: "agencia de diseño gráfico",
+                nav_inicio: "INICIO",
+                nav_quienes: "QUIENES SOMOS",
+                nav_servicios: "SERVICIOS",
+                nav_portafolio: "PORTAFOLIO",
+                nav_contactanos: "CONTACTANOS",
+                btn_login: "INICIAR SESIÓN",
+                btn_contact: "CONTÁCTANOS",
+                hero_title: "DISEÑAMOS IDEAS",
+                hero_subtitle: "Ideas que se transforman en",
+                hero_desc: "Somos una agencia de diseño gráfico especializada en crear identidades visuales que conectan, impactan y venden.",
+                btn_manual: "VER MANUAL",
+                btn_portfolio: "VER PORTAFOLIO",
+                dna_title: "Nuestro ADN: Innovación y Resultados",
+                dna_desc: "En Hephorix, no solo diseñamos; entendemos que una presencia digital exitosa va mucho más allá de una simple página web o un logotipo atractivo. Por eso, combinamos una visión estratégica profunda, diseño UI/UX de vanguardia y un desarrollo front-end robusto para construir experiencias memorables. Acompañamos a tu marca desde la conceptualización hasta su lanzamiento en línea, convirtiendo complejos desafíos comerciales en plataformas digitales intuitivas, veloces y altamente rentables que conectan de forma genuina con tu audiencia.",
+                btn_consulting: "AGENDA TU CONSULTORÍA",
+                video_title: '" Conoce Un Poco Más De Hephorix "',
+                faq_title: "Preguntas Frecuentes",
+                faq_q1: "¿Qué servicios ofrece la agencia Hephorix?",
+                faq_a1: "Ofrecemos branding, diseño de identidad corporativa, maquetación web UI/UX, gestión de redes sociales y desarrollo audiovisual para empresas.",
+                faq_q2: "¿Cuánto tiempo toma desarrollar un proyecto web?",
+                faq_a2: "El tiempo promedio oscila entre 2 y 4 semanas, dependiendo de la complejidad de la plataforma y el requerimiento de personalizaciones.",
+                faq_q3: "¿Cómo es el proceso de contratación?",
+                faq_a3: "Iniciamos con un diagnóstico inicial, formulamos una propuesta personalizada, diseñamos la propuesta visual y ejecutamos la solución adaptada a tu marca.",
+                login_title: "Iniciar Sesión",
+                login_email: "Correo Electrónico:",
+                login_pass: "Contraseña:",
+                login_err: "Usuario no registrado",
+                btn_retry: "Intentar de nuevo",
+                btn_forgot: "¿Olvidó su contraseña?",
+                btn_back: "Regresar",
+                btn_submit: "Ingresar",
+                footer_title: "¿TIENES UN PROYECTO EN MENTE?",
+                footer_sub: "CONTÁCTANOS Y HAGAMOS REALIDAD TU IDEA",
+                footer_follow: "Síguenos:"
+            },
+            en: {
+                sub_logo: "graphic design agency",
+                nav_inicio: "HOME",
+                nav_quienes: "ABOUT US",
+                nav_servicios: "SERVICES",
+                nav_portafolio: "PORTFOLIO",
+                nav_contactanos: "CONTACT US",
+                btn_login: "LOG IN",
+                btn_contact: "CONTACT US",
+                hero_title: "WE DESIGN IDEAS",
+                hero_subtitle: "Ideas that transform into",
+                hero_desc: "We are a graphic design agency specialized in creating visual identities that connect, impact, and sell.",
+                btn_manual: "VIEW MANUAL",
+                btn_portfolio: "VIEW PORTFOLIO",
+                dna_title: "Our DNA: Innovation & Results",
+                dna_desc: "At Hephorix, we don't just design; we understand that a successful digital presence goes far beyond a simple website or an attractive logo. That's why we combine deep strategic vision, cutting-edge UI/UX design, and robust front-end development to build memorable experiences. We guide your brand from conceptualization to online launch, turning complex business challenges into intuitive, fast, and highly profitable digital platforms.",
+                btn_consulting: "SCHEDULE YOUR CONSULTING",
+                video_title: '" Learn A Bit More About Hephorix "',
+                faq_title: "Frequently Asked Questions",
+                faq_q1: "What services does Hephorix agency offer?",
+                faq_a1: "We offer branding, corporate identity design, UI/UX web layout, social media management, and audiovisual development for businesses.",
+                faq_q2: "How long does it take to develop a web project?",
+                faq_a2: "The average time ranges between 2 and 4 weeks, depending on platform complexity and customization requirements.",
+                faq_q3: "How does the hiring process work?",
+                faq_a3: "We start with an initial diagnostic, formulate a tailored proposal, design the visual proposal, and execute the solution adapted to your brand.",
+                login_title: "Log In",
+                login_email: "Email Address:",
+                login_pass: "Password:",
+                login_err: "User not registered",
+                btn_retry: "Try again",
+                btn_forgot: "Forgot your password?",
+                btn_back: "Go back",
+                btn_submit: "Submit",
+                footer_title: "HAVE A PROJECT IN MIND?",
+                footer_sub: "CONTACT US AND LET'S MAKE YOUR IDEA A REALITY",
+                footer_follow: "Follow us:"
+            }
+        };
+
+        function switchLanguage(lang) {
+            currentLang = lang;
+            const elements = document.querySelectorAll('[data-key]');
+            elements.forEach(elem => {
+                const key = elem.getAttribute('data-key');
+                if (translations[lang] && translations[lang][key]) {
+                    elem.textContent = translations[lang][key];
+                }
+            });
+
+            const btnEs = document.getElementById('btnEs');
+            const btnEn = document.getElementById('btnEn');
+            if (lang === 'en') {
+                btnEs.classList.remove('active');
+                btnEn.classList.add('active');
+                document.documentElement.lang = 'en';
+            } else {
+                btnEn.classList.remove('active');
+                btnEs.classList.add('active');
+                document.documentElement.lang = 'es';
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Eventos para cambiar de idioma
+            document.getElementById('btnEs').addEventListener('click', () => switchLanguage('es'));
+            document.getElementById('btnEn').addEventListener('click', () => switchLanguage('en'));
+
+            // 1. Texto dinámico animado
+            const dynamicText = document.getElementById('dynamicText');
+            if (dynamicText) {
+                let index = 0;
+                const triggerZoomEffect = () => {
+                    dynamicText.classList.remove('zoom-3d-active');
+                    void dynamicText.offsetWidth;
+                    
+                    const words = wordsMap[currentLang] || wordsMap['es'];
+                    dynamicText.textContent = words[index % words.length];
+                    
+                    dynamicText.classList.add('zoom-3d-active');
+                    index = (index + 1) % words.length;
+                };
+
+                triggerZoomEffect();
+                setInterval(triggerZoomEffect, 1300);
+            }
+
+            // 2. Acordeón fluido
+            const faqItems = document.querySelectorAll('.faq-item');
+            faqItems.forEach(item => {
+                const questionBtn = item.querySelector('.faq-question');
+                const answer = item.querySelector('.faq-answer');
+                const icon = item.querySelector('.faq-icon');
+
+                questionBtn.addEventListener('click', () => {
+                    const isOpen = item.classList.contains('active');
+
+                    faqItems.forEach(other => {
+                        other.classList.remove('active');
+                        const otherAns = other.querySelector('.faq-answer');
+                        otherAns.style.maxHeight = null;
+                        otherAns.style.paddingTop = '0';
+                        otherAns.style.paddingBottom = '0';
+                        otherAns.style.borderTop = '0px solid transparent';
+                        const otherIcon = other.querySelector('.faq-icon');
+                        if (otherIcon) otherIcon.style.transform = 'rotate(0deg)';
+                    });
+
+                    if (!isOpen) {
+                        item.classList.add('active');
+                        answer.style.maxHeight = answer.scrollHeight + 50 + 'px';
+                        answer.style.paddingTop = '1.2rem';
+                        answer.style.paddingBottom = '1.5rem';
+                        answer.style.borderTop = '1px solid #e2e8f0';
+                        if (icon) icon.style.transform = 'rotate(45deg)';
+                    }
+                });
+            });
+
+            // 3. Control del Modal de Login
+            const loginModal = document.getElementById('loginModal');
+            const closeModalCross = document.getElementById('closeModalCross');
+
+            if (closeModalCross && loginModal) {
+                closeModalCross.addEventListener('click', () => {
+                    loginModal.style.display = 'none';
+                });
+            }
+        });
+    </script>
+</body>
+</html>

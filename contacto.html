@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CONTACTANOS | Hephorix Agencia de Diseño Gráfico</title>
+    
+    <!-- FAVICON -->
+    <link rel="icon" href="imagenes/fondo1.png" type="image/png">
+    
+    <!-- Hojas de Estilos Globales -->
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- ESTILOS INTERNOS PARA EL BOTÓN / SELECTOR DE IDIOMA -->
+    <style>
+        .lang-switch-container {
+            display: inline-flex;
+            align-items: center;
+            background: rgba(15, 23, 42, 0.06);
+            border: 1px solid #00bcd4;
+            border-radius: 20px;
+            padding: 2px;
+            margin-right: 0.5rem;
+        }
+
+        .lang-btn {
+            background: transparent;
+            border: none;
+            color: #64748b;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 0.25rem 0.6rem;
+            border-radius: 16px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+        .lang-btn.active {
+            background: #00bcd4;
+            color: #ffffff;
+            box-shadow: 0 2px 8px rgba(0, 188, 212, 0.3);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Encabezado / Barra de Navegación Principal -->
+    <header class="main-header">
+        <a href="index.html" class="logo-container">
+            <div class="brand-isotype">
+                <img src="imagenes/logo.jpg.png" alt="Logo Hephorix" style="max-height: 40px;">
+            </div>
+            <div class="logo-text">
+                <h1>HEPHORIX</h1>
+                <span data-key="sub_logo">agencia de diseño gráfico</span>
+            </div>
+        </a>
+        
+        <nav class="nav-menu" id="navMenu">
+            <a href="index.html" class="nav-link" data-key="nav_inicio">INICIO</a>
+            <a href="quienes somos.html" class="nav-link" data-key="nav_quienes">QUIENES SOMOS</a>
+            <a href="servicios.html" class="nav-link" data-key="nav_servicios">SERVICIOS</a>
+            <a href="portafolio.html" class="nav-link" data-key="nav_portafolio">PORTAFOLIO</a>
+            <a href="contacto.html" class="nav-link active" data-key="nav_contactanos">CONTACTANOS</a>
+        </nav>
+
+        <div class="header-actions">
+            <!-- BOTÓN CONMUTADOR DE IDIOMA (ESPAÑOL / INGLÉS) -->
+            <div class="lang-switch-container">
+                <button class="lang-btn active" id="btnEs">ES</button>
+                <button class="lang-btn" id="btnEn">EN</button>
+            </div>
+
+            <a href="login.html" class="action-link login-btn">
+                <i class="fa-regular fa-user"></i> <span data-key="btn_login">INICIAR SESIÓN</span>
+            </a>
+            
+            <a href="https://wa.me/573182849146" target="_blank" class="action-link contact-wp">
+                <i class="fa-brands fa-whatsapp"></i> <span data-key="btn_contact">CONTÁCTANOS</span>
+            </a>
+            <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Barra Lateral Flotante de Redes Sociales -->
+    <aside class="floating-aside-networks">
+        <a href="https://wa.me/573182849146?text=Hola,%20quisiera%20más%20información" class="floating-net-btn wp" target="_blank" rel="noopener noreferrer" aria-label="Contactar por WhatsApp">
+            <i class="fa-brands fa-whatsapp"></i>
+        </a>
+        <a href="https://www.instagram.com/_hephorix/" target="_blank" class="floating-net-btn ig" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+    </aside>
+
+    <!-- Banner Header Interno -->
+    <section class="page-banner">
+        <div class="container">
+            <h2 data-key="banner_title">HABLEMOS DE TU PROYECTO</h2>
+            <p data-key="banner_sub">Estamos listos para transformar la imagen de tu marca. ¡Escríbenos!</p>
+        </div>
+    </section>
+
+    <!-- Sección Principal de Contacto -->
+    <main class="contact-page-content container">
+        
+        <div class="contact-grid">
+
+            <!-- Columna Izquierda: Información Directa -->
+            <div class="contact-info-card">
+                <h3 data-key="info_title">Información de Contacto</h3>
+                <p data-key="info_desc">Si tienes alguna pregunta sobre nuestros servicios o deseas solicitar una cotización personalizada, comunícate con nosotros por cualquiera de estos medios:</p>
+
+                <div class="info-items-list">
+                    <div class="info-item">
+                        <div class="info-icon"><i class="fa-brands fa-whatsapp"></i></div>
+                        <div class="info-text">
+                            <strong data-key="label_wp">Atención Inmediata / WhatsApp</strong>
+                            <a href="https://wa.me/573182849146" target="_blank">+57 318 284 9146</a>
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <div class="info-icon"><i class="fa-regular fa-envelope"></i></div>
+                        <div class="info-text">
+                            <strong data-key="label_email">Correo Electrónico</strong>
+                            <a href="mailto:contacto@hephorix.com">contacto@hephorix.com</a>
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <div class="info-icon"><i class="fa-solid fa-location-dot"></i></div>
+                        <div class="info-text">
+                            <strong data-key="label_location">Ubicación</strong>
+                            <span data-key="val_location">Cali, Valle del Cauca - Colombia</span>
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <div class="info-icon"><i class="fa-regular fa-clock"></i></div>
+                        <div class="info-text">
+                            <strong data-key="label_hours">Horarios de Atención</strong>
+                            <span data-key="val_hours">Lunes a Viernes: 8:00 AM - 6:00 PM<br>Sábados: 9:00 AM - 1:00 PM</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Redes sociales dentro de la tarjeta -->
+                <div class="contact-socials">
+                    <span data-key="label_follow">Síguenos en redes:</span>
+                    <div class="social-links">
+                        <a href="https://instagram.com" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="https://facebook.com" target="_blank" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="https://wa.me/573182849146" target="_blank" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Formulario de Contacto -->
+            <div class="contact-form-container">
+                <h2 data-key="form_title">Envíanos un mensaje</h2>
+                <p class="subtitle" data-key="form_sub">Diligencia el formulario y te responderemos en menos de 24 horas.</p>
+
+                <form action="https://formspree.io/f/mwllezza" method="POST" id="contactForm">
+                    
+                    <!-- Nombre Completo -->
+                    <div class="form-group">
+                        <label for="nombre" data-key="label_fullname">Nombre Completo *</label>
+                        <input type="text" id="nombre" name="Nombre" placeholder="Ej. Carlos Mendoza" required>
+                    </div>
+
+                    <!-- Correo y Teléfono -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email" data-key="label_form_email">Correo Electrónico *</label>
+                            <input type="email" id="email" name="Email" placeholder="ejemplo@correo.com" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="telefono" data-key="label_phone">Teléfono / WhatsApp *</label>
+                            <input type="tel" id="telefono" name="Telefono" placeholder="+57 300 000 0000" required>
+                        </div>
+                    </div>
+
+                    <!-- Servicio de Interés -->
+                    <div class="form-group">
+                        <label for="servicio" data-key="label_service">Servicio de Interés</label>
+                        <select id="servicio" name="Servicio">
+                            <option value="Branding e Identidad Corporativa" data-key="opt_1">Branding e Identidad Corporativa</option>
+                            <option value="Diseño Web" data-key="opt_2">Diseño Web</option>
+                            <option value="Marketing Digital" data-key="opt_3">Marketing Digital</option>
+                            <option value="Otro" data-key="opt_4">Otro</option>
+                        </select>
+                    </div>
+
+                    <!-- Detalles del Mensaje -->
+                    <div class="form-group">
+                        <label for="mensaje" data-key="label_message">Detalles de tu Mensaje / Proyecto *</label>
+                        <textarea id="mensaje" name="Mensaje" rows="4" placeholder="Cuéntanos brevemente sobre tu idea, empresa u objetivos..." required></textarea>
+                    </div>
+
+                    <!-- Botón Enviar -->
+                    <button type="submit" class="submit-btn">
+                        <i class="fa-solid fa-paper-plane"></i> <span data-key="btn_send">Enviar Mensaje</span>
+                    </button>
+
+                </form>
+            </div>
+        </div>
+
+        <!-- Mapa de Ubicación -->
+        <section class="map-section">
+            <h3 data-key="map_title">NUESTRA UBICACIÓN</h3>
+            <div class="map-responsive-container">
+                <iframe src="https://maps.google.com/maps?q=Cra+52+%232-51,+Cali,+Valle+del+Cauca&t=&z=17&ie=UTF8&iwloc=&output=embed" width="100%" height="380" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Pie de Página (Footer) -->
+    <footer class="main-footer">
+        <div class="footer-container container">
+            <div class="footer-item project-call">
+                <i class="fa-regular fa-paper-plane"></i>
+                <div class="text-group">
+                    <h3 data-key="footer_title">¿TIENES UN PROYECTO EN MENTE?</h3>
+                    <p data-key="footer_sub">CONTÁCTANOS Y HAGAMOS REALIDAD TU IDEA</p>
+                </div>
+            </div>
+            <div class="footer-item contact-phone">
+                <i class="fa-solid fa-phone"></i>
+                <a href="tel:+573182849146">+57 3182849146</a>
+            </div>
+            <div class="footer-item contact-location">
+                <i class="fa-solid fa-location-dot"></i>
+                <span>Cali, Colombia</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Archivo Principal de JavaScript -->
+    <script src="script.js"></script>
+
+    <!-- LÓGICA JAVASCRIPT DE TRADUCCIÓN NATIVA -->
+    <script>
+        let currentLang = 'es';
+
+        const translations = {
+            es: {
+                sub_logo: "agencia de diseño gráfico",
+                nav_inicio: "INICIO",
+                nav_quienes: "QUIENES SOMOS",
+                nav_servicios: "SERVICIOS",
+                nav_portafolio: "PORTAFOLIO",
+                nav_contactanos: "CONTACTANOS",
+                btn_login: "INICIAR SESIÓN",
+                btn_contact: "CONTÁCTANOS",
+                banner_title: "HABLEMOS DE TU PROYECTO",
+                banner_sub: "Estamos listos para transformar la imagen de tu marca. ¡Escríbenos!",
+                info_title: "Información de Contacto",
+                info_desc: "Si tienes alguna pregunta sobre nuestros servicios o deseas solicitar una cotización personalizada, comunícate con nosotros por cualquiera de estos medios:",
+                label_wp: "Atención Inmediata / WhatsApp",
+                label_email: "Correo Electrónico",
+                label_location: "Ubicación",
+                val_location: "Cali, Valle del Cauca - Colombia",
+                label_hours: "Horarios de Atención",
+                val_hours: "Lunes a Viernes: 8:00 AM - 6:00 PM\nSábados: 9:00 AM - 1:00 PM",
+                label_follow: "Síguenos en redes:",
+                form_title: "Envíanos un mensaje",
+                form_sub: "Diligencia el formulario y te responderemos en menos de 24 horas.",
+                label_fullname: "Nombre Completo *",
+                label_form_email: "Correo Electrónico *",
+                label_phone: "Teléfono / WhatsApp *",
+                label_service: "Servicio de Interés",
+                opt_1: "Branding e Identidad Corporativa",
+                opt_2: "Diseño Web",
+                opt_3: "Marketing Digital",
+                opt_4: "Otro",
+                label_message: "Detalles de tu Mensaje / Proyecto *",
+                btn_send: "Enviar Mensaje",
+                map_title: "NUESTRA UBICACIÓN",
+                footer_title: "¿TIENES UN PROYECTO EN MENTE?",
+                footer_sub: "CONTÁCTANOS Y HAGAMOS REALIDAD TU IDEA"
+            },
+            en: {
+                sub_logo: "graphic design agency",
+                nav_inicio: "HOME",
+                nav_quienes: "ABOUT US",
+                nav_servicios: "SERVICES",
+                nav_portafolio: "PORTFOLIO",
+                nav_contactanos: "CONTACT US",
+                btn_login: "LOG IN",
+                btn_contact: "CONTACT US",
+                banner_title: "LET'S TALK ABOUT YOUR PROJECT",
+                banner_sub: "We are ready to transform your brand image. Write to us!",
+                info_title: "Contact Information",
+                info_desc: "If you have any questions about our services or would like to request a custom quote, please contact us through any of these channels:",
+                label_wp: "Immediate Support / WhatsApp",
+                label_email: "Email Address",
+                label_location: "Location",
+                val_location: "Cali, Valle del Cauca - Colombia",
+                label_hours: "Business Hours",
+                val_hours: "Monday to Friday: 8:00 AM - 6:00 PM\nSaturdays: 9:00 AM - 1:00 PM",
+                label_follow: "Follow us on social media:",
+                form_title: "Send us a message",
+                form_sub: "Fill out the form and we will get back to you in less than 24 hours.",
+                label_fullname: "Full Name *",
+                label_form_email: "Email Address *",
+                label_phone: "Phone / WhatsApp *",
+                label_service: "Service of Interest",
+                opt_1: "Branding & Corporate Identity",
+                opt_2: "Web Design",
+                opt_3: "Digital Marketing",
+                opt_4: "Other",
+                label_message: "Message / Project Details *",
+                btn_send: "Send Message",
+                map_title: "OUR LOCATION",
+                footer_title: "HAVE A PROJECT IN MIND?",
+                footer_sub: "CONTACT US AND LET'S MAKE YOUR IDEA A REALITY"
+            }
+        };
+
+        const placeholders = {
+            es: {
+                nombre: "Ej. Carlos Mendoza",
+                email: "ejemplo@correo.com",
+                telefono: "+57 300 000 0000",
+                mensaje: "Cuéntanos brevemente sobre tu idea, empresa u objetivos..."
+            },
+            en: {
+                nombre: "Ex. John Doe",
+                email: "example@mail.com",
+                telefono: "+1 300 000 0000",
+                mensaje: "Tell us briefly about your idea, company or goals..."
+            }
+        };
+
+        function switchLanguage(lang) {
+            currentLang = lang;
+            const elements = document.querySelectorAll('[data-key]');
+            elements.forEach(elem => {
+                const key = elem.getAttribute('data-key');
+                if (translations[lang] && translations[lang][key]) {
+                    if (elem.tagName === 'SPAN' && elem.parentNode && elem.parentNode.tagName === 'SPAN' && key === 'val_hours') {
+                        elem.innerText = translations[lang][key];
+                    } else {
+                        elem.textContent = translations[lang][key];
+                    }
+                }
+            });
+
+            // Actualizar placeholders del formulario
+            document.getElementById('nombre').placeholder = placeholders[lang].nombre;
+            document.getElementById('email').placeholder = placeholders[lang].email;
+            document.getElementById('telefono').placeholder = placeholders[lang].telefono;
+            document.getElementById('mensaje').placeholder = placeholders[lang].mensaje;
+
+            // Actualizar estado de botones
+            const btnEs = document.getElementById('btnEs');
+            const btnEn = document.getElementById('btnEn');
+            if (lang === 'en') {
+                btnEs.classList.remove('active');
+                btnEn.classList.add('active');
+                document.documentElement.lang = 'en';
+            } else {
+                btnEn.classList.remove('active');
+                btnEs.classList.add('active');
+                document.documentElement.lang = 'es';
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('btnEs').addEventListener('click', () => switchLanguage('es'));
+            document.getElementById('btnEn').addEventListener('click', () => switchLanguage('en'));
+        });
+    </script>
+</body>
+</html>

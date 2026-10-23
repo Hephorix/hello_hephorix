@@ -1,0 +1,1147 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portafolio | Hephorix Agencia de Diseño Gráfico</title>
+    
+    <!-- Favicon de la Agencia -->
+    <link rel="icon" href="imagenes/fondo1.png" type="image/png">
+
+    <!-- Hojas de Estilos Globales -->
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- ==========================================================================
+       ESTILOS CSS CORREGIDOS Y OPTIMIZADOS
+       ========================================================================== -->
+    <style>
+        /* Título de la Sección de Proyectos (CENTRADO PERFECTO) */
+        .section-title {
+            text-align: center !important;
+            margin-left: auto !important;
+            margin-right: auto !important;
+            width: 100%;
+            display: block;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--color-text-main, #1a1a1a);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 2.5rem;
+            margin-bottom: 2rem;
+        }
+
+        /* BOTÓN / SELECTOR DE IDIOMA EN EL HEADER */
+        .lang-switch-container {
+            display: inline-flex;
+            align-items: center;
+            background: rgba(15, 23, 42, 0.06);
+            border: 1px solid #00bcd4;
+            border-radius: 20px;
+            padding: 2px;
+            margin-right: 0.5rem;
+        }
+
+        .lang-btn {
+            background: transparent;
+            border: none;
+            color: #64748b;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 0.25rem 0.6rem;
+            border-radius: 16px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+        .lang-btn.active {
+            background: #00bcd4;
+            color: #ffffff;
+            box-shadow: 0 2px 8px rgba(0, 188, 212, 0.3);
+        }
+
+        /* ESTILOS DE LA SECCIÓN DE PROYECTOS Y CASOS DE ÉXITO */
+        .featured-videos-section {
+            margin-bottom: 2.5rem;
+        }
+
+        .videos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        /* TARJETA ESTRUCTURADA VERTICALMENTE */
+        .video-card {
+            background: #ffffff;
+            border-radius: 16px;
+            border: 2px solid #dbe2e8;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .video-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--color-primary, #00bcd4);
+            box-shadow: 0 12px 30px rgba(0, 188, 212, 0.25);
+        }
+
+        /* REPRODUCTOR DE VIDEO A PANTALLA COMPLETA EN LA TARJETA */
+        .video-wrapper {
+            position: relative;
+            width: 100% !important;
+            height: 220px !important;
+            background: #000;
+            overflow: hidden;
+        }
+
+        .video-wrapper video {
+            width: 100% !important;
+            height: 100% !important;
+            object-fit: cover !important;
+            display: block !important;
+        }
+
+        /* MARCO DE IMÁGENES MELA / ÚNICA */
+        .project-img-box {
+            position: relative;
+            width: 100% !important;
+            height: 220px !important;
+            background: #0f172a;
+            overflow: hidden;
+        }
+
+        .project-img-box img {
+            width: 100% !important;
+            height: 100% !important;
+            object-fit: cover !important;
+            object-position: center !important;
+            display: block !important;
+            transition: transform 0.4s ease;
+        }
+
+        .video-card:hover .project-img-box img {
+            transform: scale(1.05);
+        }
+
+        .video-info {
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .video-info h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 0.6rem;
+            color: #1e293b;
+            line-height: 1.35;
+        }
+
+        .video-info p {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.88rem;
+            color: #64748b;
+            line-height: 1.5;
+            margin-bottom: 1.2rem;
+            flex-grow: 1;
+        }
+
+        /* BOTÓN DE VER RESEÑA EN CASOS DE ÉXITO */
+        .btn-review-modal {
+            align-self: flex-start;
+            background: rgba(0, 188, 212, 0.1);
+            color: #00bcd4;
+            border: 1px solid #00bcd4;
+            padding: 0.45rem 0.9rem;
+            border-radius: 8px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .btn-review-modal:hover {
+            background: #00bcd4;
+            color: #ffffff;
+            box-shadow: 0 4px 12px rgba(0, 188, 212, 0.3);
+        }
+
+        /* INSIGNIAS DE MÉTRICAS FLOTANTES */
+        .metric-badge {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            z-index: 25;
+            background: rgba(15, 23, 42, 0.88);
+            border: 1px solid #00bcd4;
+            color: #00bcd4;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 0.35rem 0.75rem;
+            border-radius: 20px;
+            backdrop-filter: blur(6px);
+            box-shadow: 0 4px 12px rgba(0, 188, 212, 0.3);
+            pointer-events: none;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        /* MÓDULO COMPARADOR ANTES / DESPUÉS */
+        .before-after-section {
+            background: #ffffff;
+            border: 2px solid #3b5773;
+            border-radius: 16px;
+            padding: 2rem;
+            margin: 3rem auto;
+            max-width: 900px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+        }
+
+        .before-after-section h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.4rem;
+            color: #2c3e50;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .before-after-section p {
+            text-align: center;
+            color: #64748b;
+            font-size: 0.92rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .ba-slider-container {
+            position: relative;
+            width: 100%;
+            height: 380px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+            user-select: none;
+        }
+
+        .ba-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .ba-after-img {
+            background-image: url('imagenes/¡Oferta\ limitada\ de\ hamburguesa!.png');
+        }
+
+        .ba-before-img {
+            background-image: url('imagenes/Delicioso\ Burger_\ 50%\ de\ Descuento.png');
+            width: 50%;
+            border-right: 3px solid #00bcd4;
+            z-index: 2;
+        }
+
+        .ba-label {
+            position: absolute;
+            bottom: 12px;
+            background: rgba(0, 0, 0, 0.75);
+            color: #ffffff;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 0.3rem 0.8rem;
+            border-radius: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            z-index: 3;
+        }
+
+        .ba-label.before { left: 12px; }
+        .ba-label.after { right: 12px; }
+
+        .ba-slider-input {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            z-index: 10;
+            cursor: ew-resize;
+        }
+
+        .portfolio-grid {
+            perspective: 1000px;
+        }
+
+        .portfolio-item {
+            transform-style: preserve-3d;
+            transition: transform 0.2s ease-out, box-shadow 0.35s ease;
+        }
+
+        /* MODAL DE CATÁLOGOS Y RESEÑAS */
+        .portfolio-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(5px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 5000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+            padding: 1.5rem;
+        }
+
+        .portfolio-modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .portfolio-modal-card {
+            background: #ffffff;
+            width: 100%;
+            max-width: 800px;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            position: relative;
+            transform: translateY(20px) scale(0.95);
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .portfolio-modal-overlay.active .portfolio-modal-card {
+            transform: translateY(0) scale(1);
+        }
+
+        .close-modal-btn {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.6);
+            color: #ffffff;
+            border: none;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s ease;
+        }
+
+        .close-modal-btn:hover {
+            background: #00bcd4;
+        }
+
+        .modal-body {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            max-height: 85vh;
+            overflow-y: auto;
+        }
+
+        @media (max-width: 768px) {
+            .modal-body {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .modal-img-container {
+            background: #0f172a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 250px;
+        }
+
+        .modal-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .modal-details {
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .modal-category {
+            display: inline-block;
+            background: rgba(0, 188, 212, 0.12);
+            color: #00bcd4;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 0.25rem 0.7rem;
+            border-radius: 20px;
+            text-transform: uppercase;
+            margin-bottom: 0.75rem;
+            width: max-content;
+        }
+
+        .modal-details h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.4rem;
+            color: #1a202c;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+        }
+
+        .modal-divider {
+            width: 50px;
+            height: 3px;
+            background: #00bcd4;
+            margin-bottom: 1rem;
+            border-radius: 2px;
+        }
+
+        .modal-details p {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.92rem;
+            color: #4a5568;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-meta {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.85rem;
+            color: #718096;
+            background: #f7fafc;
+            padding: 0.8rem 1rem;
+            border-radius: 8px;
+            border-left: 3px solid #00bcd4;
+        }
+
+        .modal-meta strong {
+            color: #2d3748;
+            display: block;
+            margin-bottom: 0.2rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Encabezado / Barra de Navegación Principal -->
+    <header class="main-header">
+        <a href="index.html" class="logo-container">
+            <div class="brand-isotype">
+                <img src="imagenes/logo.jpg.png" alt="Logo Hephorix" style="max-height: 40px;">
+            </div>
+            <div class="logo-text">
+                <h1>HEPHORIX</h1>
+                <span data-key="sub_logo">agencia de diseño gráfico</span>
+            </div>
+        </a>
+        
+        <nav class="nav-menu" id="navMenu">
+            <a href="index.html" class="nav-link" data-key="nav_inicio">INICIO</a>
+            <a href="quienes somos.html" class="nav-link" data-key="nav_quienes">QUIENES SOMOS</a>
+            <a href="servicios.html" class="nav-link" data-key="nav_servicios">SERVICIOS</a>
+            <a href="portafolio.html" class="nav-link active" data-key="nav_portafolio">PORTAFOLIO</a>
+            <a href="contacto.html" class="nav-link" data-key="nav_contactanos">CONTACTANOS</a>
+        </nav>
+
+        <div class="header-actions">
+            <!-- BOTÓN CONMUTADOR DE IDIOMA (ESPAÑOL / INGLÉS) -->
+            <div class="lang-switch-container">
+                <button class="lang-btn active" id="btnEs">ES</button>
+                <button class="lang-btn" id="btnEn">EN</button>
+            </div>
+
+            <a href="login.html" class="action-link login-btn">
+                <i class="fa-regular fa-user"></i> <span data-key="btn_login">INICIAR SESIÓN</span>
+            </a>
+            
+            <a href="https://wa.me/573182849146" target="_blank" class="action-link contact-wp">
+                <i class="fa-brands fa-whatsapp"></i> <span data-key="btn_contact">CONTÁCTANOS</span>
+            </a>
+            <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Barra Lateral Flotante de Redes Sociales -->
+    <aside class="floating-aside-networks">
+        <a href="https://wa.me/573182849146?text=Hola,%20quisiera%20más%20información" class="floating-net-btn wp" target="_blank" rel="noopener noreferrer" aria-label="Contactar por WhatsApp">
+            <i class="fa-brands fa-whatsapp"></i>
+        </a>
+        <a href="https://www.instagram.com/_hephorix/" target="_blank" class="floating-net-btn ig" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+    </aside>
+
+    <!-- Banner Header Interno -->
+    <section class="page-banner">
+        <div class="container">
+            <h2 data-key="banner_title">NUESTRO PORTAFOLIO</h2>
+            <p data-key="banner_sub">Explora nuestros proyectos más recientes y casos de éxito visual</p>
+        </div>
+    </section>
+
+    <!-- Sección Principal del Portafolio -->
+    <main class="portfolio-page-content container">
+        
+        <!-- TÍTULO DE LA SECCIÓN DE VIDEOS (CENTRADO) -->
+        <h2 class="section-title" data-key="title_projects">NUESTROS PROYECTOS</h2>
+
+        <!-- SECCIÓN DE VIDEOS DESTACADOS & CASOS DE ÉXITO -->
+        <section class="featured-videos-section">
+            <div class="videos-grid">
+                
+                <!-- Caso de Éxito 1 -->
+                <article class="video-card">
+                    <span class="metric-badge"><i class="fa-solid fa-chart-line"></i> <span data-key="badge_1">Impacto +180%</span></span>
+                    <div class="video-wrapper">
+                        <video controls poster="imagenes/mate 1.jpg">
+                            <source src="imagenes/matematicas.mp4" type="video/mp4">
+                            Tu navegador no soporta la reproducción de video.
+                        </video>
+                    </div>
+                    <div class="video-info">
+                        <h3 data-key="p1_title">Dia internacional de Las Matematicas</h3>
+                        <p data-key="p1_desc">El dia internacional de las matematicas se celebra el 14 de marzo... busca destacar la importancia de las matematicas en la vida diaria, la ciencia y la tecnologia</p>
+                        <button class="btn-review-modal open-modal-btn"
+                                data-id="project_1"
+                                data-title-es="Dia internacional de Las Matemáticas"
+                                data-title-en="International Mathematics Day"
+                                data-cat-es="Caso de Éxito Educativo"
+                                data-cat-en="Educational Success Story"
+                                data-img="imagenes/mate 1.jpg"
+                                data-desc-es="Reseña del Cliente: ¡El trabajo quedó excepcional! La comunidad escolar quedó fascinada con la presentación y el video. Superó por completo nuestras expectativas para el evento institucional."
+                                data-desc-en="Client Review: The work was exceptional! The school community was fascinated with the presentation and video. It completely exceeded our expectations for the institutional event."
+                                data-tools-es="Valoración: ⭐⭐⭐⭐⭐ (Excelente impacto visual y comunicativo)"
+                                data-tools-en="Rating: ⭐⭐⭐⭐⭐ (Excellent visual and communicative impact)">
+                            <i class="fa-solid fa-star"></i> <span data-key="btn_review">Ver Reseña</span>
+                        </button>
+                    </div>
+                </article>
+
+                <!-- Caso de Éxito 2 -->
+                <article class="video-card">
+                    <span class="metric-badge"><i class="fa-solid fa-fire"></i> <span data-key="badge_2">Viral 95%</span></span>
+                    <div class="video-wrapper">
+                        <video controls poster="imagenes/71.jpg">
+                            <source src="imagenes/Video_Profe_Primaria.mp4" type="video/mp4">
+                            Tu navegador no soporta la reproducción de video.
+                        </video>
+                    </div>
+                    <div class="video-info">
+                        <h3 data-key="p2_title">Las Siete Especialidades De La Institucion Educativa Eustaquio Palacios</h3>
+                        <p data-key="p2_desc">Mostramos a niños de primaria imaginando su futuro y presentado las especialidades del sena como una oportunidad de aprender y prepararse para el futuro</p>
+                        <button class="btn-review-modal open-modal-btn"
+                                data-id="project_2"
+                                data-title-es="Especialidades I.E. Eustaquio Palacios"
+                                data-title-en="Specialties I.E. Eustaquio Palacios"
+                                data-cat-es="Caso de Éxito Institucional"
+                                data-cat-en="Institutional Success Story"
+                                data-img="imagenes/71.jpg"
+                                data-desc-es="Reseña del Cliente: Un trabajo impecable y muy profesional. Los niños y profesores conectaron inmediatamente con la propuesta audiovisual. ¡Excelente calidad de la agencia Hephorix!"
+                                data-desc-en="Client Review: An impeccable and very professional work. The children and teachers immediately connected with the audiovisual proposal. Excellent quality from Hephorix agency!"
+                                data-tools-es="Valoración: ⭐⭐⭐⭐⭐ (Excelente recepción y viralidad)"
+                                data-tools-en="Rating: ⭐⭐⭐⭐⭐ (Excellent reception and virality)">
+                            <i class="fa-solid fa-star"></i> <span data-key="btn_review">Ver Reseña</span>
+                        </button>
+                    </div>
+                </article>
+
+                <!-- Caso de Éxito 3 -->
+                <article class="video-card">
+                    <span class="metric-badge"><i class="fa-solid fa-bullseye"></i> <span data-key="badge_3">Impacto +170%</span></span>
+                    <div class="project-img-box">
+                        <img src="imagenes/evidencia.png" alt="Diseño Día del Niño">
+                    </div>
+                    <div class="video-info">
+                        <h3 data-key="p3_title">Diseño e Impacto Visual – Día del Niño (Sede Luis López de Meza)</h3>
+                        <p data-key="p3_desc">Diseño y conceptualización de una pieza informativa y decorativa de gran formato para la conmemoración del Día del Niño en la sede educativa Luis López de Meza.</p>
+                        <button class="btn-review-modal open-modal-btn"
+                                data-id="project_3"
+                                data-title-es="Diseño e Impacto Visual – Día del Niño"
+                                data-title-en="Visual Impact & Design – Children's Day"
+                                data-cat-es="Caso de Éxito Gráfico"
+                                data-cat-en="Graphic Success Story"
+                                data-img="imagenes/evidencia.png"
+                                data-desc-es="Reseña del Cliente: La pieza gráfica de gran formato quedó hermosa y muy colorida. Captó exactamente la alegría que queríamos transmitir en la sede educativa Luis López de Meza."
+                                data-desc-en="Client Review: The large format graphic piece looked beautiful and very colorful. It captured exactly the joy we wanted to convey at the Luis López de Meza school branch."
+                                data-tools-es="Valoración: ⭐⭐⭐⭐⭐ (Creatividad y acabado visual de primera)"
+                                data-tools-en="Rating: ⭐⭐⭐⭐⭐ (Top notch creativity and visual finish)">
+                            <i class="fa-solid fa-star"></i> <span data-key="btn_review">Ver Reseña</span>
+                        </button>
+                    </div>
+                </article>
+
+                <!-- Caso de Éxito 4 -->
+                <article class="video-card">
+                    <span class="metric-badge"><i class="fa-solid fa-star"></i> <span data-key="badge_4">Impacto +150%</span></span>
+                    <div class="project-img-box">
+                        <img src="imagenes/dflex.png" alt="Identidad Dflex Variedades">
+                    </div>
+                    <div class="video-info">
+                        <h3 data-key="p4_title">Identidad Visual – Dflex Variedades</h3>
+                        <p data-key="p4_desc">Diseño y desarrollo de la marca para Dflex Variedades, un negocio multifuncional de barrio que combina servicios de conectividad y comercio.</p>
+                        <button class="btn-review-modal open-modal-btn"
+                                data-id="project_4"
+                                data-title-es="Identidad Visual – Dflex Variedades"
+                                data-title-en="Visual Identity – Dflex Variedades"
+                                data-cat-es="Caso de Éxito Branding"
+                                data-cat-en="Branding Success Story"
+                                data-img="imagenes/dflex.png"
+                                data-desc-es="Reseña del Cliente: ¡Quedamos fascinados con la nueva marca! Dflex Variedades luce ahora mucho más profesional, moderna y organizada. Las ventas y la recordación subieron notablemente."
+                                data-desc-en="Client Review: We were fascinated with the new brand! Dflex Variedades now looks much more professional, modern, and organized. Sales and recall increased significantly."
+                                data-tools-es="Valoración: ⭐⭐⭐⭐⭐ (Identidad comercial altamente efectiva)"
+                                data-tools-en="Rating: ⭐⭐⭐⭐⭐ (Highly effective commercial identity)">
+                            <i class="fa-solid fa-star"></i> <span data-key="btn_review">Ver Reseña</span>
+                        </button>
+                    </div>
+                </article>
+
+                <!-- Caso de Éxito 5 -->
+                <article class="video-card">
+                    <span class="metric-badge"><i class="fa-solid fa-award"></i> <span data-key="badge_5">Crecimiento +200%</span></span>
+                    <div class="project-img-box">
+                        <img src="imagenes/tato.png" alt="Branding Tatuajes">
+                    </div>
+                    <div class="video-info">
+                        <h3 data-key="p5_title">Branding, Isologo y Sistema Visual para Estudio de Tatuajes</h3>
+                        <p data-key="p5_desc">Diseño de la identidad visual integral para un estudio local de tatuajes y arte corporal, adaptado para formatos físicos y digitales.</p>
+                        <button class="btn-review-modal open-modal-btn"
+                                data-id="project_5"
+                                data-title-es="Branding y Sistema Visual - Estudio de Tatuajes"
+                                data-title-en="Branding & Visual System - Tattoo Studio"
+                                data-cat-es="Caso de Éxito Identidad"
+                                data-cat-en="Identity Success Story"
+                                data-img="imagenes/tato.png"
+                                data-desc-es="Reseña del Cliente: El isologo y el estilo visual superaron lo que imaginábamos. Le dio al estudio una presencia urbana, elegante y un posicionamiento brutal frente a la competencia."
+                                data-desc-en="Client Review: The isotype and visual style exceeded what we imagined. It gave the studio an urban, elegant presence and a strong positioning against competitors."
+                                data-tools-es="Valoración: ⭐⭐⭐⭐⭐ (Diseño de alto nivel y gran versatilidad)"
+                                data-tools-en="Rating: ⭐⭐⭐⭐⭐ (High-level design and great versatility)">
+                            <i class="fa-solid fa-star"></i> <span data-key="btn_review">Ver Reseña</span>
+                        </button>
+                    </div>
+                </article>
+
+                <!-- Caso de Éxito 6 -->
+                <article class="video-card">
+                    <span class="metric-badge"><i class="fa-solid fa-rocket"></i> <span data-key="badge_6">Engagement +120%</span></span>
+                    <div class="project-img-box">
+                        <img src="imagenes/barber.jpg" alt="Publicidad Barbería">
+                    </div>
+                    <div class="video-info">
+                        <h3 data-key="p6_title">Pieza Publicitaria Promocional</h3>
+                        <p data-key="p6_desc">Diseño y retoque de una pieza publicitaria gráfica en formato vertical para la reapertura y agendamiento de citas de la barbería Zero Onze 011.</p>
+                        <button class="btn-review-modal open-modal-btn"
+                                data-id="project_6"
+                                data-title-es="Pieza Publicitaria Promocional - Barbería"
+                                data-title-en="Promotional Advertising Piece - Barbershop"
+                                data-cat-es="Caso de Éxito Publicidad"
+                                data-cat-en="Advertising Success Story"
+                                data-img="imagenes/barber.jpg"
+                                data-desc-es="Reseña del Cliente: ¡Increíble trabajo! La pieza publicitaria para la barbería Zero Onze 011 atrajo muchísimos clientes nuevos desde el primer día que la lanzamos en redes sociales."
+                                data-desc-en="Client Review: Incredible work! The promotional ad for Zero Onze 011 barbershop brought in many new clients from day one when launched on social media."
+                                data-tools-es="Valoración: ⭐⭐⭐⭐⭐ (Estrategia visual orientada a conversión)"
+                                data-tools-en="Rating: ⭐⭐⭐⭐⭐ (Conversion-oriented visual strategy)">
+                            <i class="fa-solid fa-star"></i> <span data-key="btn_review">Ver Reseña</span>
+                        </button>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- MÓDULO COMPARADOR INTERACTIVO ANTES / DESPUÉS -->
+        <section class="before-after-section">
+            <h3><i class="fa-solid fa-sliders"></i> <span data-key="ba_title">Transformación Visual: Antes y Después</span></h3>
+            <p data-key="ba_desc">Desliza la barra central para comparar el rediseño estratégico de identidad de marca.</p>
+            <div class="ba-slider-container">
+                <div class="ba-image ba-after-img" style="background-image: url('imagenes/despues.jpg');"></div>
+                <div class="ba-image ba-before-img" id="baBeforeImg" style="background-image: url('imagenes/antes.jpg');"></div>
+                <span class="ba-label before" data-key="ba_before">Concepto Inicial</span>
+                <span class="ba-label after" data-key="ba_after">Rediseño</span>
+                <input type="range" min="0" max="100" value="50" class="ba-slider-input" id="baRangeInput">
+            </div>
+        </section>
+
+        <!-- TÍTULO DE LA SECCIÓN DE CATÁLOGOS (CENTRADO) -->
+        <h2 class="section-title" data-key="title_catalogs">Nuestros Catalogos</h2>
+
+        <!-- Galería de Proyectos / Catálogos -->
+        <div class="portfolio-grid">
+
+            <!-- Proyecto 1 -->
+            <article class="portfolio-item tilt-card">
+                <span class="metric-badge"><i class="fa-solid fa-rocket"></i> <span data-key="c1_badge">+150% Ventas</span></span>
+                <div class="portfolio-img-wrapper">
+                    <img src="imagenes/portafolio1.png" alt="Campaña Moda Verano - Luxora Boutique" onerror="this.src='https://via.placeholder.com/400x280?text=Campaña+Moda'">
+                    <div class="portfolio-overlay">
+                        <span class="category-tag" data-key="c1_cat">Redes Sociales</span>
+                        <h3 data-key="c1_title">Campaña Moda Verano</h3>
+                        <p data-key="c1_sub">Diseño de feed e historias para Instagram - Luxora Boutique</p>
+                        <button class="portfolio-link open-modal-btn" 
+                                data-title-es="Campaña Moda Verano"
+                                data-title-en="Summer Fashion Campaign"
+                                data-cat-es="Redes Sociales"
+                                data-cat-en="Social Media"
+                                data-img="imagenes/portafolio1.png"
+                                data-desc-es="Estrategia visual integral desarrollada para la campaña de verano de Luxora Boutique. Incluyó el diseño de plantillas editables para historias, publicaciones de feed con enfoque en conversión y la creación de piezas gráficas para promociones de hasta el 90% OFF."
+                                data-desc-en="Comprehensive visual strategy developed for Luxora Boutique's summer campaign. Includes editable story templates, feed posts focused on conversion, and graphic pieces for up to 90% OFF sales."
+                                data-tools-es="Adobe Photoshop, Illustrator, Lightroom"
+                                data-tools-en="Adobe Photoshop, Illustrator, Lightroom">
+                            <i class="fa-solid fa-circle-info"></i> <span data-key="btn_details">Ver detalles</span>
+                        </button>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Proyecto 2 -->
+            <article class="portfolio-item tilt-card">
+                <span class="metric-badge"><i class="fa-solid fa-award"></i> <span data-key="c2_badge">Branding Pro</span></span>
+                <div class="portfolio-img-wrapper">
+                    <img src="imagenes/portafolio2.png" alt="Identidad Visual - Matcha Latte" onerror="this.src='https://via.placeholder.com/400x280?text=Matcha+Latte'">
+                    <div class="portfolio-overlay">
+                        <span class="category-tag" data-key="c2_cat">Branding & Publicidad</span>
+                        <h3 data-key="c2_title">Matcha Latte Brand</h3>
+                        <p data-key="c2_sub">Lanzamiento de producto e imagen publicitaria</p>
+                        <button class="portfolio-link open-modal-btn" 
+                                data-title-es="Matcha Latte Brand"
+                                data-title-en="Matcha Latte Brand"
+                                data-cat-es="Branding & Publicidad"
+                                data-cat-en="Branding & Advertising"
+                                data-img="imagenes/portafolio2.png"
+                                data-desc-es="Construcción conceptual de imagen publicitaria para bebida saludable 'Matcha Latte'. Se trabajó con paletas cromáticas orgánicas, tipografía moderna de alto contraste y fotografía gastronómica enfocada en destacar la frescura e ingredientes naturales."
+                                data-desc-en="Conceptual construction of advertising image for 'Matcha Latte' healthy drink. Worked with organic color palettes, high-contrast modern typography, and food photography highlighting freshness and natural ingredients."
+                                data-tools-es="Photoshop, Illustrator, Fotografía Comercial"
+                                data-tools-en="Photoshop, Illustrator, Commercial Photography">
+                            <i class="fa-solid fa-circle-info"></i> <span data-key="btn_details">Ver detalles</span>
+                        </button>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Proyecto 3 -->
+            <article class="portfolio-item tilt-card">
+                <span class="metric-badge"><i class="fa-solid fa-laptop-code"></i> <span data-key="c3_badge">UI/UX Óptimo</span></span>
+                <div class="portfolio-img-wrapper">
+                    <img src="imagenes/portafolio3.png" alt="Sitio Web UI/UX - Arquitectura" onerror="this.src='https://via.placeholder.com/400x280?text=Estudio+Arquitectura'">
+                    <div class="portfolio-overlay">
+                        <span class="category-tag" data-key="c3_cat">Diseño Web UI/UX</span>
+                        <h3 data-key="c3_title">Estudio de Arquitectura</h3>
+                        <p data-key="c3_sub">Maquetación e interfaz web para firma arquitectónica</p>
+                        <button class="portfolio-link open-modal-btn" 
+                                data-title-es="Estudio de Arquitectura Web"
+                                data-title-en="Architecture Studio Web"
+                                data-cat-es="Diseño Web UI/UX"
+                                data-cat-en="UI/UX Web Design"
+                                data-img="imagenes/portafolio3.png"
+                                data-desc-es="Prototipado y maquetación de interfaz web (UI/UX) responsiva para estudio de arquitectura moderna. El enfoque principal fue el minimalismo elegante, navegabilidad limpia y exhibición fotográfica de proyectos a pantalla completa."
+                                data-desc-en="Prototyping and responsive web interface layout (UI/UX) for a modern architecture firm. Primary focus was elegant minimalism, clean navigation, and full-screen project photo exhibition."
+                                data-tools-es="Figma, HTML5, CSS3, JavaScript"
+                                data-tools-en="Figma, HTML5, CSS3, JavaScript">
+                            <i class="fa-solid fa-circle-info"></i> <span data-key="btn_details">Ver detalles</span>
+                        </button>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Proyecto 4 -->
+            <article class="portfolio-item tilt-card">
+                <span class="metric-badge"><i class="fa-solid fa-bolt"></i> <span data-key="c4_badge">Convert +140%</span></span>
+                <div class="portfolio-img-wrapper">
+                    <img src="imagenes/portafolio4.png" alt="Lanzamiento Urban Style" onerror="this.src='https://via.placeholder.com/400x280?text=Urban+Style'">
+                    <div class="portfolio-overlay">
+                        <span class="category-tag" data-key="c4_cat">Redes Sociales</span>
+                        <h3 data-key="c4_title">Urban Style Collection</h3>
+                        <p data-key="c4_sub">Banner promocional e identidad para marca de ropa</p>
+                        <button class="portfolio-link open-modal-btn" 
+                                data-title-es="Urban Style Collection"
+                                data-title-en="Urban Style Collection"
+                                data-cat-es="Redes Sociales & Banners"
+                                data-cat-en="Social Media & Banners"
+                                data-img="imagenes/portafolio4.png"
+                                data-desc-es="Línea gráfica con estética 'Dark / Cyberpunk' para marca streetwear urbana. Creación de piezas publicitarias para canales digitales, carruseles de alta interacción y banners Web adaptados a modo oscuro."
+                                data-desc-en="Graphic line with 'Dark / Cyberpunk' aesthetic for urban streetwear brand. Creation of ads for digital channels, high-engagement carousels, and dark mode web banners."
+                                data-tools-es="Photoshop, After Effects, Illustrator"
+                                data-tools-en="Photoshop, After Effects, Illustrator">
+                            <i class="fa-solid fa-circle-info"></i> <span data-key="btn_details">Ver detalles</span>
+                        </button>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Proyecto 5 -->
+            <article class="portfolio-item tilt-card">
+                <span class="metric-badge"><i class="fa-solid fa-book-open"></i> <span data-key="c5_badge">Editorial Top</span></span>
+                <div class="portfolio-img-wrapper">
+                    <img src="imagenes/portafolio5.png" alt="Catálogo Editorial e Impresos" onerror="this.src='https://via.placeholder.com/400x280?text=Catálogo+Editorial'">
+                    <div class="portfolio-overlay">
+                        <span class="category-tag" data-key="c5_cat">Impresos & Editorial</span>
+                        <h3 data-key="c5_title">Catálogo de Proyectos</h3>
+                        <p data-key="c5_sub">Diseño editorial y maquetación de catálogo corporativo</p>
+                        <button class="portfolio-link open-modal-btn" 
+                                data-title-es="Catálogo Corporativo Editorial"
+                                data-title-en="Editorial Corporate Catalog"
+                                data-cat-es="Impresos & Editorial"
+                                data-cat-en="Print & Editorial"
+                                data-img="imagenes/portafolio5.png"
+                                data-desc-es="Maquetación e impresión de catálogo impreso y digital corporativo de 24 páginas. Se definió retícula, jerarquía tipográfica, selección de acabados de papel y preparación para imprenta en alta resolución."
+                                data-desc-en="Layout and printing of a 24-page printed and digital corporate catalog. Grid system defined, typographic hierarchy, paper finish selection, and high-res print preparation."
+                                data-tools-es="Adobe InDesign, Illustrator, Photoshop"
+                                data-tools-en="Adobe InDesign, Illustrator, Photoshop">
+                            <i class="fa-solid fa-circle-info"></i> <span data-key="btn_details">Ver detalles</span>
+                        </button>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Proyecto 6 -->
+            <article class="portfolio-item tilt-card">
+                <span class="metric-badge"><i class="fa-solid fa-gem"></i> <span data-key="c6_badge">Packaging Luxe</span></span>
+                <div class="portfolio-img-wrapper">
+                    <img src="imagenes/portafolio6.png" alt="Empaque y Serum Facial Hephorix" onerror="this.src='https://via.placeholder.com/400x280?text=Serum+Packaging'">
+                    <div class="portfolio-overlay">
+                        <span class="category-tag" data-key="c6_cat">Branding & Packaging</span>
+                        <h3 data-key="c6_title">Línea Serum Facial</h3>
+                        <p data-key="c6_sub">Diseño de empaque y frasco de cosmetología premium</p>
+                        <button class="portfolio-link open-modal-btn" 
+                                data-title-es="Packaging Serum Facial Hephorix"
+                                data-title-en="Facial Serum Packaging Hephorix"
+                                data-cat-es="Branding & Packaging"
+                                data-cat-en="Branding & Packaging"
+                                data-img="imagenes/portafolio6.png"
+                                data-desc-es="Diseño estructural y gráfico de empaque primario (frasco gotero) y secundario (caja) para línea dermatológica. Se incluyeron acabados en hot-stamping dorado, etiquetas mate y maquetación en mockups 3D."
+                                data-desc-en="Structural and graphic design of primary (dropper bottle) and secondary (box) packaging for a skincare line. Gold hot-stamping finishes, matte labels, and 3D mockup layouts included."
+                                data-tools-es="Illustrator, Photoshop, Mockup 3D Render"
+                                data-tools-en="Illustrator, Photoshop, Mockup 3D Render">
+                            <i class="fa-solid fa-circle-info"></i> <span data-key="btn_details">Ver detalles</span>
+                        </button>
+                    </div>
+                </div>
+            </article>
+
+        </div>
+    </main>
+
+    <!-- VENTANA EMERGENTE / POP-UP MODAL (DINÁMICA) -->
+    <div class="portfolio-modal-overlay" id="portfolioModal">
+        <div class="portfolio-modal-card" id="modalCard">
+            <button class="close-modal-btn" id="closeModalBtn" aria-label="Cerrar ventana">&times;</button>
+            <div class="modal-body">
+                <div class="modal-img-container">
+                    <img id="modalImg" src="" alt="Detalle del Proyecto">
+                </div>
+                <div class="modal-details">
+                    <span class="modal-category" id="modalCategory">CATEGORÍA</span>
+                    <h3 id="modalTitle">Título del Proyecto</h3>
+                    <div class="modal-divider"></div>
+                    <p id="modalDesc">Descripción ampliada del proyecto...</p>
+                    <div class="modal-meta">
+                        <strong><i class="fa-solid fa-wrench"></i> <span data-key="modal_meta_label">Herramientas / Calificación:</span></strong>
+                        <span id="modalTools">Adobe CC</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pie de Página (Footer) -->
+    <footer class="main-footer">
+        <div class="footer-container container">
+            <div class="footer-item project-call">
+                <i class="fa-regular fa-paper-plane"></i>
+                <div class="text-group">
+                    <h3 data-key="footer_title">¿TIENES UN PROYECTO EN MENTE?</h3>
+                    <p data-key="footer_sub">CONTÁCTANOS Y HAGAMOS REALIDAD TU IDEA</p>
+                </div>
+            </div>
+            <div class="footer-item contact-phone">
+                <i class="fa-solid fa-phone"></i>
+                <a href="tel:+573182849146">+57 3182849146</a>
+            </div>
+            <div class="footer-item contact-location">
+                <i class="fa-solid fa-location-dot"></i>
+                <span>Cali, Colombia</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Archivo Principal de JavaScript -->
+    <script src="script.js"></script>
+
+    <!-- LÓGICA JAVASCRIPT DE TRADUCCIÓN NATIVA Y MANEJO DEL MODAL -->
+    <script>
+        let currentLang = 'es';
+
+        // DICCIONARIO COMPLETO DE TEXTOS DE LA PÁGINA
+        const translations = {
+            es: {
+                sub_logo: "agencia de diseño gráfico",
+                nav_inicio: "INICIO",
+                nav_quienes: "QUIENES SOMOS",
+                nav_servicios: "SERVICIOS",
+                nav_portafolio: "PORTAFOLIO",
+                nav_contactanos: "CONTACTANOS",
+                btn_login: "INICIAR SESIÓN",
+                btn_contact: "CONTÁCTANOS",
+                banner_title: "NUESTRO PORTAFOLIO",
+                banner_sub: "Explora nuestros proyectos más recientes y casos de éxito visual",
+                title_projects: "NUESTROS PROYECTOS",
+                badge_1: "Impacto +180%",
+                p1_title: "Dia internacional de Las Matematicas",
+                p1_desc: "El dia internacional de las matematicas se celebra el 14 de marzo... busca destacar la importancia de las matematicas en la vida diaria, la ciencia y la tecnologia",
+                badge_2: "Viral 95%",
+                p2_title: "Las Siete Especialidades De La Institucion Educativa Eustaquio Palacios",
+                p2_desc: "Mostramos a niños de primaria imaginando su futuro y presentado las especialidades del sena como una oportunidad de aprender y prepararse para el futuro",
+                badge_3: "Impacto +170%",
+                p3_title: "Diseño e Impacto Visual – Día del Niño (Sede Luis López de Meza)",
+                p3_desc: "Diseño y conceptualización de una pieza informativa y decorativa de gran formato para la conmemoración del Día del Niño en la sede educativa Luis López de Meza.",
+                badge_4: "Impacto +150%",
+                p4_title: "Identidad Visual – Dflex Variedades",
+                p4_desc: "Diseño y desarrollo de la marca para Dflex Variedades, un negocio multifuncional de barrio que combina servicios de conectividad y comercio.",
+                badge_5: "Crecimiento +200%",
+                p5_title: "Branding, Isologo y Sistema Visual para Estudio de Tatuajes",
+                p5_desc: "Diseño de la identidad visual integral para un estudio local de tatuajes y arte corporal, adaptado para formatos físicos y digitales.",
+                badge_6: "Engagement +120%",
+                p6_title: "Pieza Publicitaria Promocional",
+                p6_desc: "Diseño y retoque de una pieza publicitaria gráfica en formato vertical para la reapertura y agendamiento de citas de la barbería Zero Onze 011.",
+                btn_review: "Ver Reseña",
+                ba_title: "Transformación Visual: Antes y Después",
+                ba_desc: "Desliza la barra central para comparar el rediseño estratégico de identidad de marca.",
+                ba_before: "Concepto Inicial",
+                ba_after: "Rediseño",
+                title_catalogs: "Nuestros Catálogos",
+                c1_badge: "+150% Ventas",
+                c1_cat: "Redes Sociales",
+                c1_title: "Campaña Moda Verano",
+                c1_sub: "Diseño de feed e historias para Instagram - Luxora Boutique",
+                c2_badge: "Branding Pro",
+                c2_cat: "Branding & Publicidad",
+                c2_title: "Matcha Latte Brand",
+                c2_sub: "Lanzamiento de producto e imagen publicitaria",
+                c3_badge: "UI/UX Óptimo",
+                c3_cat: "Diseño Web UI/UX",
+                c3_title: "Estudio de Arquitectura",
+                c3_sub: "Maquetación e interfaz web para firma arquitectónica",
+                c4_badge: "Convert +140%",
+                c4_cat: "Redes Sociales",
+                c4_title: "Urban Style Collection",
+                c4_sub: "Banner promocional e identidad para marca de ropa",
+                c5_badge: "Editorial Top",
+                c5_cat: "Impresos & Editorial",
+                c5_title: "Catálogo de Proyectos",
+                c5_sub: "Diseño editorial y maquetación de catálogo corporativo",
+                c6_badge: "Packaging Luxe",
+                c6_cat: "Branding & Packaging",
+                c6_title: "Línea Serum Facial",
+                c6_sub: "Diseño de empaque y frasco de cosmetología premium",
+                btn_details: "Ver detalles",
+                modal_meta_label: "Herramientas / Calificación:",
+                footer_title: "¿TIENES UN PROYECTO EN MENTE?",
+                footer_sub: "CONTÁCTANOS Y HAGAMOS REALIDAD TU IDEA"
+            },
+            en: {
+                sub_logo: "graphic design agency",
+                nav_inicio: "HOME",
+                nav_quienes: "ABOUT US",
+                nav_servicios: "SERVICES",
+                nav_portafolio: "PORTFOLIO",
+                nav_contactanos: "CONTACT US",
+                btn_login: "LOG IN",
+                btn_contact: "CONTACT US",
+                banner_title: "OUR PORTFOLIO",
+                banner_sub: "Explore our latest projects and visual success stories",
+                title_projects: "OUR PROJECTS",
+                badge_1: "Impact +180%",
+                p1_title: "International Mathematics Day",
+                p1_desc: "International Mathematics Day is celebrated on March 14... aiming to highlight the importance of mathematics in daily life, science, and technology.",
+                badge_2: "Viral 95%",
+                p2_title: "The Seven Specialties of Eustaquio Palacios Educational Institution",
+                p2_desc: "We show elementary school children imagining their future and presenting SENA specialties as an opportunity to learn and prepare for the future.",
+                badge_3: "Impact +170%",
+                p3_title: "Visual Impact & Design – Children's Day (Luis López de Meza Branch)",
+                p3_desc: "Design and conceptualization of a large-format decorative and informative piece for the commemoration of Children's Day at Luis López de Meza school.",
+                badge_4: "Impact +150%",
+                p4_title: "Visual Identity – Dflex Variedades",
+                p4_desc: "Brand design and development for Dflex Variedades, a multifunctional neighborhood business combining connectivity services and retail.",
+                badge_5: "Growth +200%",
+                p5_title: "Branding, Isotype, and Visual System for Tattoo Studio",
+                p5_desc: "Comprehensive visual identity design for a local tattoo and body art studio, adapted for both physical and digital formats.",
+                badge_6: "Engagement +120%",
+                p6_title: "Promotional Advertising Piece",
+                p6_desc: "Graphic design and retouching of a vertical promotional piece for the grand reopening and appointment scheduling of Zero Onze 011 Barbershop.",
+                btn_review: "View Review",
+                ba_title: "Visual Transformation: Before & After",
+                ba_desc: "Slide the central bar to compare the strategic brand identity redesign.",
+                ba_before: "Initial Concept",
+                ba_after: "Redesign",
+                title_catalogs: "Our Catalogs",
+                c1_badge: "+150% Sales",
+                c1_cat: "Social Media",
+                c1_title: "Summer Fashion Campaign",
+                c1_sub: "Feed and story design for Instagram - Luxora Boutique",
+                c2_badge: "Branding Pro",
+                c2_cat: "Branding & Advertising",
+                c2_title: "Matcha Latte Brand",
+                c2_sub: "Product launch and advertising image",
+                c3_badge: "Optimal UI/UX",
+                c3_cat: "UI/UX Web Design",
+                c3_title: "Architecture Studio",
+                c3_sub: "Web interface and layout for architectural firm",
+                c4_badge: "Convert +140%",
+                c4_cat: "Social Media",
+                c4_title: "Urban Style Collection",
+                c4_sub: "Promotional banner and brand identity for clothing line",
+                c5_badge: "Editorial Top",
+                c5_cat: "Print & Editorial",
+                c5_title: "Projects Catalog",
+                c5_sub: "Editorial design and corporate catalog layout",
+                c6_badge: "Packaging Luxe",
+                c6_cat: "Branding & Packaging",
+                c6_title: "Facial Serum Line",
+                c6_sub: "Packaging and bottle design for premium cosmetics",
+                btn_details: "View details",
+                modal_meta_label: "Tools / Rating:",
+                footer_title: "HAVE A PROJECT IN MIND?",
+                footer_sub: "CONTACT US AND LET'S MAKE YOUR IDEA A REALITY"
+            }
+        };
+
+        function switchLanguage(lang) {
+            currentLang = lang;
+            const elements = document.querySelectorAll('[data-key]');
+            elements.forEach(elem => {
+                const key = elem.getAttribute('data-key');
+                if (translations[lang] && translations[lang][key]) {
+                    elem.textContent = translations[lang][key];
+                }
+            });
+
+            // Actualizar apariencia de los botones de idioma
+            const btnEs = document.getElementById('btnEs');
+            const btnEn = document.getElementById('btnEn');
+            if (lang === 'en') {
+                btnEs.classList.remove('active');
+                btnEn.classList.add('active');
+                document.documentElement.lang = 'en';
+            } else {
+                btnEn.classList.remove('active');
+                btnEs.classList.add('active');
+                document.documentElement.lang = 'es';
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Eventos para el botón conmutador de idioma
+            document.getElementById('btnEs').addEventListener('click', () => switchLanguage('es'));
+            document.getElementById('btnEn').addEventListener('click', () => switchLanguage('en'));
+
+            // 1. Control del Comparador Antes / Después
+            const rangeInput = document.getElementById('baRangeInput');
+            const beforeImg = document.getElementById('baBeforeImg');
+
+            if (rangeInput && beforeImg) {
+                rangeInput.addEventListener('input', (e) => {
+                    beforeImg.style.width = `${e.target.value}%`;
+                });
+            }
+
+            // 2. Efecto Tilt 3D Tridimensional
+            const tiltCards = document.querySelectorAll('.tilt-card');
+            tiltCards.forEach(card => {
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+
+                    const rotateX = ((y - centerY) / centerY) * -10;
+                    const rotateY = ((x - centerX) / centerX) * 10;
+
+                    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-6px)`;
+                });
+
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)';
+                });
+            });
+
+            // 3. Lógica del Modal Dinámico (Soporta traducción según currentLang)
+            const modalOverlay = document.getElementById('portfolioModal');
+            const closeModalBtn = document.getElementById('closeModalBtn');
+            const openModalBtns = document.querySelectorAll('.open-modal-btn');
+
+            const modalImg = document.getElementById('modalImg');
+            const modalCategory = document.getElementById('modalCategory');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalDesc = document.getElementById('modalDesc');
+            const modalTools = document.getElementById('modalTools');
+
+            openModalBtns.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+
+                    const suffix = currentLang === 'en' ? '-en' : '-es';
+
+                    modalImg.src = btn.getAttribute('data-img') || 'imagenes/fondo1.png';
+                    modalCategory.textContent = btn.getAttribute('data-cat' + suffix) || 'Caso de Éxito';
+                    modalTitle.textContent = btn.getAttribute('data-title' + suffix) || 'Detalle del Proyecto';
+                    modalDesc.textContent = btn.getAttribute('data-desc' + suffix) || 'Reseña del cliente.';
+                    modalTools.textContent = btn.getAttribute('data-tools' + suffix) || 'Valoración: ⭐⭐⭐⭐⭐';
+
+                    modalOverlay.classList.add('active');
+                });
+            });
+
+            const closeModal = () => {
+                modalOverlay.classList.remove('active');
+            };
+
+            if (closeModalBtn) {
+                closeModalBtn.addEventListener('click', closeModal);
+            }
+
+            modalOverlay.addEventListener('click', (e) => {
+                if (e.target === modalOverlay) {
+                    closeModal();
+                }
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    closeModal();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

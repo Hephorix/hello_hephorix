@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio de Sesión | HEPHORIX Agencia de Diseño Gráfico</title>
+    
+    <!-- FAVICON -->
+    <link rel="icon" href="imagenes/fondo1.png" type="image/png">
+    
+    <!-- Hojas de Estilos Globales -->
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="login-page-body">
+
+    <!-- Encabezado / Barra de Navegación Principal -->
+    <header class="main-header">
+        <a href="index.html" class="logo-container">
+            <div class="brand-isotype">
+                <img src="imagenes/logo.jpg.png" alt="Logo Hephorix" style="max-height: 40px;">
+            </div>
+            <div class="logo-text">
+                <h1>HEPHORIX</h1>
+                <span>agencia de diseño gráfico</span>
+            </div>
+        </a>
+        
+        <nav class="nav-menu" id="navMenu">
+            <a href="index.html" class="nav-link">INICIO</a>
+            <a href="quienes somos.html" class="nav-link">QUIENES SOMOS</a>
+            <a href="servicios.html" class="nav-link">SERVICIOS</a>
+            <a href="portafolio.html" class="nav-link">PORTAFOLIO</a>
+            <a href="contacto.html" class="nav-link">CONTACTANOS</a>
+        </nav>
+
+        <div class="header-actions">
+            <a href="login.html" class="action-link login-btn active"><i class="fa-regular fa-user"></i> INICIAR SESIÓN</a>
+            <a href="https://wa.me/573182849146" target="_blank" class="action-link contact-wp">
+                <i class="fa-brands fa-whatsapp"></i> CONTÁCTANOS
+            </a>
+            <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Contenedor Principal del Formulario de Autenticación -->
+    <main class="login-container-wrapper">
+        <div class="login-card">
+            <div class="login-header">
+                <img src="imagenes/logo.jpg.png" alt="HEPHORIX Logo" class="login-logo">
+                <h2>¡Bienvenido de Nuevo!</h2>
+                <p>Ingresa tus credenciales de acceso para gestionar tu cuenta</p>
+            </div>
+
+            <form id="standaloneLoginForm" class="login-form">
+                <!-- Campo Correo Electrónico -->
+                <div class="form-group">
+                    <label for="loginEmail"><i class="fa-regular fa-envelope"></i> Correo Electrónico *</label>
+                    <input type="email" id="loginEmail" placeholder="ejemplo@hephorix.com" required autocomplete="email">
+                </div>
+
+                <!-- Campo Contraseña -->
+                <div class="form-group">
+                    <label for="loginPassword"><i class="fa-solid fa-lock"></i> Contraseña *</label>
+                    <input type="password" id="loginPassword" placeholder="••••••••" required autocomplete="current-password">
+                </div>
+
+                <!-- Captcha Matemático Aleatorio -->
+                <!-- Campo Captcha Matemático en login.html -->
+<div class="form-group captcha-group">
+    <label for="captchaAnswer">
+        <i class="fa-solid fa-calculator"></i> Desafío de Seguridad: <span id="captchaQuestion">Calculando...</span> *
+    </label>
+    <div class="captcha-input-wrapper">
+        <input type="number" id="captchaAnswer" placeholder="Resultado" required>
+        <button type="button" id="refreshCaptchaBtn" class="refresh-captcha-btn" title="Generar nuevo desafío">
+            <i class="fa-solid fa-arrows-rotate"></i>
+        </button>
+    </div>
+</div>
+
+                <!-- Enlace Olvidaste tu Contraseña -->
+                <div class="forgot-password-container">
+                    <a href="contacto.html" class="forgot-link"><i class="fa-regular fa-circle-question"></i> ¿Olvidaste tu contraseña?</a>
+                </div>
+
+                <!-- Botones de Acción -->
+                <div class="login-actions">
+                    <button type="submit" class="btn btn-primary btn-submit-login">
+                        <i class="fa-solid fa-right-to-bracket"></i> INGRESAR
+                    </button>
+                    <a href="index.html" class="btn btn-secondary btn-return">
+                        <i class="fa-solid fa-arrow-left"></i> REGRESAR
+                    </a>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <!-- Modal Flotante de Error en Validación -->
+    <div class="login-error-modal-overlay" id="loginErrorModal" aria-hidden="true">
+        <div class="login-error-modal-card">
+            <div class="modal-error-icon">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+            </div>
+            <h3>Error de Autenticación</h3>
+            <p id="modalErrorMessage">Los datos ingresados o la respuesta al desafío matemático son incorrectos. Por favor, verifica la información.</p>
+            
+            <div class="modal-error-actions">
+                <button type="button" id="btnModalRetry" class="modal-btn btn-retry">
+                    <i class="fa-solid fa-rotate-left"></i> INTENTAR NUEVAMENTE
+                </button>
+                <a href="index.html" class="modal-btn btn-cancel">
+                    <i class="fa-solid fa-xmark"></i> CANCELAR
+                </a>
+                <a href="contacto.html" class="modal-btn btn-help">
+                    <i class="fa-solid fa-headset"></i> AYUDA
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pie de Página (Footer) -->
+    <footer class="main-footer">
+        <div class="footer-container container">
+            <div class="footer-item project-call">
+                <i class="fa-regular fa-paper-plane"></i>
+                <div class="text-group">
+                    <h3>¿TIENES UN PROYECTO EN MENTE?</h3>
+                    <p>CONTÁCTANOS Y HAGAMOS REALIDAD TU IDEA</p>
+                </div>
+            </div>
+            <div class="footer-item contact-phone">
+                <i class="fa-solid fa-phone"></i>
+                <a href="tel:+573182849146">+57 3182849146</a>
+            </div>
+            <div class="footer-item contact-location">
+                <i class="fa-solid fa-location-dot"></i>
+                <span>Cali, Colombia</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Archivo de Lógica Global -->
+    <script src="script.js"></script>
+</body>
+</html>

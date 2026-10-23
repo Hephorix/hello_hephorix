@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiénes Somos | Hephorix Agencia de Diseño Gráfico</title>
+   
+    <!-- FAVICON -->
+    <link rel="icon" href="imagenes/fondo1.png" type="image/png">
+
+    <!-- HOJA DE ESTILOS PRINCIPAL Y FUENTES EXACTAS DE INICIO -->
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+    /* ESTILOS INTERNOS EXCLUSIVOS PARA EL CONTENIDO DE QUIÉNES SOMOS */
+    .about-page-content {
+        padding: 4rem 4%;
+    }
+
+    .about-intro {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 3rem;
+        margin-bottom: 4rem;
+    }
+
+    .about-text {
+        flex: 1;
+        min-width: 300px;
+    }
+
+    .about-text h3 {
+        font-size: 2rem;
+        color: var(--color-text-main);
+        margin-bottom: 1rem;
+        font-weight: 700;
+        position: relative;
+    }
+
+    .about-text h3::after {
+        content: '';
+        display: block;
+        width: 50px;
+        height: 3px;
+        background-color: var(--color-primary);
+        margin-top: 8px;
+        border-radius: 2px;
+    }
+
+    .about-text p {
+        color: var(--color-text-muted);
+        margin-bottom: 1rem;
+        font-size: 0.98rem;
+    }
+
+    /* CARRUSEL DE IMÁGENES DE INTRODUCCIÓN */
+    .about-image {
+        flex: 1;
+        min-width: 300px;
+        height: 380px;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: var(--shadow-md);
+        position: relative;
+    }
+
+    .slider-container {
+        width: 100%;
+        height: 100%;
+        position: relative;
+    }
+
+    .slide {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        transition: opacity 1s ease-in-out;
+    }
+
+    .slide.active {
+        opacity: 1;
+    }
+
+    .slide img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transition: transform 0.6s ease;
+    }
+
+    .about-image:hover .slide.active img {
+        transform: scale(1.05);
+    }
+
+    .slider-dots {
+        position: absolute;
+        bottom: 15px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 8px;
+        z-index: 10;
+    }
+
+    .dot {
+        width: 10px;
+        height: 10px;
+        background-color: rgba(255, 255, 255, 0.5);
+        border-radius: 50%;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .dot.active {
+        background-color: var(--color-primary, #4a6c8d);
+        width: 24px;
+        border-radius: 10px;
+    }
+
+    /* GRID DE TARJETAS MISION/VISION */
+    .cards-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin-bottom: 4rem;
+    }
+
+    .card {
+        position: relative;
+        border-radius: 16px;
+        padding: 2.5rem 1.8rem;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        border: 2px solid #dbe2e8;
+        transition: all 0.35s ease-in-out;
+        text-align: center;
+        overflow: hidden;
+        z-index: 1;
+        background: #ffffff;
+    }
+
+    .card::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background-size: cover;
+        background-position: center;
+        filter: blur(8px);
+        opacity: 0.12;
+        transition: transform 0.5s ease, opacity 0.3s ease;
+        z-index: -2;
+    }
+
+    .card::after {
+        content: '';
+        position: absolute;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background: rgba(255, 255, 255, 0.95);
+        z-index: -1;
+    }
+
+    .card:hover {
+        transform: translateY(-8px);
+        border-color: #3b5773;
+        box-shadow: 0 12px 30px rgba(74, 108, 141, 0.35);
+    }
+
+    .card .icon-box {
+        width: 70px;
+        height: 70px;
+        background-color: rgba(74, 108, 141, 0.12);
+        color: #4a6c8d;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 1.5rem auto;
+        font-size: 1.7rem;
+        transition: all 0.4s ease;
+    }
+
+    .card:hover .icon-box {
+        background-color: #4a6c8d;
+        color: #ffffff;
+        transform: scale(1.12) rotate(8deg);
+        box-shadow: 0 0 20px rgba(74, 108, 141, 0.5);
+    }
+
+    .card h4 {
+        font-size: 1.3rem;
+        margin-bottom: 1rem;
+        position: relative;
+        z-index: 2;
+        font-family: var(--font-headings);
+        color: #2c3e50;
+    }
+
+    .card p, .card ul {
+        color: var(--color-text-muted);
+        font-size: 0.92rem;
+        text-align: left;
+        position: relative;
+        z-index: 2;
+    }
+
+    .card ul {
+        list-style: none;
+    }
+
+    .card ul li {
+        margin-bottom: 0.5rem;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .card ul li i {
+        color: #4a6c8d;
+    }
+
+    /* SECCIÓN NUESTRO EQUIPO DE TRABAJO */
+    .team-section {
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+
+    .team-section h3 {
+        font-family: var(--font-headings);
+        font-size: 2.2rem;
+        color: #4a6c8d;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+    }
+
+    .team-section p.subtitle {
+        color: var(--color-text-muted);
+        margin-bottom: 3rem;
+        font-size: 0.98rem;
+    }
+
+    .team-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+    }
+
+    .team-card {
+        background: linear-gradient(180deg, #f8fafc 0%, #edf2f7 100%);
+        border-radius: 16px;
+        border: 2px solid #cbd5e1;
+        padding: 2.5rem 1.8rem;
+        text-align: center;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+        cursor: pointer;
+    }
+
+    .team-card:hover {
+        transform: translateY(-8px);
+        border-color: #3b5773;
+        box-shadow: 0 12px 30px rgba(74, 108, 141, 0.35);
+    }
+
+    .img-wrapper {
+        width: 130px;
+        height: 130px;
+        margin: 0 auto 1.5rem auto;
+        border-radius: 50%;
+        overflow: hidden;
+        border: 3.5px solid #4a6c8d;
+        box-shadow: 0 4px 12px rgba(74, 108, 141, 0.25);
+        transition: transform 0.35s ease;
+    }
+
+    .team-card:hover .img-wrapper {
+        transform: scale(1.05);
+        border-color: #217ba3;
+    }
+
+    .team-card img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .team-card h4 {
+        font-family: var(--font-headings);
+        font-size: 1.25rem;
+        color: #2c3e50;
+        font-weight: 700;
+        margin-bottom: 0.3rem;
+    }
+
+    .team-card span {
+        font-family: var(--font-headings);
+        font-size: 0.88rem;
+        color: #3b5773;
+        font-weight: 600;
+        display: block;
+        margin-bottom: 1rem;
+        letter-spacing: 0.5px;
+    }
+
+    .team-card p {
+        font-family: var(--font-body);
+        font-size: 0.9rem;
+        color: #475569;
+        line-height: 1.6;
+    }
+
+    /* ESTILOS INTERNOS PARA EL BOTÓN DE IDIOMA */
+    .lang-switch-container {
+        display: inline-flex;
+        align-items: center;
+        background: rgba(15, 23, 42, 0.06);
+        border: 1px solid #00bcd4;
+        border-radius: 20px;
+        padding: 2px;
+        margin-right: 0.5rem;
+    }
+
+    .lang-btn {
+        background: transparent;
+        border: none;
+        color: #64748b;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 0.75rem;
+        font-weight: 700;
+        padding: 0.25rem 0.6rem;
+        border-radius: 16px;
+        cursor: pointer;
+        transition: all 0.25s ease;
+    }
+
+    .lang-btn.active {
+        background: #00bcd4;
+        color: #ffffff;
+        box-shadow: 0 2px 8px rgba(0, 188, 212, 0.3);
+    }
+    </style>
+</head>
+<body>
+
+    <!-- ENCABEZADO / BARRA DE NAVEGACIÓN PRINCIPAL -->
+    <header class="main-header">
+        <a href="index.html" class="logo-container">
+            <div class="brand-isotype">
+                <img src="imagenes/logo.jpg.png" alt="Logo Hephorix" style="max-height: 40px;">
+            </div>
+            <div class="logo-text">
+                <h1>HEPHORIX</h1>
+                <span data-key="sub_logo">agencia de diseño gráfico</span>
+            </div>
+        </a>
+        
+        <nav class="nav-menu" id="navMenu">
+            <a href="index.html" class="nav-link" data-key="nav_inicio">INICIO</a>
+            <a href="quienes somos.html" class="nav-link active" data-key="nav_quienes">QUIENES SOMOS</a>
+            <a href="servicios.html" class="nav-link" data-key="nav_servicios">SERVICIOS</a>
+            <a href="portafolio.html" class="nav-link" data-key="nav_portafolio">PORTAFOLIO</a>
+            <a href="contacto.html" class="nav-link" data-key="nav_contactanos">CONTACTANOS</a>
+        </nav>
+
+        <div class="header-actions">
+            <!-- BOTÓN CONMUTADOR DE IDIOMA (ESPAÑOL / INGLÉS) -->
+            <div class="lang-switch-container">
+                <button class="lang-btn active" id="btnEs">ES</button>
+                <button class="lang-btn" id="btnEn">EN</button>
+            </div>
+
+            <a href="login.html" class="action-link login-btn">
+                <i class="fa-regular fa-user"></i> <span data-key="btn_login">INICIAR SESIÓN</span>
+            </a>
+            
+            <a href="https://wa.me/573182849146" target="_blank" class="action-link contact-wp">
+                <i class="fa-brands fa-whatsapp"></i> <span data-key="btn_contact">CONTÁCTANOS</span>
+            </a>
+            <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Barra Lateral Flotante de Redes Sociales -->
+    <aside class="floating-aside-networks">
+        <a href="https://wa.me/573182849146?text=Hola,%20quisiera%20más%20información" class="floating-net-btn wp" target="_blank" rel="noopener noreferrer" aria-label="Contactar por WhatsApp">
+            <i class="fa-brands fa-whatsapp"></i>
+        </a>
+        <a href="https://www.instagram.com/_hephorix/" target="_blank" class="floating-net-btn ig" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+    </aside>
+
+    <main>
+        <!-- BANNER DE ENCABEZADO -->
+        <section class="page-banner">
+            <div class="container">
+                <h2 data-key="banner_title">QUIÉNES SOMOS</h2>
+                <p data-key="banner_sub">Creatividad, estrategia e innovación que transforman ideas en luz</p>
+            </div>
+        </section>
+
+        <!-- CONTENIDO PRINCIPAL -->
+        <div class="container about-page-content">
+
+            <!-- INTRODUCCIÓN CON CARRUSEL DE 5 IMÁGENES -->
+            <section class="about-intro">
+                <div class="about-text">
+                    <h3 data-key="intro_title">PORQUE ELEGIR NUESTROS SERVICIOS</h3>
+                    <p data-key="intro_desc">
+                        Al elegir nuestros servicios en <strong>Hephorix</strong>, significa contar con un aliado estratégico capaz de transformar la identidad visual de tu marca en una experiencia potente, memorable y altamente competitiva. Fusionamos creatividad pura, estrategia digital y desarrollo a la medida para construir soluciones integrales —desde branding e identidad corporativa hasta diseño web UI/UX y producción audiovisual— diseñadas específicamente para conectar con tu audiencia y generar resultados reales. En un entorno digital saturado, Hephorix aporta innovación, coherencia estética y un compromiso apasionado en cada proyecto, proyectando tu empresa hacia el siguiente nivel con un carácter distintivo y profesional.
+                    </p>
+                </div>
+                <div class="about-image">
+                    <div class="slider-container" id="aboutSlider">
+                        <div class="slide active">
+                            <img src="imagenes/carrusel 1.jpg" alt="Equipo creativo Hephorix">
+                        </div>
+                        <div class="slide">
+                            <img src="imagenes/carrusel 2.jpg" alt="Diseño de interfaz UI/UX">
+                        </div>
+                        <div class="slide">
+                            <img src="imagenes/carrusel 3.jpg" alt="Estrategia de marca">
+                        </div>
+                        <div class="slide">
+                            <img src="imagenes/carrusel 4.jpg" alt="Trabajo en equipo">
+                        </div>
+                        <div class="slide">
+                            <img src="imagenes/carrusel 5.jpg" alt="Innovación digital">
+                        </div>
+                        <div class="slider-dots" id="sliderDots">
+                            <span class="dot active"></span>
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- GRID MISION / VISION / VALORES -->
+            <section class="cards-grid">
+                <article class="card card-mision">
+                    <div class="icon-box">
+                        <i class="fa-solid fa-bullseye"></i>
+                    </div>
+                    <h4 data-key="mision_title">NUESTRA MISIÓN</h4>
+                    <p data-key="mision_desc">Potenciar la presencia de marcas y negocios mediante soluciones de diseño gráfico y estrategia digital de alta calidad. Nos enfocamos en comunicar de forma clara, estética y efectiva la propuesta de valor de nuestros clientes, convirtiendo sus visiones en proyectos funcionales e impactantes.</p>
+                </article>
+
+                <article class="card card-vision">
+                    <div class="icon-box">
+                        <i class="fa-solid fa-eye"></i>
+                    </div>
+                    <h4 data-key="vision_title">NUESTRA VISIÓN</h4>
+                    <p data-key="vision_desc">Ser reconocidos para el 2030 como una agencia referente en el sector creativo por la innovación de nuestras propuestas visuales, la calidad de nuestros desarrollos y el impacto positivo en el crecimiento comercial de las marcas que confían en nosotros a nivel nacional e internacional.</p>
+                </article>
+
+                <article class="card card-valores">
+                    <div class="icon-box">
+                        <i class="fa-solid fa-gem"></i>
+                    </div>
+                    <h4 data-key="values_title">NUESTROS VALORES</h4>
+                    <ul>
+                        <li><i class="fa-solid fa-check"></i> <span data-key="val_1"><strong>Creatividad e Innovación:</strong> Buscamos respuestas originales y tendencias modernas.</span></li>
+                        <li><i class="fa-solid fa-check"></i> <span data-key="val_2"><strong>Compromiso y Calidad:</strong> Cuidamos cada detalle desde el boceto inicial hasta la entrega final.</span></li>
+                        <li><i class="fa-solid fa-check"></i> <span data-key="val_3"><strong>Transparencia:</strong> Comunicación fluida y honesta en cada etapa.</span></li>
+                        <li><i class="fa-solid fa-check"></i> <span data-key="val_4"><strong>Enfoque en Resultados:</strong> Diseñamos con propósito estratégico.</span></li>
+                    </ul>
+                </article>
+            </section>
+
+            <!-- SECCIÓN NUESTRO EQUIPO DE TRABAJO -->
+            <section class="team-section">
+                <h3 data-key="team_title">Nuestro Equipo de Trabajo</h3>
+                <p class="subtitle" data-key="team_sub">Mentes creativas apasionadas por dar luz a tus proyectos</p>
+
+                <div class="team-grid">
+                    <!-- Integrante 1 -->
+                    <div class="team-card">
+                        <div class="img-wrapper">
+                            <img src="imagenes/andres 1.jpeg" alt="Gian Andrés Salazar">
+                        </div>
+                        <h4>Gian Andrés Salazar</h4>
+                        <span data-key="member_1_role">Director Creativo & Lead Designer</span>
+                        <p data-key="member_1_desc">Especialista en branding, desarrollo de identidades visuales y estrategia de marca.</p>
+                    </div>
+
+                    <!-- Integrante 2 -->
+                    <div class="team-card">
+                        <div class="img-wrapper">
+                            <img src="imagenes/karen 1.jpeg" alt="karen Gisela Guetio">
+                        </div>
+                        <h4>karen Gisela Guetio</h4>
+                        <span data-key="member_2_role">Desarrollador Web UI/UX</span>
+                        <p data-key="member_2_desc">Encargado de maquetación de interfaces responsivas y experiencia de usuario.</p>
+                    </div>
+
+                    <!-- Integrante 3 -->
+                    <div class="team-card">
+                        <div class="img-wrapper">
+                            <img src="imagenes/mercedes 1.jpeg" alt="Maria Mercedes Meza">
+                        </div>
+                        <h4>Maria Mercedes Meza</h4>
+                        <span data-key="member_3_role">Community & Content Creator</span>
+                        <p data-key="member_3_desc">Experta en estrategia visual para redes sociales y contenido publicitario.</p>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- PIE DE PÁGINA (FOOTER) -->
+    <footer class="main-footer">
+        <div class="footer-container container">
+            <div class="footer-item project-call">
+                <i class="fa-regular fa-paper-plane"></i>
+                <div class="text-group">
+                    <h3 data-key="footer_title">¿TIENES UN PROYECTO EN MENTE?</h3>
+                    <p data-key="footer_sub">CONTÁCTANOS Y HAGAMOS REALIDAD TU IDEA</p>
+                </div>
+            </div>
+
+            <div class="footer-item contact-phone">
+                <i class="fa-solid fa-phone"></i>
+                <a href="tel:+573182849146">+57 3182849146</a>
+            </div>
+            <div class="footer-item contact-location">
+                <i class="fa-solid fa-location-dot"></i>
+                <span>Cali, Colombia</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- SCRIPT DE NAVEGACIÓN Y CARRUSEL -->
+    <script src="script.js"></script>
+    <script>
+        let currentLang = 'es';
+
+        const translations = {
+            es: {
+                sub_logo: "agencia de diseño gráfico",
+                nav_inicio: "INICIO",
+                nav_quienes: "QUIENES SOMOS",
+                nav_servicios: "SERVICIOS",
+                nav_portafolio: "PORTAFOLIO",
+                nav_contactanos: "CONTACTANOS",
+                btn_login: "INICIAR SESIÓN",
+                btn_contact: "CONTÁCTANOS",
+                banner_title: "QUIÉNES SOMOS",
+                banner_sub: "Creatividad, estrategia e innovación que transforman ideas en luz",
+                intro_title: "PORQUE ELEGIR NUESTROS SERVICIOS",
+                intro_desc: "Al elegir nuestros servicios en Hephorix, significa contar con un aliado estratégico capaz de transformar la identidad visual de tu marca en una experiencia potente, memorable y altamente competitiva. Fusionamos creatividad pura, estrategia digital y desarrollo a la medida para construir soluciones integrales —desde branding e identidad corporativa hasta diseño web UI/UX y producción audiovisual— diseñadas específicamente para conectar con tu audiencia y generar resultados reales. En un entorno digital saturado, Hephorix aporta innovación, coherencia estética y un compromiso apasionado en cada proyecto, proyectando tu empresa hacia el siguiente nivel con un carácter distintivo y profesional.",
+                mision_title: "NUESTRA MISIÓN",
+                mision_desc: "Potenciar la presencia de marcas y negocios mediante soluciones de diseño gráfico y estrategia digital de alta calidad. Nos enfocamos en comunicar de forma clara, estética y efectiva la propuesta de valor de nuestros clientes, convirtiendo sus visiones en proyectos funcionales e impactantes.",
+                vision_title: "NUESTRA VISIÓN",
+                vision_desc: "Ser reconocidos para el 2030 como una agencia referente en el sector creativo por la innovación de nuestras propuestas visuales, la calidad de nuestros desarrollos y el impacto positivo en el crecimiento comercial de las marcas que confían en nosotros a nivel nacional e internacional.",
+                values_title: "NUESTROS VALORES",
+                val_1: "Creatividad e Innovación: Buscamos respuestas originales y tendencias modernas.",
+                val_2: "Compromiso y Calidad: Cuidamos cada detalle desde el boceto inicial hasta la entrega final.",
+                val_3: "Transparencia: Comunicación fluida y honesta en cada etapa.",
+                val_4: "Enfoque en Resultados: Diseñamos con propósito estratégico.",
+                team_title: "Nuestro Equipo de Trabajo",
+                team_sub: "Mentes creativas apasionadas por dar luz a tus proyectos",
+                member_1_role: "Director Creativo & Lead Designer",
+                member_1_desc: "Especialista en branding, desarrollo de identidades visuales y estrategia de marca.",
+                member_2_role: "Desarrollador Web UI/UX",
+                member_2_desc: "Encargado de maquetación de interfaces responsivas y experiencia de usuario.",
+                member_3_role: "Community & Content Creator",
+                member_3_desc: "Experta en estrategia visual para redes sociales y contenido publicitario.",
+                footer_title: "¿TIENES UN PROYECTO EN MENTE?",
+                footer_sub: "CONTÁCTANOS Y HAGAMOS REALIDAD TU IDEA"
+            },
+            en: {
+                sub_logo: "graphic design agency",
+                nav_inicio: "HOME",
+                nav_quienes: "ABOUT US",
+                nav_servicios: "SERVICES",
+                nav_portafolio: "PORTFOLIO",
+                nav_contactanos: "CONTACT US",
+                btn_login: "LOG IN",
+                btn_contact: "CONTACT US",
+                banner_title: "ABOUT US",
+                banner_sub: "Creativity, strategy, and innovation that transform ideas into light",
+                intro_title: "WHY CHOOSE OUR SERVICES",
+                intro_desc: "Choosing our services at Hephorix means relying on a strategic ally capable of transforming your brand's visual identity into a powerful, memorable, and highly competitive experience. We fuse pure creativity, digital strategy, and custom development to build comprehensive solutions —from branding and corporate identity to UI/UX web design and audiovisual production— specifically designed to connect with your audience and generate real results. In a saturated digital environment, Hephorix brings innovation, aesthetic coherence, and passionate commitment to every project, driving your company to the next level with a distinctive and professional character.",
+                mision_title: "OUR MISSION",
+                mision_desc: "To empower the presence of brands and businesses through high-quality graphic design and digital strategy solutions. We focus on clearly, aesthetically, and effectively communicating our clients' value proposition, turning their visions into functional and impactful projects.",
+                vision_title: "OUR VISION",
+                vision_desc: "To be recognized by 2030 as a leading agency in the creative sector for the innovation of our visual proposals, the quality of our developments, and the positive impact on the commercial growth of the brands that trust us nationally and internationally.",
+                values_title: "OUR VALUES",
+                val_1: "Creativity & Innovation: We seek original answers and modern trends.",
+                val_2: "Commitment & Quality: We care for every detail from the initial sketch to final delivery.",
+                val_3: "Transparency: Fluid and honest communication at every stage.",
+                val_4: "Result-Oriented: We design with a strategic purpose.",
+                team_title: "Our Work Team",
+                team_sub: "Creative minds passionate about bringing light to your projects",
+                member_1_role: "Creative Director & Lead Designer",
+                member_1_desc: "Specialist in branding, visual identity development, and brand strategy.",
+                member_2_role: "UI/UX Web Developer",
+                member_2_desc: "In charge of responsive interface layout and user experience.",
+                member_3_role: "Community & Content Creator",
+                member_3_desc: "Expert in social media visual strategy and advertising content.",
+                footer_title: "HAVE A PROJECT IN MIND?",
+                footer_sub: "CONTACT US AND LET'S MAKE YOUR IDEA A REALITY"
+            }
+        };
+
+        function switchLanguage(lang) {
+            currentLang = lang;
+            const elements = document.querySelectorAll('[data-key]');
+            elements.forEach(elem => {
+                const key = elem.getAttribute('data-key');
+                if (translations[lang] && translations[lang][key]) {
+                    elem.textContent = translations[lang][key];
+                }
+            });
+
+            const btnEs = document.getElementById('btnEs');
+            const btnEn = document.getElementById('btnEn');
+            if (lang === 'en') {
+                btnEs.classList.remove('active');
+                btnEn.classList.add('active');
+                document.documentElement.lang = 'en';
+            } else {
+                btnEn.classList.remove('active');
+                btnEs.classList.add('active');
+                document.documentElement.lang = 'es';
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('btnEs').addEventListener('click', () => switchLanguage('es'));
+            document.getElementById('btnEn').addEventListener('click', () => switchLanguage('en'));
+
+            /* LÓGICA DEL CARRUSEL AUTOMÁTICO DE 5 IMÁGENES */
+            const slides = document.querySelectorAll('#aboutSlider .slide');
+            const dots = document.querySelectorAll('#sliderDots .dot');
+            let currentSlide = 0;
+            const totalSlides = slides.length;
+
+            function showSlide(index) {
+                slides.forEach((slide, i) => {
+                    slide.classList.toggle('active', i === index);
+                });
+                dots.forEach((dot, i) => {
+                    dot.classList.toggle('active', i === index);
+                });
+            }
+
+            function nextSlide() {
+                currentSlide = (currentSlide + 1) % totalSlides;
+                showSlide(currentSlide);
+            }
+
+            let slideInterval = setInterval(nextSlide, 4000);
+
+            dots.forEach((dot, index) => {
+                dot.addEventListener('click', () => {
+                    currentSlide = index;
+                    showSlide(currentSlide);
+                    clearInterval(slideInterval);
+                    slideInterval = setInterval(nextSlide, 4000);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

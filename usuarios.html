@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Usuario | HEPHORIX Agencia de Diseño Gráfico</title>
+    
+    <!-- FAVICON -->
+    <link rel="icon" href="imagenes/fondo1.png" type="image/png">
+
+    <!-- Hojas de Estilos Globales y Fuentes -->
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<!-- Guardián de Navegación en usuarios.html -->
+<script>
+    (function() {
+        const sessionData = sessionStorage.getItem('hephorix_active_user');
+        if (!sessionData) {
+            window.location.href = 'login.html';
+        }
+    })();
+</script>
+
+
+
+</head>
+<body>
+
+    <!-- Encabezado / Barra de Navegación con Estado Autenticado -->
+    <header class="main-header">
+        <a href="usuarios.html" class="logo-container">
+            <div class="brand-isotype">
+                <img src="imagenes/logo.jpg.png" alt="Logo Hephorix" style="max-height: 40px;">
+            </div>
+            <div class="logo-text">
+                <h1>HEPHORIX</h1>
+                <span>agencia de diseño gráfico</span>
+            </div>
+        </a>
+        
+        <nav class="nav-menu" id="navMenu">
+            <a href="usuarios.html" class="nav-link active">INICIO</a>
+            <a href="quienes somos.html" class="nav-link">QUIENES SOMOS</a>
+            <a href="servicios.html" class="nav-link">SERVICIOS</a>
+            <a href="portafolio.html" class="nav-link">PORTAFOLIO</a>
+            <a href="contacto.html" class="nav-link">CONTACTANOS</a>
+        </nav>
+
+        <div class="header-actions">
+            <!-- Bloque de Perfil Autenticado -->
+            <div class="user-authenticated-badge" id="userAuthBadge">
+                <div class="user-avatar-circle" id="userAvatarCircle">
+                    <i class="fa-solid fa-user"></i>
+                </div>
+                <div class="user-info-text">
+                    <span class="user-welcome-label">Sesión Activa</span>
+                    <strong id="displayUserEmail">usuario@hephorix.com</strong>
+                </div>
+                <button type="button" id="logoutBtn" class="logout-btn" title="Cerrar Sesión">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                </button>
+            </div>
+
+            <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Barra Lateral Flotante de Redes Sociales -->
+    <aside class="floating-aside-networks">
+        <a href="tel:+573182849146" class="floating-net-btn wp" aria-label="Llamar por teléfono"><i class="fa-solid fa-phone"></i></a>
+        <a href="https://instagram.com" target="_blank" class="floating-net-btn ig" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        <a href="https://facebook.com" target="_blank" class="floating-net-btn fb" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+    </aside>
+
+    <!-- Banner Privado de Bienvenida -->
+    <section class="user-welcome-banner">
+        <div class="container">
+            <div class="welcome-card-content">
+                <i class="fa-solid fa-circle-check welcome-icon"></i>
+                <div>
+                    <h2>¡Bienvenido a tu Panel de Cliente, <span id="welcomeUserName">Usuario</span>!</h2>
+                    <p>Has ingresado exitosamente a la plataforma privada de HEPHORIX.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contenido Principal (Estructura de Inicio) -->
+    <main>
+        <section class="hero-section">
+            <div class="hero-container container">
+                <div class="hero-content">
+                    <h2>DISEÑAMOS IDEAS</h2>
+                    <h3 class="shimmer-title" style="font-size: 1.8rem; font-weight: 700; color: #2c3e50; margin-bottom: 1rem; line-height: 1.3;">
+                        Ideas que se transforman en <br>
+                        <span class="typing-container" id="dynamicText" style="margin-top: 4px;">luz</span>
+                    </h3>
+                    <p>Accede a tus recursos corporativos, portafolio exclusivo y material descargable de la agencia.</p>
+                    <div class="hero-buttons">
+                        <a href="imagenes/Manual coorporativo ACTUALIZADO HEPHORIX.pdf" target="_blank" class="btn btn-primary">MI MANUAL</a>
+                        <a href="imagenes/PORTAFOLIO HEPHORIX.pdf" target="_blank" class="btn btn-secondary">DESCARGAR PORTAFOLIO</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección Informativa -->
+        <section class="about-section container">
+            <div class="about-info">
+                <div>
+                    <h2>Tu Espacio Creativo Privado</h2>
+                    <p>Como usuario autenticado de Hephorix, cuentas con atención prioritaria para la ejecución de tus proyectos visuales, diseño UI/UX y consultoría estratégica de marca.</p>
+                </div>
+                <div class="about-cta">
+                    <a href="contacto.html" class="btn btn-primary">SOLICITAR NUEVO PROYECTO</a>
+                </div>
+            </div>
+            
+            <div class="index-video-card-container">
+                <article class="index-video-card">
+                    <div class="video-wrapper">
+                        <video controls poster="imagenes/descarga.jpg">
+                            <source src="imagenes/video 1.mp4" type="video/mp4">
+                            Tu navegador no soporta el reproductor de vídeo.
+                        </video>
+                    </div>
+                    <div class="video-title-only">
+                        <h3>" Conoce Un Poco Más De Hephorix "</h3>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <!-- Pie de Página (Footer) -->
+    <footer class="main-footer">
+        <div class="footer-container container">
+            <div class="footer-item project-call">
+                <i class="fa-regular fa-paper-plane"></i>
+                <div class="text-group">
+                    <h3>¿TIENES UN PROYECTO EN MENTE?</h3>
+                    <p>CONTÁCTANOS Y HAGAMOS REALIDAD TU IDEA</p>
+                </div>
+            </div>
+
+            <div class="footer-item contact-phone">
+                <i class="fa-solid fa-phone"></i>
+                <a href="tel:+573182849146">+57 3182849146</a>
+            </div>
+            <div class="footer-item contact-location">
+                <i class="fa-solid fa-location-dot"></i>
+                <span>Cali, Colombia</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts de Lógica Global -->
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Lógica para el texto dinámico
+            const dynamicText = document.getElementById('dynamicText');
+            if (dynamicText) {
+                const words = ['luz', 'marcas', 'resultados', 'ventas'];
+                let index = 0;
+                setInterval(() => {
+                    dynamicText.style.opacity = '0';
+                    setTimeout(() => {
+                        index = (index + 1) % words.length;
+                        dynamicText.textContent = words[index];
+                        dynamicText.style.opacity = '1';
+                    }, 300);
+                }, 2500);
+            }
+        });
+    </script>
+</body>
+</html>
