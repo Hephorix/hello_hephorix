@@ -2270,7 +2270,8 @@ h1:hover, h2:hover, h3:hover, h4:hover, h5:hover, h6:hover {
         transform: scale(0.5) translateZ(-150px) rotateX(-20px); /* Alejamiento previo al cambio */
         filter: blur(5px);
     }
-}/* --- ESTILOS DEL MENÚ MÓVIL / HAMBURGUESA --- */
+}
+/* --- ESTILOS DEL MENÚ MÓVIL / HAMBURGUESA --- */
 .menu-toggle {
     display: none;
     background: transparent;
@@ -2335,5 +2336,79 @@ h1:hover, h2:hover, h3:hover, h4:hover, h5:hover, h6:hover {
     .nav-menu .nav-link.active {
         background: rgba(0, 188, 212, 0.1);
         color: #00bcd4;
+    }
+}/* --- MENÚ MÓVIL / HAMBURGUESA PARA HEPHORIX --- */
+
+/* 1. Asegurar que el botón hamburguesa esté oculto en computadoras */
+.menu-toggle {
+    display: none;
+    background: transparent;
+    border: none;
+    color: #2c3e50;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.2rem 0.5rem;
+    transition: color 0.3s ease;
+}
+
+.menu-toggle:hover {
+    color: #00bcd4;
+}
+
+/* 2. Reglas para cuando la pantalla es de celular (menor o igual a 992px) */
+@media screen and (max-width: 992px) {
+    /* Hacemos visible el botón hamburguesa */
+    .menu-toggle {
+        display: inline-block !important;
+    }
+
+    /* Obligamos a que la cabecera sea relativa para que el menú se posicione debajo */
+    .main-header {
+        position: relative !important;
+    }
+
+    /* Estilos del menú desplegable móvil */
+    .nav-menu {
+        position: absolute !important;
+        top: 100% !important;
+        left: 0 !important;
+        width: 100% !important;
+        background: #ffffff !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        padding: 1.5rem 0 !important;
+        gap: 1.2rem !important;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15) !important;
+        border-bottom: 3px solid #00bcd4 !important;
+        
+        /* Sistema de ocultado inicial */
+        display: flex !important;
+        max-height: 0 !important;
+        overflow: hidden !important;
+        opacity: 0 !important;
+        visibility: hidden !important;
+        transition: max-height 0.4s ease, opacity 0.3s ease, visibility 0.3s ease !important;
+        z-index: 9999 !important;
+    }
+
+    /* Cuando JavaScript le activa la clase .active */
+    .nav-menu.active {
+        max-height: 450px !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+
+    .nav-menu .nav-link {
+        font-size: 1rem !important;
+        padding: 0.6rem 1rem !important;
+        width: 85% !important;
+        text-align: center !important;
+        border-radius: 8px !important;
+    }
+
+    .nav-menu .nav-link:hover,
+    .nav-menu .nav-link.active {
+        background: rgba(0, 188, 212, 0.1) !important;
+        color: #00bcd4 !important;
     }
 }
