@@ -1560,15 +1560,89 @@ h1:hover, h2:hover, h3:hover, h4:hover, h5:hover, h6:hover {
 }
 
 /* ==========================================================================
-   14. RESPONSIVE DESIGN & MENÚ MÓVIL HAMBURGUESA FLUIDO
+   14. RESPONSIVE DESIGN, HEADER MÓVIL (ARTNOVUS) Y TRADUCTOR FLOTANTE
    ========================================================================== */
-@media screen and (max-width: 992px) {
-    .menu-toggle {
-        display: inline-block !important;
-    }
 
+/* Botón Flotante de Idioma (Posicionado abajo a la derecha) */
+.floating-lang-toggle {
+    position: fixed;
+    bottom: 85px; /* Ngato ti WhatsApp button */
+    right: 20px;
+    z-index: 999;
+}
+
+.lang-btn-float {
+    background: #0f172a;
+    border: 2px solid #00bcd4;
+    color: #ffffff;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 188, 212, 0.4);
+    transition: transform 0.3s ease, background 0.3s ease;
+    font-family: var(--font-headings);
+}
+
+.lang-btn-float i {
+    font-size: 0.75rem;
+    color: #00bcd4;
+}
+
+.lang-btn-float span {
+    font-size: 0.65rem;
+    font-weight: 700;
+    line-height: 1;
+    margin-top: 2px;
+}
+
+.lang-btn-float:hover {
+    transform: scale(1.1);
+    background: #00bcd4;
+    color: #0f172a;
+}
+
+.lang-btn-float:hover i {
+    color: #0f172a;
+}
+
+@media screen and (max-width: 992px) {
     .main-header {
         position: relative !important;
+        padding: 0.8rem 4% !important;
+    }
+
+    .header-actions {
+        display: flex !important;
+        align-items: center !important;
+        gap: 0.8rem !important;
+    }
+
+    /* Botón INICIAR SESIÓN estilo encapsulado en header móvil */
+    .header-actions .login-btn {
+        display: inline-flex !important;
+        background: transparent !important;
+        border: 1px solid var(--color-primary, #4a6c8d) !important;
+        padding: 0.4rem 0.8rem !important;
+        border-radius: 20px !important;
+        font-size: 0.7rem !important;
+        color: var(--color-text-main, #2c3e50) !important;
+        white-space: nowrap !important;
+    }
+
+    /* Ocultar el botón horizontal de WhatsApp del header en móvil */
+    .header-actions .contact-wp {
+        display: none !important;
+    }
+
+    /* Botón hamburguesa desplegable */
+    .menu-toggle {
+        display: inline-block !important;
+        font-size: 1.4rem !important;
     }
 
     .nav-menu {
@@ -1582,7 +1656,6 @@ h1:hover, h2:hover, h3:hover, h4:hover, h5:hover, h6:hover {
         box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15) !important;
         border-bottom: 3px solid #00bcd4 !important;
         
-        /* Sistema de ocultado y despliegue suave */
         max-height: 0 !important;
         overflow: hidden !important;
         opacity: 0 !important;
