@@ -34,13 +34,50 @@ function showErrorModal(message) {
 document.addEventListener('DOMContentLoaded', () => {
 
     /* ----------------------------------------------------------------------
-       1. MENÚ MÓVIL Y NAVEGACIÓN SEGÚN SESIÓN ACTIVA
+       1. MENÚ MÓVIL UNIVERSAL Y NAVEGACIÓN SEGÚN SESIÓN ACTIVA
        ---------------------------------------------------------------------- */
     const menuToggle = document.getElementById('menuToggle');
     const navMenu = document.getElementById('navMenu');
+    const menuIcon = document.getElementById('menuIcon') || (menuToggle ? menuToggle.querySelector('i') : null);
 
     if (menuToggle && navMenu) {
-        menuToggle.addEventListener('click', () => navMenu.classList.toggle('active'));
+        menuToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            navMenu.classList.toggle('active');
+
+            if (menuIcon) {
+                if (navMenu.classList.contains('active')) {
+                    menuIcon.classList.remove('fa-bars');
+                    menuIcon.classList.add('fa-xmark');
+                } else {
+                    menuIcon.classList.remove('fa-xmark');
+                    menuIcon.classList.add('fa-bars');
+                }
+            }
+        });
+
+        // Cerrar menú al hacer clic en cualquier enlace interno
+        const navLinks = navMenu.querySelectorAll('.nav-link');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                if (menuIcon) {
+                    menuIcon.classList.remove('fa-xmark');
+                    menuIcon.classList.add('fa-bars');
+                }
+            });
+        });
+
+        // Cerrar menú al hacer clic fuera de él en dispositivos móviles
+        document.addEventListener('click', (e) => {
+            if (!navMenu.contains(e.target) && !menuToggle.contains(e.target)) {
+                navMenu.classList.remove('active');
+                if (menuIcon) {
+                    menuIcon.classList.remove('fa-xmark');
+                    menuIcon.classList.add('fa-bars');
+                }
+            }
+        });
     }
 
     // Verificar si hay sesión activa para actualizar los botones del menú
@@ -62,7 +99,6 @@ document.addEventListener('DOMContentLoaded', () => {
        ---------------------------------------------------------------------- */
     if (window.location.pathname.includes('usuarios.html')) {
         if (!activeUserJSON) {
-            // Redirección silenciosa sin alert() bloqueante
             window.location.href = 'login.html';
             return;
         }
@@ -111,13 +147,11 @@ document.addEventListener('DOMContentLoaded', () => {
             );
 
             if (matchedUser) {
-                // Guardar en sessionStorage de forma limpia
                 sessionStorage.setItem('hephorix_active_user', JSON.stringify({
                     email: matchedUser.email,
                     nombre: matchedUser.nombre
                 }));
                 
-                // Redirección limpia a usuarios.html
                 window.location.href = 'usuarios.html';
             } else {
                 showErrorModal('El correo electrónico o la contraseña ingresados no coinciden con nuestros registros.');
