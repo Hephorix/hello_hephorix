@@ -14,335 +14,351 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-    /* ESTILOS INTERNOS EXCLUSIVOS PARA EL CONTENIDO DE QUIÉNES SOMOS */
-    .about-page-content {
-        padding: 4rem 4%;
-    }
+        /* ESTILOS INTERNOS EXCLUSIVOS PARA EL BOTÓN FLOTANTE DE IDIOMA Y CONTENIDO */
+        .floating-lang-toggle {
+            position: fixed;
+            bottom: 85px;
+            right: 20px;
+            z-index: 999;
+        }
 
-    .about-intro {
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        gap: 3rem;
-        margin-bottom: 4rem;
-    }
+        .lang-btn-float {
+            background: #0f172a;
+            border: 2px solid #00bcd4;
+            color: #ffffff;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 188, 212, 0.4);
+            transition: transform 0.3s ease, background 0.3s ease;
+            font-family: 'Montserrat', sans-serif;
+        }
 
-    .about-text {
-        flex: 1;
-        min-width: 300px;
-    }
+        .lang-btn-float i {
+            font-size: 0.75rem;
+            color: #00bcd4;
+        }
 
-    .about-text h3 {
-        font-size: 2rem;
-        color: var(--color-text-main);
-        margin-bottom: 1rem;
-        font-weight: 700;
-        position: relative;
-    }
+        .lang-btn-float span {
+            font-size: 0.65rem;
+            font-weight: 700;
+            line-height: 1;
+            margin-top: 2px;
+        }
 
-    .about-text h3::after {
-        content: '';
-        display: block;
-        width: 50px;
-        height: 3px;
-        background-color: var(--color-primary);
-        margin-top: 8px;
-        border-radius: 2px;
-    }
+        .lang-btn-float:hover {
+            transform: scale(1.1);
+            background: #00bcd4;
+            color: #0f172a;
+        }
 
-    .about-text p {
-        color: var(--color-text-muted);
-        margin-bottom: 1rem;
-        font-size: 0.98rem;
-    }
+        .lang-btn-float:hover i {
+            color: #0f172a;
+        }
 
-    /* CARRUSEL DE IMÁGENES DE INTRODUCCIÓN */
-    .about-image {
-        flex: 1;
-        min-width: 300px;
-        height: 380px;
-        border-radius: 12px;
-        overflow: hidden;
-        box-shadow: var(--shadow-md);
-        position: relative;
-    }
+        .about-page-content {
+            padding: 4rem 4%;
+        }
 
-    .slider-container {
-        width: 100%;
-        height: 100%;
-        position: relative;
-    }
+        .about-intro {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 3rem;
+            margin-bottom: 4rem;
+        }
 
-    .slide {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        opacity: 0;
-        transition: opacity 1s ease-in-out;
-    }
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+        }
 
-    .slide.active {
-        opacity: 1;
-    }
+        .about-text h3 {
+            font-size: 2rem;
+            color: var(--color-text-main);
+            margin-bottom: 1rem;
+            font-weight: 700;
+            position: relative;
+        }
 
-    .slide img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        display: block;
-        transition: transform 0.6s ease;
-    }
+        .about-text h3::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 3px;
+            background-color: var(--color-primary);
+            margin-top: 8px;
+            border-radius: 2px;
+        }
 
-    .about-image:hover .slide.active img {
-        transform: scale(1.05);
-    }
+        .about-text p {
+            color: var(--color-text-muted);
+            margin-bottom: 1rem;
+            font-size: 0.98rem;
+        }
 
-    .slider-dots {
-        position: absolute;
-        bottom: 15px;
-        left: 50%;
-        transform: translateX(-50%);
-        display: flex;
-        gap: 8px;
-        z-index: 10;
-    }
+        /* CARRUSEL DE IMÁGENES DE INTRODUCCIÓN */
+        .about-image {
+            flex: 1;
+            min-width: 300px;
+            height: 380px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            position: relative;
+        }
 
-    .dot {
-        width: 10px;
-        height: 10px;
-        background-color: rgba(255, 255, 255, 0.5);
-        border-radius: 50%;
-        cursor: pointer;
-        transition: all 0.3s ease;
-    }
+        .slider-container {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
 
-    .dot.active {
-        background-color: var(--color-primary, #4a6c8d);
-        width: 24px;
-        border-radius: 10px;
-    }
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
 
-    /* GRID DE TARJETAS MISION/VISION */
-    .cards-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 2rem;
-        margin-bottom: 4rem;
-    }
+        .slide.active {
+            opacity: 1;
+        }
 
-    .card {
-        position: relative;
-        border-radius: 16px;
-        padding: 2.5rem 1.8rem;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-        border: 2px solid #dbe2e8;
-        transition: all 0.35s ease-in-out;
-        text-align: center;
-        overflow: hidden;
-        z-index: 1;
-        background: #ffffff;
-    }
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.6s ease;
+        }
 
-    .card::before {
-        content: '';
-        position: absolute;
-        top: 0; left: 0; right: 0; bottom: 0;
-        background-size: cover;
-        background-position: center;
-        filter: blur(8px);
-        opacity: 0.12;
-        transition: transform 0.5s ease, opacity 0.3s ease;
-        z-index: -2;
-    }
+        .about-image:hover .slide.active img {
+            transform: scale(1.05);
+        }
 
-    .card::after {
-        content: '';
-        position: absolute;
-        top: 0; left: 0; right: 0; bottom: 0;
-        background: rgba(255, 255, 255, 0.95);
-        z-index: -1;
-    }
+        .slider-dots {
+            position: absolute;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+            z-index: 10;
+        }
 
-    .card:hover {
-        transform: translateY(-8px);
-        border-color: #3b5773;
-        box-shadow: 0 12px 30px rgba(74, 108, 141, 0.35);
-    }
+        .dot {
+            width: 10px;
+            height: 10px;
+            background-color: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
 
-    .card .icon-box {
-        width: 70px;
-        height: 70px;
-        background-color: rgba(74, 108, 141, 0.12);
-        color: #4a6c8d;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin: 0 auto 1.5rem auto;
-        font-size: 1.7rem;
-        transition: all 0.4s ease;
-    }
+        .dot.active {
+            background-color: var(--color-primary, #4a6c8d);
+            width: 24px;
+            border-radius: 10px;
+        }
 
-    .card:hover .icon-box {
-        background-color: #4a6c8d;
-        color: #ffffff;
-        transform: scale(1.12) rotate(8deg);
-        box-shadow: 0 0 20px rgba(74, 108, 141, 0.5);
-    }
+        /* GRID DE TARJETAS MISION/VISION */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
 
-    .card h4 {
-        font-size: 1.3rem;
-        margin-bottom: 1rem;
-        position: relative;
-        z-index: 2;
-        font-family: var(--font-headings);
-        color: #2c3e50;
-    }
+        .card {
+            position: relative;
+            border-radius: 16px;
+            padding: 2.5rem 1.8rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            border: 2px solid #dbe2e8;
+            transition: all 0.35s ease-in-out;
+            text-align: center;
+            overflow: hidden;
+            z-index: 1;
+            background: #ffffff;
+        }
 
-    .card p, .card ul {
-        color: var(--color-text-muted);
-        font-size: 0.92rem;
-        text-align: left;
-        position: relative;
-        z-index: 2;
-    }
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-size: cover;
+            background-position: center;
+            filter: blur(8px);
+            opacity: 0.12;
+            transition: transform 0.5s ease, opacity 0.3s ease;
+            z-index: -2;
+        }
 
-    .card ul {
-        list-style: none;
-    }
+        .card::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(255, 255, 255, 0.95);
+            z-index: -1;
+        }
 
-    .card ul li {
-        margin-bottom: 0.5rem;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-    }
+        .card:hover {
+            transform: translateY(-8px);
+            border-color: #3b5773;
+            box-shadow: 0 12px 30px rgba(74, 108, 141, 0.35);
+        }
 
-    .card ul li i {
-        color: #4a6c8d;
-    }
+        .card .icon-box {
+            width: 70px;
+            height: 70px;
+            background-color: rgba(74, 108, 141, 0.12);
+            color: #4a6c8d;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem auto;
+            font-size: 1.7rem;
+            transition: all 0.4s ease;
+        }
 
-    /* SECCIÓN NUESTRO EQUIPO DE TRABAJO */
-    .team-section {
-        text-align: center;
-        margin-bottom: 2rem;
-    }
+        .card:hover .icon-box {
+            background-color: #4a6c8d;
+            color: #ffffff;
+            transform: scale(1.12) rotate(8deg);
+            box-shadow: 0 0 20px rgba(74, 108, 141, 0.5);
+        }
 
-    .team-section h3 {
-        font-family: var(--font-headings);
-        font-size: 2.2rem;
-        color: #4a6c8d;
-        font-weight: 700;
-        margin-bottom: 0.5rem;
-    }
+        .card h4 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 2;
+            font-family: var(--font-headings);
+            color: #2c3e50;
+        }
 
-    .team-section p.subtitle {
-        color: var(--color-text-muted);
-        margin-bottom: 3rem;
-        font-size: 0.98rem;
-    }
+        .card p, .card ul {
+            color: var(--color-text-muted);
+            font-size: 0.92rem;
+            text-align: left;
+            position: relative;
+            z-index: 2;
+        }
 
-    .team-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 2rem;
-    }
+        .card ul {
+            list-style: none;
+        }
 
-    .team-card {
-        background: linear-gradient(180deg, #f8fafc 0%, #edf2f7 100%);
-        border-radius: 16px;
-        border: 2px solid #cbd5e1;
-        padding: 2.5rem 1.8rem;
-        text-align: center;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-        transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
-        cursor: pointer;
-    }
+        .card ul li {
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
 
-    .team-card:hover {
-        transform: translateY(-8px);
-        border-color: #3b5773;
-        box-shadow: 0 12px 30px rgba(74, 108, 141, 0.35);
-    }
+        .card ul li i {
+            color: #4a6c8d;
+        }
 
-    .img-wrapper {
-        width: 130px;
-        height: 130px;
-        margin: 0 auto 1.5rem auto;
-        border-radius: 50%;
-        overflow: hidden;
-        border: 3.5px solid #4a6c8d;
-        box-shadow: 0 4px 12px rgba(74, 108, 141, 0.25);
-        transition: transform 0.35s ease;
-    }
+        /* SECCIÓN NUESTRO EQUIPO DE TRABAJO */
+        .team-section {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
 
-    .team-card:hover .img-wrapper {
-        transform: scale(1.05);
-        border-color: #217ba3;
-    }
+        .team-section h3 {
+            font-family: var(--font-headings);
+            font-size: 2.2rem;
+            color: #4a6c8d;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
 
-    .team-card img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
+        .team-section p.subtitle {
+            color: var(--color-text-muted);
+            margin-bottom: 3rem;
+            font-size: 0.98rem;
+        }
 
-    .team-card h4 {
-        font-family: var(--font-headings);
-        font-size: 1.25rem;
-        color: #2c3e50;
-        font-weight: 700;
-        margin-bottom: 0.3rem;
-    }
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
 
-    .team-card span {
-        font-family: var(--font-headings);
-        font-size: 0.88rem;
-        color: #3b5773;
-        font-weight: 600;
-        display: block;
-        margin-bottom: 1rem;
-        letter-spacing: 0.5px;
-    }
+        .team-card {
+            background: linear-gradient(180deg, #f8fafc 0%, #edf2f7 100%);
+            border-radius: 16px;
+            border: 2px solid #cbd5e1;
+            padding: 2.5rem 1.8rem;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+            cursor: pointer;
+        }
 
-    .team-card p {
-        font-family: var(--font-body);
-        font-size: 0.9rem;
-        color: #475569;
-        line-height: 1.6;
-    }
+        .team-card:hover {
+            transform: translateY(-8px);
+            border-color: #3b5773;
+            box-shadow: 0 12px 30px rgba(74, 108, 141, 0.35);
+        }
 
-    /* ESTILOS INTERNOS PARA EL BOTÓN DE IDIOMA */
-    .lang-switch-container {
-        display: inline-flex;
-        align-items: center;
-        background: rgba(15, 23, 42, 0.06);
-        border: 1px solid #00bcd4;
-        border-radius: 20px;
-        padding: 2px;
-        margin-right: 0.5rem;
-    }
+        .img-wrapper {
+            width: 130px;
+            height: 130px;
+            margin: 0 auto 1.5rem auto;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3.5px solid #4a6c8d;
+            box-shadow: 0 4px 12px rgba(74, 108, 141, 0.25);
+            transition: transform 0.35s ease;
+        }
 
-    .lang-btn {
-        background: transparent;
-        border: none;
-        color: #64748b;
-        font-family: 'Montserrat', sans-serif;
-        font-size: 0.75rem;
-        font-weight: 700;
-        padding: 0.25rem 0.6rem;
-        border-radius: 16px;
-        cursor: pointer;
-        transition: all 0.25s ease;
-    }
+        .team-card:hover .img-wrapper {
+            transform: scale(1.05);
+            border-color: #217ba3;
+        }
 
-    .lang-btn.active {
-        background: #00bcd4;
-        color: #ffffff;
-        box-shadow: 0 2px 8px rgba(0, 188, 212, 0.3);
-    }
+        .team-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .team-card h4 {
+            font-family: var(--font-headings);
+            font-size: 1.25rem;
+            color: #2c3e50;
+            font-weight: 700;
+            margin-bottom: 0.3rem;
+        }
+
+        .team-card span {
+            font-family: var(--font-headings);
+            font-size: 0.88rem;
+            color: #3b5773;
+            font-weight: 600;
+            display: block;
+            margin-bottom: 1rem;
+            letter-spacing: 0.5px;
+        }
+
+        .team-card p {
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+            color: #475569;
+            line-height: 1.6;
+        }
     </style>
 </head>
 <body>
@@ -351,7 +367,7 @@
     <header class="main-header">
         <a href="index.html" class="logo-container">
             <div class="brand-isotype">
-                <img src="imagenes/logo.jpg.png" alt="Logo Hephorix" style="max-height: 40px;">
+                <img src="imagenes/logo.jpg.png" alt="Logo Hephorix" class="header-logo-img">
             </div>
             <div class="logo-text">
                 <h1>HEPHORIX</h1>
@@ -368,12 +384,6 @@
         </nav>
 
         <div class="header-actions">
-            <!-- BOTÓN CONMUTADOR DE IDIOMA (ESPAÑOL / INGLÉS) -->
-            <div class="lang-switch-container">
-                <button class="lang-btn active" id="btnEs">ES</button>
-                <button class="lang-btn" id="btnEn">EN</button>
-            </div>
-
             <a href="login.html" class="action-link login-btn">
                 <i class="fa-regular fa-user"></i> <span data-key="btn_login">INICIAR SESIÓN</span>
             </a>
@@ -382,10 +392,18 @@
                 <i class="fa-brands fa-whatsapp"></i> <span data-key="btn_contact">CONTÁCTANOS</span>
             </a>
             <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
-                <i class="fa-solid fa-bars"></i>
+                <i class="fa-solid fa-bars" id="menuIcon"></i>
             </button>
         </div>
     </header>
+
+    <!-- Botón Flotante de Traductor (Abajo a la derecha) -->
+    <div class="floating-lang-toggle">
+        <button class="lang-btn-float" id="btnLangFloat" aria-label="Cambiar idioma">
+            <i class="fa-solid fa-globe"></i>
+            <span id="langLabel">ES</span>
+        </button>
+    </div>
 
     <!-- Barra Lateral Flotante de Redes Sociales -->
     <aside class="floating-aside-networks">
@@ -538,7 +556,7 @@
         </div>
     </footer>
 
-    <!-- SCRIPT DE NAVEGACIÓN Y CARRUSEL -->
+    <!-- SCRIPT PRINCIPAL Y DE TRADUCCIÓN / CARRUSEL -->
     <script src="script.js"></script>
     <script>
         let currentLang = 'es';
@@ -612,32 +630,29 @@
             }
         };
 
-        function switchLanguage(lang) {
-            currentLang = lang;
+        function switchLanguage() {
+            currentLang = currentLang === 'es' ? 'en' : 'es';
+            
             const elements = document.querySelectorAll('[data-key]');
             elements.forEach(elem => {
                 const key = elem.getAttribute('data-key');
-                if (translations[lang] && translations[lang][key]) {
-                    elem.textContent = translations[lang][key];
+                if (translations[currentLang] && translations[currentLang][key]) {
+                    elem.textContent = translations[currentLang][key];
                 }
             });
 
-            const btnEs = document.getElementById('btnEs');
-            const btnEn = document.getElementById('btnEn');
-            if (lang === 'en') {
-                btnEs.classList.remove('active');
-                btnEn.classList.add('active');
-                document.documentElement.lang = 'en';
-            } else {
-                btnEn.classList.remove('active');
-                btnEs.classList.add('active');
-                document.documentElement.lang = 'es';
+            const langLabel = document.getElementById('langLabel');
+            if (langLabel) {
+                langLabel.textContent = currentLang.toUpperCase();
             }
+            document.documentElement.lang = currentLang;
         }
 
         document.addEventListener('DOMContentLoaded', () => {
-            document.getElementById('btnEs').addEventListener('click', () => switchLanguage('es'));
-            document.getElementById('btnEn').addEventListener('click', () => switchLanguage('en'));
+            const btnLangFloat = document.getElementById('btnLangFloat');
+            if (btnLangFloat) {
+                btnLangFloat.addEventListener('click', switchLanguage);
+            }
 
             /* LÓGICA DEL CARRUSEL AUTOMÁTICO DE 5 IMÁGENES */
             const slides = document.querySelectorAll('#aboutSlider .slide');
@@ -669,6 +684,37 @@
                     slideInterval = setInterval(nextSlide, 4000);
                 });
             });
+
+            // Control del Menú Hamburguesa Móvil
+            const menuToggle = document.getElementById('menuToggle');
+            const navMenu = document.getElementById('navMenu');
+            const menuIcon = document.getElementById('menuIcon');
+
+            if (menuToggle && navMenu) {
+                menuToggle.addEventListener('click', () => {
+                    navMenu.classList.toggle('active');
+                    if (menuIcon) {
+                        if (navMenu.classList.contains('active')) {
+                            menuIcon.classList.remove('fa-bars');
+                            menuIcon.classList.add('fa-xmark');
+                        } else {
+                            menuIcon.classList.remove('fa-xmark');
+                            menuIcon.classList.add('fa-bars');
+                        }
+                    }
+                });
+
+                const navLinks = navMenu.querySelectorAll('.nav-link');
+                navLinks.forEach(link => {
+                    link.addEventListener('click', () => {
+                        navMenu.classList.remove('active');
+                        if (menuIcon) {
+                            menuIcon.classList.remove('fa-xmark');
+                            menuIcon.classList.add('fa-bars');
+                        }
+                    });
+                });
+            }
         });
     </script>
 </body>
