@@ -13,7 +13,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <!-- ESTILOS INTERNOS PARA HERO, GLASSMORPHISM, ACORDEÓN Y CONMUTADOR DE IDIOMA -->
+    <!-- ESTILOS INTERNOS PARA HERO, GLASSMORPHISM Y ACORDEÓN -->
     <style>
         .hero-section {
             background: linear-gradient(135deg, rgba(15, 23, 42, 0.78), rgba(59, 87, 115, 0.82)), 
@@ -41,34 +41,51 @@
             transition: opacity 0.3s ease;
         }
 
-        /* BOTÓN / SELECTOR DE IDIOMA EN EL HEADER */
-        .lang-switch-container {
-            display: inline-flex;
-            align-items: center;
-            background: rgba(15, 23, 42, 0.06);
-            border: 1px solid #00bcd4;
-            border-radius: 20px;
-            padding: 2px;
-            margin-right: 0.5rem;
+        /* BOTÓN FLOTANTE DE IDIOMA (ESTILO ARTNOVUS) */
+        .floating-lang-toggle {
+            position: fixed;
+            bottom: 85px;
+            right: 20px;
+            z-index: 999;
         }
 
-        .lang-btn {
-            background: transparent;
-            border: none;
-            color: #64748b;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.75rem;
-            font-weight: 700;
-            padding: 0.25rem 0.6rem;
-            border-radius: 16px;
-            cursor: pointer;
-            transition: all 0.25s ease;
-        }
-
-        .lang-btn.active {
-            background: #00bcd4;
+        .lang-btn-float {
+            background: #0f172a;
+            border: 2px solid #00bcd4;
             color: #ffffff;
-            box-shadow: 0 2px 8px rgba(0, 188, 212, 0.3);
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 188, 212, 0.4);
+            transition: transform 0.3s ease, background 0.3s ease;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .lang-btn-float i {
+            font-size: 0.75rem;
+            color: #00bcd4;
+        }
+
+        .lang-btn-float span {
+            font-size: 0.65rem;
+            font-weight: 700;
+            line-height: 1;
+            margin-top: 2px;
+        }
+
+        .lang-btn-float:hover {
+            transform: scale(1.1);
+            background: #00bcd4;
+            color: #0f172a;
+        }
+
+        .lang-btn-float:hover i {
+            color: #0f172a;
         }
 
         /* SECCIÓN ALINEADA PERFECTAMENTE EN ALTURA CON LA TARJETA DEL VÍDEO */
@@ -263,25 +280,30 @@
         </nav>
 
         <div class="header-actions">
-            <!-- BOTÓN CONMUTADOR DE IDIOMA (ESPAÑOL / INGLÉS) -->
-            <div class="lang-switch-container">
-                <button class="lang-btn active" id="btnEs">ES</button>
-                <button class="lang-btn" id="btnEn">EN</button>
-            </div>
-
+            <!-- BOTÓN DE INICIAR SESIÓN EN EL HEADER -->
             <a href="login.html" class="action-link login-btn">
                 <i class="fa-regular fa-user"></i> <span data-key="btn_login">INICIAR SESIÓN</span>
             </a>
             
+            <!-- BOTÓN WHATSAPP (SE OCULTA EN MÓVIL) -->
             <a href="https://wa.me/573182849146" target="_blank" class="action-link contact-wp">
                 <i class="fa-brands fa-whatsapp"></i> <span data-key="btn_contact">CONTÁCTANOS</span>
             </a>
             
+            <!-- BOTÓN HAMBURGUESA -->
             <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
                 <i class="fa-solid fa-bars" id="menuIcon"></i>
             </button>
         </div>
     </header>
+
+    <!-- Botón Flotante de Traductor (Abajo a la derecha) -->
+    <div class="floating-lang-toggle">
+        <button class="lang-btn-float" id="btnLangFloat" aria-label="Cambiar idioma">
+            <i class="fa-solid fa-globe"></i>
+            <span id="langLabel">ES</span>
+        </button>
+    </div>
 
     <!-- Barra Lateral Flotante de Redes Sociales -->
     <aside class="floating-aside-networks">
@@ -529,33 +551,30 @@
             }
         };
 
-        function switchLanguage(lang) {
-            currentLang = lang;
+        function switchLanguage() {
+            currentLang = currentLang === 'es' ? 'en' : 'es';
+            
             const elements = document.querySelectorAll('[data-key]');
             elements.forEach(elem => {
                 const key = elem.getAttribute('data-key');
-                if (translations[lang] && translations[lang][key]) {
-                    elem.textContent = translations[lang][key];
+                if (translations[currentLang] && translations[currentLang][key]) {
+                    elem.textContent = translations[currentLang][key];
                 }
             });
 
-            const btnEs = document.getElementById('btnEs');
-            const btnEn = document.getElementById('btnEn');
-            if (lang === 'en') {
-                btnEs.classList.remove('active');
-                btnEn.classList.add('active');
-                document.documentElement.lang = 'en';
-            } else {
-                btnEn.classList.remove('active');
-                btnEs.classList.add('active');
-                document.documentElement.lang = 'es';
+            const langLabel = document.getElementById('langLabel');
+            if (langLabel) {
+                langLabel.textContent = currentLang.toUpperCase();
             }
+            document.documentElement.lang = currentLang;
         }
 
         document.addEventListener('DOMContentLoaded', () => {
-            // Eventos para cambiar de idioma
-            document.getElementById('btnEs').addEventListener('click', () => switchLanguage('es'));
-            document.getElementById('btnEn').addEventListener('click', () => switchLanguage('en'));
+            // Evento para el botón flotante de idioma
+            const btnLangFloat = document.getElementById('btnLangFloat');
+            if (btnLangFloat) {
+                btnLangFloat.addEventListener('click', switchLanguage);
+            }
 
             // 1. Texto dinámico animado
             const dynamicText = document.getElementById('dynamicText');
