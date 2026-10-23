@@ -12,6 +12,55 @@
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- ESTILOS INTERNOS PARA EL BOTÓN FLOTANTE DE IDIOMA -->
+    <style>
+        .floating-lang-toggle {
+            position: fixed;
+            bottom: 85px;
+            right: 20px;
+            z-index: 999;
+        }
+
+        .lang-btn-float {
+            background: #0f172a;
+            border: 2px solid #00bcd4;
+            color: #ffffff;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 188, 212, 0.4);
+            transition: transform 0.3s ease, background 0.3s ease;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .lang-btn-float i {
+            font-size: 0.75rem;
+            color: #00bcd4;
+        }
+
+        .lang-btn-float span {
+            font-size: 0.65rem;
+            font-weight: 700;
+            line-height: 1;
+            margin-top: 2px;
+        }
+
+        .lang-btn-float:hover {
+            transform: scale(1.1);
+            background: #00bcd4;
+            color: #0f172a;
+        }
+
+        .lang-btn-float:hover i {
+            color: #0f172a;
+        }
+    </style>
 </head>
 <body class="login-page-body">
 
@@ -19,81 +68,98 @@
     <header class="main-header">
         <a href="index.html" class="logo-container">
             <div class="brand-isotype">
-                <img src="imagenes/logo.jpg.png" alt="Logo Hephorix" style="max-height: 40px;">
+                <img src="imagenes/logo.jpg.png" alt="Logo Hephorix" class="header-logo-img">
             </div>
             <div class="logo-text">
                 <h1>HEPHORIX</h1>
-                <span>agencia de diseño gráfico</span>
+                <span data-key="sub_logo">agencia de diseño gráfico</span>
             </div>
         </a>
         
         <nav class="nav-menu" id="navMenu">
-            <a href="index.html" class="nav-link">INICIO</a>
-            <a href="quienes somos.html" class="nav-link">QUIENES SOMOS</a>
-            <a href="servicios.html" class="nav-link">SERVICIOS</a>
-            <a href="portafolio.html" class="nav-link">PORTAFOLIO</a>
-            <a href="contacto.html" class="nav-link">CONTACTANOS</a>
+            <a href="index.html" class="nav-link" data-key="nav_inicio">INICIO</a>
+            <a href="quienes somos.html" class="nav-link" data-key="nav_quienes">QUIENES SOMOS</a>
+            <a href="servicios.html" class="nav-link" data-key="nav_servicios">SERVICIOS</a>
+            <a href="portafolio.html" class="nav-link" data-key="nav_portafolio">PORTAFOLIO</a>
+            <a href="contacto.html" class="nav-link" data-key="nav_contactanos">CONTACTANOS</a>
         </nav>
 
         <div class="header-actions">
-            <a href="login.html" class="action-link login-btn active"><i class="fa-regular fa-user"></i> INICIAR SESIÓN</a>
+            <a href="login.html" class="action-link login-btn active">
+                <i class="fa-regular fa-user"></i> <span data-key="btn_login">INICIAR SESIÓN</span>
+            </a>
             <a href="https://wa.me/573182849146" target="_blank" class="action-link contact-wp">
-                <i class="fa-brands fa-whatsapp"></i> CONTÁCTANOS
+                <i class="fa-brands fa-whatsapp"></i> <span data-key="btn_contact">CONTÁCTANOS</span>
             </a>
             <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
-                <i class="fa-solid fa-bars"></i>
+                <i class="fa-solid fa-bars" id="menuIcon"></i>
             </button>
         </div>
     </header>
+
+    <!-- Botón Flotante de Traductor (Abajo a la derecha) -->
+    <div class="floating-lang-toggle">
+        <button class="lang-btn-float" id="btnLangFloat" aria-label="Cambiar idioma">
+            <i class="fa-solid fa-globe"></i>
+            <span id="langLabel">ES</span>
+        </button>
+    </div>
+
+    <!-- Barra Lateral Flotante de Redes Sociales -->
+    <aside class="floating-aside-networks">
+        <a href="https://wa.me/573182849146?text=Hola,%20quisiera%20más%20información" class="floating-net-btn wp" target="_blank" rel="noopener noreferrer" aria-label="Contactar por WhatsApp">
+            <i class="fa-brands fa-whatsapp"></i>
+        </a>
+        <a href="https://www.instagram.com/_hephorix/" target="_blank" class="floating-net-btn ig" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+    </aside>
 
     <!-- Contenedor Principal del Formulario de Autenticación -->
     <main class="login-container-wrapper">
         <div class="login-card">
             <div class="login-header">
-                <img src="imagenes/logo.jpg.png" alt="HEPHORIX Logo" class="login-logo">
-                <h2>¡Bienvenido de Nuevo!</h2>
-                <p>Ingresa tus credenciales de acceso para gestionar tu cuenta</p>
+                <img src="imagenes/logo.jpg.png" alt="HEPHORIX Logo" class="login-logo header-logo-img">
+                <h2 data-key="login_welcome">¡Bienvenido de Nuevo!</h2>
+                <p data-key="login_sub">Ingresa tus credenciales de acceso para gestionar tu cuenta</p>
             </div>
 
             <form id="standaloneLoginForm" class="login-form">
                 <!-- Campo Correo Electrónico -->
                 <div class="form-group">
-                    <label for="loginEmail"><i class="fa-regular fa-envelope"></i> Correo Electrónico *</label>
+                    <label for="loginEmail"><i class="fa-regular fa-envelope"></i> <span data-key="lbl_email">Correo Electrónico *</span></label>
                     <input type="email" id="loginEmail" placeholder="ejemplo@hephorix.com" required autocomplete="email">
                 </div>
 
                 <!-- Campo Contraseña -->
                 <div class="form-group">
-                    <label for="loginPassword"><i class="fa-solid fa-lock"></i> Contraseña *</label>
+                    <label for="loginPassword"><i class="fa-solid fa-lock"></i> <span data-key="lbl_password">Contraseña *</span></label>
                     <input type="password" id="loginPassword" placeholder="••••••••" required autocomplete="current-password">
                 </div>
 
                 <!-- Captcha Matemático Aleatorio -->
-                <!-- Campo Captcha Matemático en login.html -->
-<div class="form-group captcha-group">
-    <label for="captchaAnswer">
-        <i class="fa-solid fa-calculator"></i> Desafío de Seguridad: <span id="captchaQuestion">Calculando...</span> *
-    </label>
-    <div class="captcha-input-wrapper">
-        <input type="number" id="captchaAnswer" placeholder="Resultado" required>
-        <button type="button" id="refreshCaptchaBtn" class="refresh-captcha-btn" title="Generar nuevo desafío">
-            <i class="fa-solid fa-arrows-rotate"></i>
-        </button>
-    </div>
-</div>
+                <div class="form-group captcha-group">
+                    <label for="captchaAnswer">
+                        <i class="fa-solid fa-calculator"></i> <span data-key="lbl_captcha">Desafío de Seguridad:</span> <span id="captchaQuestion">Calculando...</span> *
+                    </label>
+                    <div class="captcha-input-wrapper">
+                        <input type="number" id="captchaAnswer" placeholder="Resultado" required>
+                        <button type="button" id="refreshCaptchaBtn" class="refresh-captcha-btn" title="Generar nuevo desafío">
+                            <i class="fa-solid fa-arrows-rotate"></i>
+                        </button>
+                    </div>
+                </div>
 
                 <!-- Enlace Olvidaste tu Contraseña -->
                 <div class="forgot-password-container">
-                    <a href="contacto.html" class="forgot-link"><i class="fa-regular fa-circle-question"></i> ¿Olvidaste tu contraseña?</a>
+                    <a href="contacto.html" class="forgot-link"><i class="fa-regular fa-circle-question"></i> <span data-key="forgot_pass">¿Olvidaste tu contraseña?</span></a>
                 </div>
 
                 <!-- Botones de Acción -->
                 <div class="login-actions">
                     <button type="submit" class="btn btn-primary btn-submit-login">
-                        <i class="fa-solid fa-right-to-bracket"></i> INGRESAR
+                        <i class="fa-solid fa-right-to-bracket"></i> <span data-key="btn_enter">INGRESAR</span>
                     </button>
                     <a href="index.html" class="btn btn-secondary btn-return">
-                        <i class="fa-solid fa-arrow-left"></i> REGRESAR
+                        <i class="fa-solid fa-arrow-left"></i> <span data-key="btn_back">REGRESAR</span>
                     </a>
                 </div>
             </form>
@@ -106,18 +172,18 @@
             <div class="modal-error-icon">
                 <i class="fa-solid fa-triangle-exclamation"></i>
             </div>
-            <h3>Error de Autenticación</h3>
-            <p id="modalErrorMessage">Los datos ingresados o la respuesta al desafío matemático son incorrectos. Por favor, verifica la información.</p>
+            <h3 data-key="err_title">Error de Autenticación</h3>
+            <p id="modalErrorMessage" data-key="err_msg">Los datos ingresados o la respuesta al desafío matemático son incorrectos. Por favor, verifica la información.</p>
             
             <div class="modal-error-actions">
                 <button type="button" id="btnModalRetry" class="modal-btn btn-retry">
-                    <i class="fa-solid fa-rotate-left"></i> INTENTAR NUEVAMENTE
+                    <i class="fa-solid fa-rotate-left"></i> <span data-key="btn_retry">INTENTAR NUEVAMENTE</span>
                 </button>
                 <a href="index.html" class="modal-btn btn-cancel">
-                    <i class="fa-solid fa-xmark"></i> CANCELAR
+                    <i class="fa-solid fa-xmark"></i> <span data-key="btn_cancel">CANCELAR</span>
                 </a>
                 <a href="contacto.html" class="modal-btn btn-help">
-                    <i class="fa-solid fa-headset"></i> AYUDA
+                    <i class="fa-solid fa-headset"></i> <span data-key="btn_help">AYUDA</span>
                 </a>
             </div>
         </div>
@@ -129,8 +195,8 @@
             <div class="footer-item project-call">
                 <i class="fa-regular fa-paper-plane"></i>
                 <div class="text-group">
-                    <h3>¿TIENES UN PROYECTO EN MENTE?</h3>
-                    <p>CONTÁCTANOS Y HAGAMOS REALIDAD TU IDEA</p>
+                    <h3 data-key="footer_title">¿TIENES UN PROYECTO EN MENTE?</h3>
+                    <p data-key="footer_sub">CONTÁCTANOS Y HAGAMOS REALIDAD TU IDEA</p>
                 </div>
             </div>
             <div class="footer-item contact-phone">
@@ -146,5 +212,119 @@
 
     <!-- Archivo de Lógica Global -->
     <script src="script.js"></script>
+
+    <!-- LÓGICA JAVASCRIPT DE TRADUCCIÓN Y MENÚ MÓVIL -->
+    <script>
+        let currentLang = 'es';
+
+        const translations = {
+            es: {
+                sub_logo: "agencia de diseño gráfico",
+                nav_inicio: "INICIO",
+                nav_quienes: "QUIENES SOMOS",
+                nav_servicios: "SERVICIOS",
+                nav_portafolio: "PORTAFOLIO",
+                nav_contactanos: "CONTACTANOS",
+                btn_login: "INICIAR SESIÓN",
+                btn_contact: "CONTÁCTANOS",
+                login_welcome: "¡Bienvenido de Nuevo!",
+                login_sub: "Ingresa tus credenciales de acceso para gestionar tu cuenta",
+                lbl_email: "Correo Electrónico *",
+                lbl_password: "Contraseña *",
+                lbl_captcha: "Desafío de Seguridad:",
+                forgot_pass: "¿Olvidaste tu contraseña?",
+                btn_enter: "INGRESAR",
+                btn_back: "REGRESAR",
+                err_title: "Error de Autenticación",
+                err_msg: "Los datos ingresados o la respuesta al desafío matemático son incorrectos. Por favor, verifica la información.",
+                btn_retry: "INTENTAR NUEVAMENTE",
+                btn_cancel: "CANCELAR",
+                btn_help: "AYUDA",
+                footer_title: "¿TIENES UN PROYECTO EN MENTE?",
+                footer_sub: "CONTÁCTANOS Y HAGAMOS REALIDAD TU IDEA"
+            },
+            en: {
+                sub_logo: "graphic design agency",
+                nav_inicio: "HOME",
+                nav_quienes: "ABOUT US",
+                nav_servicios: "SERVICES",
+                nav_portafolio: "PORTFOLIO",
+                nav_contactanos: "CONTACT US",
+                btn_login: "LOG IN",
+                btn_contact: "CONTACT US",
+                login_welcome: "Welcome Back!",
+                login_sub: "Enter your credentials to manage your account",
+                lbl_email: "Email Address *",
+                lbl_password: "Password *",
+                lbl_captcha: "Security Challenge:",
+                forgot_pass: "Forgot your password?",
+                btn_enter: "LOG IN",
+                btn_back: "GO BACK",
+                err_title: "Authentication Error",
+                err_msg: "The entered credentials or mathematical challenge answer are incorrect. Please verify your information.",
+                btn_retry: "TRY AGAIN",
+                btn_cancel: "CANCEL",
+                btn_help: "HELP",
+                footer_title: "HAVE A PROJECT IN MIND?",
+                footer_sub: "CONTACT US AND LET'S MAKE YOUR IDEA A REALITY"
+            }
+        };
+
+        function switchLanguage() {
+            currentLang = currentLang === 'es' ? 'en' : 'es';
+            
+            const elements = document.querySelectorAll('[data-key]');
+            elements.forEach(elem => {
+                const key = elem.getAttribute('data-key');
+                if (translations[currentLang] && translations[currentLang][key]) {
+                    elem.textContent = translations[currentLang][key];
+                }
+            });
+
+            const langLabel = document.getElementById('langLabel');
+            if (langLabel) {
+                langLabel.textContent = currentLang.toUpperCase();
+            }
+            document.documentElement.lang = currentLang;
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const btnLangFloat = document.getElementById('btnLangFloat');
+            if (btnLangFloat) {
+                btnLangFloat.addEventListener('click', switchLanguage);
+            }
+
+            // Control del Menú Hamburguesa Móvil
+            const menuToggle = document.getElementById('menuToggle');
+            const navMenu = document.getElementById('navMenu');
+            const menuIcon = document.getElementById('menuIcon');
+
+            if (menuToggle && navMenu) {
+                menuToggle.addEventListener('click', () => {
+                    navMenu.classList.toggle('active');
+                    if (menuIcon) {
+                        if (navMenu.classList.contains('active')) {
+                            menuIcon.classList.remove('fa-bars');
+                            menuIcon.classList.add('fa-xmark');
+                        } else {
+                            menuIcon.classList.remove('fa-xmark');
+                            menuIcon.classList.add('fa-bars');
+                        }
+                    }
+                });
+
+                const navLinks = navMenu.querySelectorAll('.nav-link');
+                navLinks.forEach(link => {
+                    link.addEventListener('click', () => {
+                        navMenu.classList.remove('active');
+                        if (menuIcon) {
+                            menuIcon.classList.remove('fa-xmark');
+                            menuIcon.classList.add('fa-bars');
+                        }
+                    });
+                });
+            }
+        });
+    </script>
 </body>
 </html>
