@@ -299,119 +299,6 @@
             cursor: ew-resize;
         }
 
-        .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2rem;
-            perspective: 1000px;
-        }
-
-        .portfolio-item {
-            background: #ffffff;
-            border-radius: 16px;
-            border: 2px solid #dbe2e8;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-            overflow: hidden;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            transform-style: preserve-3d;
-            transition: transform 0.2s ease-out, box-shadow 0.35s ease, border-color 0.35s ease;
-        }
-
-        .portfolio-item:hover {
-            border-color: var(--color-primary, #00bcd4);
-            box-shadow: 0 12px 30px rgba(0, 188, 212, 0.25);
-        }
-
-        .portfolio-img-wrapper {
-            position: relative;
-            width: 100%;
-            height: 240px;
-            background: #0f172a;
-            overflow: hidden;
-        }
-
-        .portfolio-img-wrapper img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-            transition: transform 0.4s ease;
-        }
-
-        .portfolio-item:hover .portfolio-img-wrapper img {
-            transform: scale(1.05);
-        }
-
-        .portfolio-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(15, 23, 42, 0.88);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            padding: 1.5rem;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            backdrop-filter: blur(4px);
-        }
-
-        .portfolio-item:hover .portfolio-overlay {
-            opacity: 1;
-        }
-
-        .category-tag {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.75rem;
-            font-weight: 700;
-            color: #00bcd4;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 0.4rem;
-        }
-
-        .portfolio-overlay h3 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.15rem;
-            font-weight: 700;
-            color: #ffffff;
-            margin-bottom: 0.4rem;
-        }
-
-        .portfolio-overlay p {
-            font-family: 'Open Sans', sans-serif;
-            font-size: 0.85rem;
-            color: #cbd5e1;
-            margin-bottom: 1rem;
-            line-height: 1.4;
-        }
-
-        .portfolio-link {
-            align-self: flex-start;
-            background: #00bcd4;
-            color: #0f172a;
-            border: none;
-            padding: 0.45rem 0.9rem;
-            border-radius: 8px;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.8rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: background 0.25s ease, transform 0.25s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.4rem;
-        }
-
-        .portfolio-link:hover {
-            background: #ffffff;
-            transform: translateY(-2px);
-        }
-
         /* Estilos del Modal */
         .portfolio-modal-overlay {
             position: fixed;
@@ -643,8 +530,7 @@
                     <div class="video-wrapper">
                         <video controls poster="imagenes/mate 1.jpg">
                             <source src="imagenes/matematicas.mp4" type="video/mp4">
-                            Tu navegador no soporta la reproducción de video.
-                        </video>
+                            Tu navegador no soporta la reproducción de video.</video>
                     </div>
                     <div class="video-info">
                         <h3 data-key="p1_title">Dia internacional de Las Matematicas</h3>
@@ -809,163 +695,6 @@
             </div>
         </section>
 
-        <!-- TÍTULO DE LA SECCIÓN DE CATÁLOGOS (CENTRADO) -->
-        <h2 class="section-title" data-key="title_catalogs">Nuestros Catálogos</h2>
-
-        <!-- Galería de Proyectos / Catálogos -->
-        <div class="portfolio-grid">
-
-            <!-- Proyecto 1 -->
-            <article class="portfolio-item tilt-card">
-                <span class="metric-badge"><i class="fa-solid fa-rocket"></i> <span data-key="c1_badge">+150% Ventas</span></span>
-                <div class="portfolio-img-wrapper">
-                    <img src="imagenes/portafolio1.png" alt="Campaña Moda Verano - Luxora Boutique" onerror="this.src='https://via.placeholder.com/400x280?text=Campaña+Moda'">
-                    <div class="portfolio-overlay">
-                        <span class="category-tag" data-key="c1_cat">Redes Sociales</span>
-                        <h3 data-key="c1_title">Campaña Moda Verano</h3>
-                        <p data-key="c1_sub">Diseño de feed e historias para Instagram - Luxora Boutique</p>
-                        <button class="portfolio-link open-modal-btn" 
-                                data-title-es="Campaña Moda Verano"
-                                data-title-en="Summer Fashion Campaign"
-                                data-cat-es="Redes Sociales"
-                                data-cat-en="Social Media"
-                                data-img="imagenes/portafolio1.png"
-                                data-desc-es="Estrategia visual integral desarrollada para la campaña de verano de Luxora Boutique. Incluyó el diseño de plantillas editables para historias, publicaciones de feed con enfoque en conversión y la creación de piezas gráficas para promociones de hasta el 90% OFF."
-                                data-desc-en="Comprehensive visual strategy developed for Luxora Boutique's summer campaign. Includes editable story templates, feed posts focused on conversion, and graphic pieces for up to 90% OFF sales."
-                                data-tools-es="Adobe Photoshop, Illustrator, Lightroom"
-                                data-tools-en="Adobe Photoshop, Illustrator, Lightroom">
-                            <i class="fa-solid fa-circle-info"></i> <span data-key="btn_details">Ver detalles</span>
-                        </button>
-                    </div>
-                </div>
-            </article>
-
-            <!-- Proyecto 2 -->
-            <article class="portfolio-item tilt-card">
-                <span class="metric-badge"><i class="fa-solid fa-award"></i> <span data-key="c2_badge">Branding Pro</span></span>
-                <div class="portfolio-img-wrapper">
-                    <img src="imagenes/portafolio2.png" alt="Identidad Visual - Matcha Latte" onerror="this.src='https://via.placeholder.com/400x280?text=Matcha+Latte'">
-                    <div class="portfolio-overlay">
-                        <span class="category-tag" data-key="c2_cat">Branding & Publicidad</span>
-                        <h3 data-key="c2_title">Matcha Latte Brand</h3>
-                        <p data-key="c2_sub">Lanzamiento de producto e imagen publicitaria</p>
-                        <button class="portfolio-link open-modal-btn" 
-                                data-title-es="Matcha Latte Brand"
-                                data-title-en="Matcha Latte Brand"
-                                data-cat-es="Branding & Publicidad"
-                                data-cat-en="Branding & Advertising"
-                                data-img="imagenes/portafolio2.png"
-                                data-desc-es="Construcción conceptual de imagen publicitaria para bebida saludable 'Matcha Latte'. Se trabajó con paletas cromáticas orgánicas, tipografía moderna de alto contraste y fotografía gastronómica enfocada en destacar la frescura e ingredientes naturales."
-                                data-desc-en="Conceptual construction of advertising image for 'Matcha Latte' healthy drink. Worked with organic color palettes, high-contrast modern typography, and food photography highlighting freshness and natural ingredients."
-                                data-tools-es="Photoshop, Illustrator, Fotografía Comercial"
-                                data-tools-en="Photoshop, Illustrator, Commercial Photography">
-                            <i class="fa-solid fa-circle-info"></i> <span data-key="btn_details">Ver detalles</span>
-                        </button>
-                    </div>
-                </div>
-            </article>
-
-            <!-- Proyecto 3 -->
-            <article class="portfolio-item tilt-card">
-                <span class="metric-badge"><i class="fa-solid fa-laptop-code"></i> <span data-key="c3_badge">UI/UX Óptimo</span></span>
-                <div class="portfolio-img-wrapper">
-                    <img src="imagenes/portafolio3.png" alt="Sitio Web UI/UX - Arquitectura" onerror="this.src='https://via.placeholder.com/400x280?text=Estudio+Arquitectura'">
-                    <div class="portfolio-overlay">
-                        <span class="category-tag" data-key="c3_cat">Diseño Web UI/UX</span>
-                        <h3 data-key="c3_title">Estudio de Arquitectura</h3>
-                        <p data-key="c3_sub">Maquetación e interfaz web para firma arquitectónica</p>
-                        <button class="portfolio-link open-modal-btn" 
-                                data-title-es="Estudio de Arquitectura Web"
-                                data-title-en="Architecture Studio Web"
-                                data-cat-es="Diseño Web UI/UX"
-                                data-cat-en="UI/UX Web Design"
-                                data-img="imagenes/portafolio3.png"
-                                data-desc-es="Prototipado y maquetación de interfaz web (UI/UX) responsiva para estudio de arquitectura moderna. El enfoque principal fue el minimalismo elegante, navegabilidad limpia y exhibición fotográfica de proyectos a pantalla completa."
-                                data-desc-en="Prototyping and responsive web interface layout (UI/UX) for a modern architecture firm. Primary focus was elegant minimalism, clean navigation, and full-screen project photo exhibition."
-                                data-tools-es="Figma, HTML5, CSS3, JavaScript"
-                                data-tools-en="Figma, HTML5, CSS3, JavaScript">
-                            <i class="fa-solid fa-circle-info"></i> <span data-key="btn_details">Ver detalles</span>
-                        </button>
-                    </div>
-                </div>
-            </article>
-
-            <!-- Proyecto 4 -->
-            <article class="portfolio-item tilt-card">
-                <span class="metric-badge"><i class="fa-solid fa-bolt"></i> <span data-key="c4_badge">Convert +140%</span></span>
-                <div class="portfolio-img-wrapper">
-                    <img src="imagenes/portafolio4.png" alt="Lanzamiento Urban Style" onerror="this.src='https://via.placeholder.com/400x280?text=Urban+Style'">
-                    <div class="portfolio-overlay">
-                        <span class="category-tag" data-key="c4_cat">Redes Sociales</span>
-                        <h3 data-key="c4_title">Urban Style Collection</h3>
-                        <p data-key="c4_sub">Banner promocional e identidad para marca de ropa</p>
-                        <button class="portfolio-link open-modal-btn" 
-                                data-title-es="Urban Style Collection"
-                                data-title-en="Urban Style Collection"
-                                data-cat-es="Redes Sociales & Banners"
-                                data-cat-en="Social Media & Banners"
-                                data-img="imagenes/portafolio4.png"
-                                data-desc-es="Línea gráfica con estética 'Dark / Cyberpunk' para marca streetwear urbana. Creación de piezas publicitarias para canales digitales, carruseles de alta interacción y banners Web adaptados a modo oscuro."
-                                data-desc-en="Graphic line with 'Dark / Cyberpunk' aesthetic for urban streetwear brand. Creation of ads for digital channels, high-engagement carousels, and dark mode web banners."
-                                data-tools-es="Photoshop, After Effects, Illustrator"
-                                data-tools-en="Photoshop, After Effects, Illustrator">
-                            <i class="fa-solid fa-circle-info"></i> <span data-key="btn_details">Ver detalles</span>
-                        </button>
-                    </div>
-                </div>
-            </article>
-
-            <!-- Proyecto 5 -->
-            <article class="portfolio-item tilt-card">
-                <span class="metric-badge"><i class="fa-solid fa-book-open"></i> <span data-key="c5_badge">Editorial Top</span></span>
-                <div class="portfolio-img-wrapper">
-                    <img src="imagenes/portafolio5.png" alt="Catálogo Editorial e Impresos" onerror="this.src='https://via.placeholder.com/400x280?text=Catálogo+Editorial'">
-                    <div class="portfolio-overlay">
-                        <span class="category-tag" data-key="c5_cat">Impresos & Editorial</span>
-                        <h3 data-key="c5_title">Catálogo de Proyectos</h3>
-                        <p data-key="c5_sub">Diseño editorial y maquetación de catálogo corporativo</p>
-                        <button class="portfolio-link open-modal-btn" 
-                                data-title-es="Catálogo Corporativo Editorial"
-                                data-title-en="Editorial Corporate Catalog"
-                                data-cat-es="Impresos & Editorial"
-                                data-cat-en="Print & Editorial"
-                                data-img="imagenes/portafolio5.png"
-                                data-desc-es="Maquetación e impresión de catálogo impreso y digital corporativo de 24 páginas. Se definió retícula, jerarquía tipográfica, selección de acabados de papel y preparación para imprenta en alta resolución."
-                                data-desc-en="Layout and printing of a 24-page printed and digital corporate catalog. Grid system defined, typographic hierarchy, paper finish selection, and high-res print preparation."
-                                data-tools-es="Adobe InDesign, Illustrator, Photoshop"
-                                data-tools-en="Adobe InDesign, Illustrator, Photoshop">
-                            <i class="fa-solid fa-circle-info"></i> <span data-key="btn_details">Ver detalles</span>
-                        </button>
-                    </div>
-                </div>
-            </article>
-
-            <!-- Proyecto 6 -->
-            <article class="portfolio-item tilt-card">
-                <span class="metric-badge"><i class="fa-solid fa-gem"></i> <span data-key="c6_badge">Packaging Luxe</span></span>
-                <div class="portfolio-img-wrapper">
-                    <img src="imagenes/portafolio6.png" alt="Empaque y Serum Facial Hephorix" onerror="this.src='https://via.placeholder.com/400x280?text=Serum+Packaging'">
-                    <div class="portfolio-overlay">
-                        <span class="category-tag" data-key="c6_cat">Branding & Packaging</span>
-                        <h3 data-key="c6_title">Línea Serum Facial</h3>
-                        <p data-key="c6_sub">Diseño de empaque y frasco de cosmetología premium</p>
-                        <button class="portfolio-link open-modal-btn" 
-                                data-title-es="Packaging Serum Facial Hephorix"
-                                data-title-en="Facial Serum Packaging Hephorix"
-                                data-cat-es="Branding & Packaging"
-                                data-cat-en="Branding & Packaging"
-                                data-img="imagenes/portafolio6.png"
-                                data-desc-es="Diseño estructural y gráfico de empaque primario (frasco gotero) y secundario (caja) para línea dermatológica. Se incluyeron acabados en hot-stamping dorado, etiquetas mate y maquetación en mockups 3D."
-                                data-desc-en="Structural and graphic design of primary (dropper bottle) and secondary (box) packaging for a skincare line. Gold hot-stamping finishes, matte labels, and 3D mockup layouts included."
-                                data-tools-es="Illustrator, Photoshop, Mockup 3D Render"
-                                data-tools-en="Illustrator, Photoshop, Mockup 3D Render">
-                            <i class="fa-solid fa-circle-info"></i> <span data-key="btn_details">Ver detalles</span>
-                        </button>
-                    </div>
-                </div>
-            </article>
-
-        </div>
     </main>
 
     <!-- VENTANA EMERGENTE / POP-UP MODAL (DINÁMICA) -->
@@ -1051,32 +780,6 @@
                 ba_desc: "Desliza la barra central para comparar el rediseño estratégico de identidad de marca.",
                 ba_before: "Concepto Inicial",
                 ba_after: "Rediseño",
-                title_catalogs: "Nuestros Catálogos",
-                c1_badge: "+150% Ventas",
-                c1_cat: "Redes Sociales",
-                c1_title: "Campaña Moda Verano",
-                c1_sub: "Diseño de feed e historias para Instagram - Luxora Boutique",
-                c2_badge: "Branding Pro",
-                c2_cat: "Branding & Publicidad",
-                c2_title: "Matcha Latte Brand",
-                c2_sub: "Lanzamiento de producto e imagen publicitaria",
-                c3_badge: "UI/UX Óptimo",
-                c3_cat: "Diseño Web UI/UX",
-                c3_title: "Estudio de Arquitectura",
-                c3_sub: "Maquetación e interfaz web para firma arquitectónica",
-                c4_badge: "Convert +140%",
-                c4_cat: "Redes Sociales",
-                c4_title: "Urban Style Collection",
-                c4_sub: "Banner promocional e identidad para marca de ropa",
-                c5_badge: "Editorial Top",
-                c5_cat: "Impresos & Editorial",
-                c5_title: "Catálogo de Proyectos",
-                c5_sub: "Diseño editorial y maquetación de catálogo corporativo",
-                c6_badge: "Packaging Luxe",
-                c6_cat: "Branding & Packaging",
-                c6_title: "Línea Serum Facial",
-                c6_sub: "Diseño de empaque y frasco de cosmetología premium",
-                btn_details: "Ver detalles",
                 modal_meta_label: "Herramientas / Calificación:",
                 footer_title: "¿TIENES UN PROYECTO EN MENTE?",
                 footer_sub: "CONTÁCTANOS Y HAGAMOS REALIDAD TU IDEA"
@@ -1116,32 +819,6 @@
                 ba_desc: "Slide the central bar to compare the strategic brand identity redesign.",
                 ba_before: "Initial Concept",
                 ba_after: "Redesign",
-                title_catalogs: "Our Catalogs",
-                c1_badge: "+150% Sales",
-                c1_cat: "Social Media",
-                c1_title: "Summer Fashion Campaign",
-                c1_sub: "Feed and story design for Instagram - Luxora Boutique",
-                c2_badge: "Branding Pro",
-                c2_cat: "Branding & Advertising",
-                c2_title: "Matcha Latte Brand",
-                c2_sub: "Product launch and advertising image",
-                c3_badge: "Optimal UI/UX",
-                c3_cat: "UI/UX Web Design",
-                c3_title: "Architecture Studio",
-                c3_sub: "Web interface and layout for architectural firm",
-                c4_badge: "Convert +140%",
-                c4_cat: "Social Media",
-                c4_title: "Urban Style Collection",
-                c4_sub: "Promotional banner and brand identity for clothing line",
-                c5_badge: "Editorial Top",
-                c5_cat: "Print & Editorial",
-                c5_title: "Projects Catalog",
-                c5_sub: "Editorial design and corporate catalog layout",
-                c6_badge: "Packaging Luxe",
-                c6_cat: "Branding & Packaging",
-                c6_title: "Facial Serum Line",
-                c6_sub: "Packaging and bottle design for premium cosmetics",
-                btn_details: "View details",
                 modal_meta_label: "Tools / Rating:",
                 footer_title: "HAVE A PROJECT IN MIND?",
                 footer_sub: "CONTACT US AND LET'S MAKE YOUR IDEA A REALITY"
@@ -1285,4 +962,3 @@
     </script>
 </body>
 </html>
-
